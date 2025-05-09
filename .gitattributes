@@ -1,3 +1,8 @@
 *.psd filter=lfs diff=lfs merge=lfs -text
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
+# 프로젝트 루트에 .gitattributes 추가
+*.cs text=auto
+*.shader text=auto
+*.txt text=auto
+*.gitignore text eol=lf
