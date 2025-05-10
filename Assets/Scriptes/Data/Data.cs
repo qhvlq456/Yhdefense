@@ -12,8 +12,11 @@ public struct PlayerData
 }
 public struct StageData
 {
-    public int stage;
+    public int index;
     public int life;
+    public int startIdx;
+    public int endIdx;
+
     public List<LandData> landDataList;
     public List<SubStageData> subStageDataList;
 }
@@ -42,10 +45,13 @@ public struct MapData
 public struct CharacterData
 {
     public int index;
+    public string resName;
+    public string name;
     public CharacterType characterType;
 }
 public struct HeroData
 {
+    public int cost;
     public CharacterData characterData;
 }
 public struct EnemyData

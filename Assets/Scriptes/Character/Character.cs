@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character<T> : MonoBehaviour where T : struct
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    protected Health health;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    protected Move move;
+
+    [SerializeField]
+    protected Attack attack;
+
+    protected T data;
+    
+    public virtual void Create(T _data)
     {
-        
+        data = _data;
+    }
+    public void Retrieve()
+    {
+        ObjectPoolManager.Instance.RetrieveLand(transform);
     }
 }

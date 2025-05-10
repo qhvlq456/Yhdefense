@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameFlowRoutine = null;
 
-    private void StartGame(int _stage)
+    private void StartGame(int _stage, int _subStage)
     {
         selectStage = _stage;
-        MapManager.Instance.SetMap(_stage);
+        MapManager.Instance.SetMap(_stage, _subStage);
 
 
     }
