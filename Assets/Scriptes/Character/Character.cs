@@ -17,8 +17,8 @@ public class Character<T> : MonoBehaviour where T : struct
     {
         data = _data;
     }
-    public void Retrieve()
+    public virtual void Retrieve()
     {
-        ObjectPoolManager.Instance.RetrieveLand(transform);
+        
     }
 }

@@ -28,6 +28,7 @@ public struct SubStageData
 }
 public struct LandData
 {
+    public int index;
     // col
     public int x;
     // row

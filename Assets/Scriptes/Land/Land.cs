@@ -37,6 +37,6 @@ public class Land : MonoBehaviour
 
     public void Retrieve()
     {
-        ObjectPoolManager.Instance.RetrieveLand(transform);
+        ObjectPoolManager.Instance.Retrieve(PoolingType.land, data.index, transform);
     }
 }
