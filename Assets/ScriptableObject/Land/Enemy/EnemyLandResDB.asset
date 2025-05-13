@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9f5f597420a1f4481f5c894f5bf19a, type: 3}
-  m_Name: Enemy2
+  m_Script: {fileID: 11500000, guid: f5381a8b94e679e4aadd8a922242a7d1, type: 3}
+  m_Name: EnemyLandResDB
   m_EditorClassIdentifier: 
-  index: 2
-  prefab: {fileID: 6066665393386759258, guid: 493da0c742c4a6044a33bd6ced796ea5, type: 3}
+  landList:
+  - {fileID: 11400000, guid: c03f1d94fba26064c8452fc06d15a9a5, type: 2}

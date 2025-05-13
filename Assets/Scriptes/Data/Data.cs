@@ -10,22 +10,25 @@ public struct PlayerData
     public int stage;
     public string name;
 }
+[Serializable]
 public struct StageData
 {
     public int index;
     public int life;
-    public int startIdx;
-    public int endIdx;
+    public Vector2 startPoint;
+    public Vector2 endPoint;
 
     public List<LandData> landDataList;
     public List<SubStageData> subStageDataList;
 }
+[Serializable]
 public struct SubStageData
 {
     public int index;
     public float restTime;
     public List<EnemyData> enemyDataList;
 }
+[Serializable]
 public struct LandData
 {
     public int index;
@@ -42,7 +45,7 @@ public struct MapData
     public int index;
     public StageData stageData;
 }
-
+[Serializable]
 public struct CharacterData
 {
     public int index;
@@ -50,14 +53,16 @@ public struct CharacterData
     public string name;
     public CharacterType characterType;
 }
+[Serializable]
 public struct HeroData
 {
+    public int index;
     public int cost;
-    public CharacterData characterData;
 }
+[Serializable]
 public struct EnemyData
 {
-    public CharacterData characterData;
+    public int index;
     public int dieGold;
 }
 

@@ -1,42 +1,19 @@
 using UnityEngine;
 
-public class Land : MonoBehaviour 
+public class Land : MonoBehaviour
 {
-    // Test¿ë
-    [Header("Color")]
     [SerializeField]
-    private Color enemyRoadColor = Color.red;
-
-    [SerializeField]
-    private Color mineRoadColor = Color.white;
-
-    [SerializeField]
-    private Color decoRoadColor = Color.green;
-
-    [SerializeField]
-    private MeshRenderer meshRenderer;
+    protected MeshRenderer meshRenderer;
 
     private LandData data;
 
-    public void Load(LandData _landData)
+    public virtual void Create(LandData _data)
     {
-        data = _landData;
-        switch (data.landType)
-        {
-            case LandType.hero:
-                meshRenderer.material.color = mineRoadColor;
-                break;
-            case LandType.enemy:
-                meshRenderer.material.color = enemyRoadColor;
-                break;
-            case LandType.deco:
-                meshRenderer.material.color = decoRoadColor;
-                break;
-        }
+        data = _data;
     }
 
-    public void Retrieve()
+    public virtual void Retrieve()
     {
-        ObjectPoolManager.Instance.Retrieve(PoolingType.land, data.index, transform);
+        ObjectPoolManager.Instance.Retrieve(Utility.LandTypeToPoolingType(data.landType), data.index, transform);
     }
 }

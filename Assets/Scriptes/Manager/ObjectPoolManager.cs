@@ -65,7 +65,7 @@ public class Pooling
 
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
-    private Dictionary<PoolingType, Pooling> objectPoolingDic = new();
+    private Dictionary<PoolingType, Pooling> objectPoolingDic = new Dictionary<PoolingType, Pooling>();
 
     public Transform Create(PoolingType _type, int _idx)
     {

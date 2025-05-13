@@ -1,6 +1,7 @@
+using System.Reflection;
 using UnityEngine;
 
-public class Character<T> : MonoBehaviour where T : struct
+public class Character : MonoBehaviour
 {
     [SerializeField]
     protected Health health;
@@ -11,9 +12,9 @@ public class Character<T> : MonoBehaviour where T : struct
     [SerializeField]
     protected Attack attack;
 
-    protected T data;
+    protected CharacterData data;
     
-    public virtual void Create(T _data)
+    public virtual void Create(CharacterData _data)
     {
         data = _data;
     }

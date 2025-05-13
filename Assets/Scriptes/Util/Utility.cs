@@ -9,18 +9,36 @@ public static class Utility
         switch (_type)
         {
             case PoolingType.hero:
-                go = CharacterManager.Instance.GetHeroResObj(_idx);
+                go = DataManager.Instance.GetHeroResObj(_idx);
                 break;
             case PoolingType.enemy:
-                go = CharacterManager.Instance.GetEnemyResObj(_idx);
+                go = DataManager.Instance.GetEnemyResObj(_idx);
                 break;
-            case PoolingType.deco:
+            case PoolingType.heroLand:
+                go = DataManager.Instance.GetHeroLandResObj(_idx);
                 break;
-            case PoolingType.land:
-                go = MapManager.Instance.landResObj;
+            case PoolingType.enemyLand:
+                go = DataManager.Instance.GetEnemyLandResObj(_idx);
                 break;
         }
 
         return go;
+    }
+
+    public static PoolingType LandTypeToPoolingType(LandType _type)
+    {
+        PoolingType type = PoolingType.heroLand;
+
+        switch (_type)
+        {
+            case LandType.hero:
+                type = PoolingType.heroLand;
+                break;
+            case LandType.enemy:
+                type = PoolingType.enemyLand;
+                break;
+        }
+
+        return type;
     }
 }

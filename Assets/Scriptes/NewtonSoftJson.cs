@@ -8,23 +8,28 @@ using UnityEngine;
 public static class NewtonSoftJson
 {
     public static string ObjectToJson(object _obj) 
-    { 
-        return JsonConvert.SerializeObject(_obj);
+    {
+        JsonSerializerSettings settings = new JsonSerializerSettings();
+        settings.Converters.Add(new Vector2Converter());
+
+        return JsonConvert.SerializeObject(_obj, settings);
     }
     public static T JsonToOject<T>(string _jsonData) 
-    { 
-        return JsonConvert.DeserializeObject<T>(_jsonData); 
+    {
+        JsonSerializerSettings settings = new JsonSerializerSettings();
+        settings.Converters.Add(new Vector2Converter());
+
+        return JsonConvert.DeserializeObject<T>(_jsonData, settings); 
     }
     public static void CreateJsonFile(string _createPath, string _fileName, string _jsonData) 
     {
-        string jsonData = ObjectToJson(_jsonData);
         string filePath = string.Format("{0}/{1}.json", _createPath, _fileName);
 
         try
         {
             using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
             {
-                byte[] data = Encoding.UTF8.GetBytes(jsonData);
+                byte[] data = Encoding.UTF8.GetBytes(_jsonData);
                 fileStream.Write(data, 0, data.Length);
                 fileStream.Close();
             }
