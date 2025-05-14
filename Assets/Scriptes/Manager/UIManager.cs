@@ -39,7 +39,7 @@ public class UIManager : Singleton<UIManager>
 
             for (int i = 0; i < uiList.Count; i++)
             {
-                if(uiList[i].data.panelType == _uiData.panelType)
+                if(uiList[i].GetUIData().panelType == _uiData.panelType)
                 {
                     baseUI = uiList[i];
                 }

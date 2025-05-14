@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    public UIData data;
+    [SerializeField]
+    protected UIData data;
+    public UIData GetUIData() => data;
 
     public virtual void ShowUI(UIData _data)
     {

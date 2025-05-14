@@ -3,7 +3,7 @@ using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(menuName = "Game/UIResDB")]
-public class UIResDB : MonoBehaviour
+public class UIResDB : ScriptableObject
 {
     public List<UIResData> uiList;
 

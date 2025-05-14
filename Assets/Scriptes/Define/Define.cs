@@ -6,4 +6,4 @@ public enum CharacterType { hero, enemy }
 public enum PoolingType { hero, enemy, heroLand, enemyLand}
 
 public enum UIType { main, HUD, context, tooltip, popup }
-public enum UIPanelType { }
+public enum UIPanelType {lobyPanel }
