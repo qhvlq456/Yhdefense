@@ -66,4 +66,10 @@ public struct EnemyData
     public int dieGold;
 }
 
+[Serializable]
+public struct UIData
+{
+    public UIType type;
+    public UIPanelType panelType;
+}
 

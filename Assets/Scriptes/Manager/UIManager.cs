@@ -1,16 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Transform mainCanvasTrf;
+    [SerializeField]
+    private Transform contextCanvasTrf;
+    [SerializeField]
+    private Transform tooltipCanvasTrf;
+    [SerializeField]
+    private Transform popupCanvasTrf;
 
-    // Update is called once per frame
-    void Update()
+    private List<BaseUI> mainUIList = new List<BaseUI>();
+    private List<BaseUI> contextUIList = new List<BaseUI>();
+    private List<BaseUI> tooltipUIList = new List<BaseUI>();
+    private List<BaseUI> popupUIList = new List<BaseUI>();
+
+    public void OpenUI(UIData _data)
     {
-        
+
+    }
+    public void HideUI(UIData _data)
+    {
+
     }
 }
