@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         actions = new InputSystem_Actions();
-
         // Player 맵 바인딩
         actions.Player.LeftClick.performed += OnLeftClick;
         actions.Player.RightClick.performed += OnRightClick;
@@ -32,19 +31,19 @@ public class PlayerController : MonoBehaviour
     // 액션 처리
     // ------------------------
 
-    private void OnLeftClick(InputAction.CallbackContext ctx)
+    private void OnLeftClick(InputAction.CallbackContext _ctx)
     {
         Debug.Log("Player: 왼쪽 클릭 처리");
         // 게임 상 오브젝트 클릭 처리 로직
     }
 
-    private void OnRightClick(InputAction.CallbackContext ctx)
+    private void OnRightClick(InputAction.CallbackContext _ctx)
     {
         Debug.Log("Player: 오른쪽 클릭 처리");
         // 우클릭 관련 게임 로직
     }
 
-    private void OnUIClick(InputAction.CallbackContext ctx)
+    private void OnUIClick(InputAction.CallbackContext _ctx)
     {
         Debug.Log("UI 클릭 처리");
         // UI 버튼/슬라이더/스크롤 등 처리
