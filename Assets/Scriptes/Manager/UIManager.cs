@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using System;
+using UnityEngine.InputSystem;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -67,13 +68,16 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    [SerializeField]
+    private PlayerController playerController;
     private List<UIControllerMap> uiControllerMapList = new List<UIControllerMap>();
 
     private UIControllerMap GetTypeToUIController(UIType _uiType) => uiControllerMapList.Find(x => x.type == _uiType);
 
-
     public T ShowUI<T>(UIData _data) where T : BaseUI
     {
+        playerController.SwitchToUIInput();
+
         T ret = null;
 
         UIControllerMap uiControllerMap = GetTypeToUIController(_data.type);
@@ -91,6 +95,8 @@ public class UIManager : Singleton<UIManager>
     }
     public void HideUI(UIData _data)
     {
+        playerController.SwitchToPlayerInput();
+
         UIControllerMap uiControllerMap = GetTypeToUIController(_data.type);
 
         if (uiControllerMap != null)
