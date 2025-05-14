@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
-    #region Path
+    #region Start Path
     #endregion End Path
-    #region Map
+    #region Start Map
     public const int MAX_X = 10;
     public const int MAX_Z = 10;
     public int TotalLandNum => MAX_X * MAX_Z;
@@ -24,7 +24,7 @@ public class DataManager : Singleton<DataManager>
     public GameObject GetEnemyLandResObj(int _idx) => enemyLandResDB.GetPrefab(_idx);
     #endregion End Map
 
-    #region Character
+    #region Start Character
     private List<HeroData> heroDataList = new List<HeroData>();
     private List<EnemyData> enemyDataList = new List<EnemyData>();
 
@@ -36,6 +36,39 @@ public class DataManager : Singleton<DataManager>
     public GameObject GetEnemyResObj(int _idx) => enemyResDB.GetPrefab(_idx);
     #endregion End Character
 
+    #region Start UIData
+    [SerializeField]
+    private UIResDB uiMainResDB;
+    [SerializeField]
+    private UIResDB uiContextResDB;
+    [SerializeField]
+    private UIResDB uiTooltipResDB;
+    [SerializeField]
+    private UIResDB uiPopupResDB;
+
+    public GameObject GetUIResObj(UIData _uiData)
+    {
+        UIResDB uiResDB = null;
+
+        switch (_uiData.type)
+        {
+            case UIType.main:
+                uiResDB = uiMainResDB;
+                break;
+            case UIType.context:
+                uiResDB = uiContextResDB;
+                break;
+            case UIType.tooltip:
+                uiResDB = uiTooltipResDB;
+                break;
+            case UIType.popup:
+                uiResDB = uiPopupResDB;
+                break;
+        }
+
+        return uiResDB.GetPrefab(_uiData.panelType);
+    }
+    #endregion End UIDAta
     public void LoadGameData()
     {
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");
