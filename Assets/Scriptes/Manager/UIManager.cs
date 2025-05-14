@@ -12,7 +12,8 @@ public class UIManager : Singleton<UIManager>
     {
         public UIType type;
         public Canvas parent;
-        private List<BaseUI> uiList = new List<BaseUI>();
+
+        private readonly List<BaseUI> uiList = new();
 
         public T EnableUI<T>(UIData _uiData) where T : BaseUI
         {
@@ -20,53 +21,61 @@ public class UIManager : Singleton<UIManager>
 
             if (ret != null)
             {
-                ret.ShowUI(_uiData);
+                if (!ret.gameObject.activeSelf)
+                {
+                    ret.gameObject.SetActive(true);
+                    ret.ShowUI(_uiData);
+                    ret.transform.SetAsLastSibling();
+                }
             }
             else
             {
                 ret = DataManager.Instance.GetUIResObj(_uiData).GetComponent<T>();
+
+                if (ret == null)
+                {
+                    Debug.LogError($"[UIControllerMap] Failed to load UI: {_uiData.panelType}");
+                    return null;
+                }
+
                 uiList.Add(ret);
+                ret.transform.SetParent(parent.transform, false);
+                ret.ShowUI(_uiData);
+                ret.gameObject.SetActive(true);
+                ret.transform.SetAsLastSibling();
             }
 
-            ret.transform.SetParent(parent.transform);
-            ret.gameObject.SetActive(true);
-            // 마지막으로 옮겨서 뎁스 조정
-            ret.transform.SetAsLastSibling();
             return ret;
         }
-        private BaseUI FindUI(UIData _uiData)
-        {
-            BaseUI baseUI = null;
 
-            for (int i = 0; i < uiList.Count; i++)
-            {
-                if(uiList[i].GetUIData().panelType == _uiData.panelType)
-                {
-                    baseUI = uiList[i];
-                }
-            }
-
-            return baseUI;
-        }
         public void DisableUI(UIData _uiData)
         {
             BaseUI baseUI = FindUI(_uiData);
 
             if (baseUI != null)
             {
-                // 첫번째 자식으로 옮겨서 뎁스 조정
-                uiList.Remove(baseUI);
-                baseUI.transform.SetAsFirstSibling();
                 baseUI.HideUI();
                 baseUI.gameObject.SetActive(false);
+                baseUI.transform.SetAsFirstSibling();
+                uiList.Remove(baseUI);
             }
             else
             {
-                Debug.LogError($"Not Exist BaseUI!! uiType : {_uiData.type} panelType : {_uiData.panelType}");
+                Debug.LogWarning($"[UIControllerMap] UI to disable not found: {_uiData.panelType}");
             }
+        }
 
+        private BaseUI FindUI(UIData _uiData)
+        {
+            return uiList.Find(ui => ui.GetUIData().panelType == _uiData.panelType);
+        }
+
+        public bool HasAnyActiveUI()
+        {
+            return uiList.Exists(ui => ui.gameObject.activeSelf);
         }
     }
+
 
     [SerializeField]
     private PlayerController playerController;
@@ -76,38 +85,44 @@ public class UIManager : Singleton<UIManager>
 
     public T ShowUI<T>(UIData _data) where T : BaseUI
     {
-        playerController.SwitchToUIInput();
+        var controller = GetTypeToUIController(_data.type);
 
-        T ret = null;
-
-        UIControllerMap uiControllerMap = GetTypeToUIController(_data.type);
-
-        if (uiControllerMap != null)
+        if (controller == null)
         {
-            ret = uiControllerMap.EnableUI<T>(_data);
-        }
-        else
-        {
-            Debug.LogError($"[UIManager] ShowUI Not Exist uidata type : {_data.type}, panelType : {_data.panelType}");
+            Debug.LogError($"[UIManager] ShowUI: No UIController for type {_data.type}");
+            return null;
         }
 
-        return ret;
+        // UI 열릴 때만 Input 전환
+        if (!controller.HasAnyActiveUI())
+        {
+            playerController.SwitchToUIInput();
+        }
+
+        return controller.EnableUI<T>(_data);
     }
+
     public void HideUI(UIData _data)
     {
-        playerController.SwitchToPlayerInput();
+        var controller = GetTypeToUIController(_data.type);
 
-        UIControllerMap uiControllerMap = GetTypeToUIController(_data.type);
-
-        if (uiControllerMap != null)
+        if (controller == null)
         {
-            uiControllerMap.DisableUI(_data);
+            Debug.LogError($"[UIManager] HideUI: No UIController for type {_data.type}");
+            return;
         }
-        else
+
+        controller.DisableUI(_data);
+
+        // 모든 UI가 꺼졌는지 확인
+        bool allClosed = uiControllerMapList.TrueForAll(x => !x.HasAnyActiveUI());
+
+        if (allClosed)
         {
-            Debug.LogError($"[UIManager] HideUI Not Exist uidata type : {_data.type}, panelType : {_data.panelType}");
+            playerController.SwitchToPlayerInput();
         }
     }
+
     private void CalculateUI()
     {
 

@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     public int selectStage = 0;
     public bool isDataLoad = false;
     public bool isCreateMap = false;
+    public bool isShowUI = false;
+    public UIData uiData;
 
     private Camera mainCamera;
     public Camera MainCamera
@@ -38,8 +40,6 @@ public class GameManager : Singleton<GameManager>
     {
         stageData = _stageData;
         MapManager.Instance.SetMap(_stageData);
-
-
     }
     private void Update()
     {
@@ -53,6 +53,11 @@ public class GameManager : Singleton<GameManager>
         {
             MapManager.Instance.SetMap(DataManager.Instance.GetStageData(selectStage));
             isCreateMap = false;
+        }
+
+        if (isShowUI) {
+            UIManager.Instance.ShowUI<BaseUI>(uiData);
+            isShowUI = false;
         }
     }
     private void EndGame()

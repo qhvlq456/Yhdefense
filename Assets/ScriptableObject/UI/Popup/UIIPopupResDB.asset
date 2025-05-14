@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01e3ca2f02a63114d91c428649a92ed3, type: 3}
-  m_Name: UIResDB
+  m_Name: UIIPopupResDB
   m_EditorClassIdentifier: 
-  uiList:
-  - {fileID: 11400000, guid: 8d9a31c8d73e87b40b43a298f3a31917, type: 2}
+  uiList: []

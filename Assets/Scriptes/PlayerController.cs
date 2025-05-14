@@ -1,80 +1,97 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private InputSystem_Actions actions;
-    private string previousActionMap = "Player";
+    private string currentActionMap = "Player";
 
     private void Awake()
     {
         actions = new InputSystem_Actions();
 
-        // Player ActionMap Å¬¸¯ ¹ÙÀÎµù
+        // Player ë§µ ë°”ì¸ë”©
         actions.Player.LeftClick.performed += OnLeftClick;
         actions.Player.RightClick.performed += OnRightClick;
 
-        // UI ActionMap Å¬¸¯ ¹ÙÀÎµù
+        // UI ë§µ ë°”ì¸ë”©
         actions.UI.Click.performed += OnUIClick;
     }
 
     private void OnEnable()
     {
-        actions.Player.Enable(); // ±âº»ÀûÀ¸·Î Player ¸Ê È°¼ºÈ­
+        EnableActionMap("Player"); // ê¸°ë³¸ ìƒíƒœëŠ” Player
     }
 
     private void OnDisable()
     {
-        actions.Player.Disable();
-        actions.UI.Disable();
+        DisableAllMaps();
     }
 
-    private void OnLeftClick(InputAction.CallbackContext _ctx)
+    // ------------------------
+    // ì•¡ì…˜ ì²˜ë¦¬
+    // ------------------------
+
+    private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        Debug.Log("¿ŞÂÊ Å¬¸¯");
+        Debug.Log("Player: ì™¼ìª½ í´ë¦­ ì²˜ë¦¬");
+        // ê²Œì„ ìƒ ì˜¤ë¸Œì íŠ¸ í´ë¦­ ì²˜ë¦¬ ë¡œì§
     }
 
-    private void OnRightClick(InputAction.CallbackContext _ctx)
+    private void OnRightClick(InputAction.CallbackContext ctx)
     {
-        Debug.Log("¿À¸¥ÂÊ Å¬¸¯");
+        Debug.Log("Player: ì˜¤ë¥¸ìª½ í´ë¦­ ì²˜ë¦¬");
+        // ìš°í´ë¦­ ê´€ë ¨ ê²Œì„ ë¡œì§
     }
 
-    private void OnUIClick(InputAction.CallbackContext _ctx)
+    private void OnUIClick(InputAction.CallbackContext ctx)
     {
-        Debug.Log("UI Å¬¸¯");
+        Debug.Log("UI í´ë¦­ ì²˜ë¦¬");
+        // UI ë²„íŠ¼/ìŠ¬ë¼ì´ë”/ìŠ¤í¬ë¡¤ ë“± ì²˜ë¦¬
     }
 
+    // ------------------------
+    // Action Map ì „í™˜
+    // ------------------------
 
-    /// <summary>
-    /// UI°¡ ¿­¸± ¶§ È£Ãâ (¿ÜºÎ¿¡¼­)
-    /// </summary>
     public void SwitchToUIInput()
     {
-        if (actions.Player.enabled)
+        if (currentActionMap != "UI")
         {
-            actions.Player.Disable();
-            previousActionMap = "Player";
+            EnableActionMap("UI");
+            Debug.Log("InputActionMap: UIë¡œ ì „í™˜ë¨");
         }
-
-        actions.UI.Enable();
-        Debug.Log("Input ActionMap: UI·Î ÀüÈ¯µÊ");
     }
 
-    /// <summary>
-    /// UI°¡ ´İÈú ¶§ È£Ãâ (¿ÜºÎ¿¡¼­)
-    /// </summary>
     public void SwitchToPlayerInput()
     {
-        if (actions.UI.enabled)
+        if (currentActionMap != "Player")
         {
-            actions.UI.Disable();
+            EnableActionMap("Player");
+            Debug.Log("InputActionMap: Playerë¡œ ë³µê·€ë¨");
+        }
+    }
+
+    private void EnableActionMap(string _mapName)
+    {
+        DisableAllMaps();
+
+        switch (_mapName)
+        {
+            case "Player":
+                actions.Player.Enable();
+                break;
+            case "UI":
+                actions.UI.Enable();
+                break;
         }
 
-        if (previousActionMap == "Player")
-        {
-            actions.Player.Enable();
-            Debug.Log("Input ActionMap: Player·Î º¹±ÍµÊ");
-        }
+        currentActionMap = _mapName;
+    }
+
+    private void DisableAllMaps()
+    {
+        actions.Player.Disable();
+        actions.UI.Disable();
     }
 }
