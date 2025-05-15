@@ -26,8 +26,9 @@ public class DataManager : Singleton<DataManager>
 
     #region Start Character
     private List<HeroData> heroDataList = new List<HeroData>();
+    public HeroData GetCharacterDataToHeroData(CharacterData _data) => heroDataList.Find(x => x.index == _data.index);
     private List<EnemyData> enemyDataList = new List<EnemyData>();
-
+    public EnemyData GetCharacterDataToEnemyData(CharacterData _data) => enemyDataList.Find(x => x.index == _data.index);
     [SerializeField]
     private CharacterResDB heroResDB;
     public GameObject GetHeroResObj(int _idx) => heroResDB.GetPrefab(_idx);

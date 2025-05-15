@@ -7,11 +7,12 @@ public class Pooling
     public Transform root; // PoolingType 기준 루트
     public Dictionary<int, Transform> poolingdic; // idx 별 Transform 그룹
 
-    public Pooling(PoolingType _type)
+    public Pooling(PoolingType _type, Transform _parent)
     {
         root = new GameObject(_type.ToString()).transform;
         root.position = Vector3.left * 1000;
         poolingdic = new Dictionary<int, Transform>();
+        root.SetParent(root);
     }
 
     public Transform Create(PoolingType _type, int _idx)
@@ -65,13 +66,15 @@ public class Pooling
 
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
+    [SerializeField]
+    private Transform root;
     private Dictionary<PoolingType, Pooling> objectPoolingDic = new Dictionary<PoolingType, Pooling>();
 
     public Transform Create(PoolingType _type, int _idx)
     {
         if (!objectPoolingDic.TryGetValue(_type, out var pool))
         {
-            pool = new Pooling(_type);
+            pool = new Pooling(_type, root);
             objectPoolingDic.Add(_type, pool);
         }
 

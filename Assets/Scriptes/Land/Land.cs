@@ -1,9 +1,13 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class Land : MonoBehaviour
 {
     [SerializeField]
     protected MeshRenderer meshRenderer;
+    [SerializeField]
+    private NavMeshSurface surface;
+    public NavMeshSurface GetNavMeshSurface => surface;
 
     private LandData data;
 

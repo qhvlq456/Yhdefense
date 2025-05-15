@@ -15,12 +15,19 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator GameFlowRoutine = null;
 
     [SerializeField]
+    private Enemy testEnemy;
+    public Vector3 startPos;
+    public Vector3 endPos;
+
+    [SerializeField]
     private StageData stageData;
 
     public int selectStage = 0;
     public bool isDataLoad = false;
     public bool isCreateMap = false;
     public bool isShowUI = false;
+    public bool isStartEnemy = false;
+
     public UIData uiData;
 
     private Camera mainCamera;
@@ -58,6 +65,13 @@ public class GameManager : Singleton<GameManager>
         if (isShowUI) {
             UIManager.Instance.ShowUI<BaseUI>(uiData);
             isShowUI = false;
+        }
+
+        if (isStartEnemy) 
+        {
+            Enemy enemy = Instantiate(testEnemy, startPos, Quaternion.identity);
+            enemy.Spawn(startPos, endPos);
+            isStartEnemy = false;
         }
     }
     private void EndGame()
