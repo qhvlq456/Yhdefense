@@ -8,8 +8,6 @@ public class MapManager : Singleton<MapManager>
     [SerializeField]
     private Transform root;
     [SerializeField]
-    private List<NavMeshSurface> surfaceList = new List<NavMeshSurface>();
-    [SerializeField]
     private NavMeshSurface surfaces = null;
     private List<GameObject> instanceMapObjectList = new List<GameObject>();
     public void SetMap(StageData _stageData)
@@ -32,8 +30,6 @@ public class MapManager : Singleton<MapManager>
                     break;
                 case LandType.enemy:
                     land = ObjectPoolManager.Instance.Create(PoolingType.enemyLand, landData.index).GetComponent<EnemyLand>();
-                    // 동적 navmesh bake를 하기위해 저장
-                    //surfaceList.Add(land.GetNavMeshSurface);
                     break;
             }
 
@@ -44,7 +40,6 @@ public class MapManager : Singleton<MapManager>
             log += $"landType = {landData.landType}, x = {landData.x} , z = {landData.z}, \n";
         }
         surfaces.BuildNavMesh();
-        //Bake();
         // GameManager.Instance.MainCamera.transform.position = new Vector3()
         // 후에 navmesh굽는 작업 필요
         Debug.LogError(log);
@@ -56,24 +51,6 @@ public class MapManager : Singleton<MapManager>
             landData.GetComponent<Land>().Retrieve();
         }
 
-        ClearBake();
-    }
-
-    public void Bake()
-    {
-        for (int i = 0; i < surfaceList.Count; i++)
-        {
-            Debug.LogError("213123");
-            surfaceList[i].BuildNavMesh();
-        }
-    }
-    private void ClearBake()
-    {
-        foreach (var surface in surfaceList)
-        {
-            surface.RemoveData(); // 또는 RemoveNavMeshData + null 처리
-        }
-
-        surfaceList.Clear();
+        surfaces.RemoveData();
     }
 }
