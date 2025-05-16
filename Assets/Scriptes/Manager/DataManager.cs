@@ -6,6 +6,7 @@ public class DataManager : Singleton<DataManager>
 {
     #region Start Path
     #endregion End Path
+
     #region Start Map
     public const int MAX_X = 10;
     public const int MAX_Z = 10;
@@ -13,9 +14,12 @@ public class DataManager : Singleton<DataManager>
 
     private int xOffset = 1;
     private int zOffset = 1;
-
-    public List<MapData> mapDataList = new List<MapData>();
+    [SerializeField]
+    private List<SubStageData> subStageDataList = new List<SubStageData>();
+    public SubStageData GetIdxToSubStageData(int _idx) => subStageDataList.Find(x => x.index == _idx);
+    private List<MapData> mapDataList = new List<MapData>();
     public StageData GetStageData(int _idx) => mapDataList.Find(x => x.index == _idx).stageData;
+
     [SerializeField]
     private LandResDB heroLandResDB;
     public GameObject GetHeroLandResObj(int _idx) => heroLandResDB.GetPrefab(_idx);
@@ -24,11 +28,13 @@ public class DataManager : Singleton<DataManager>
     public GameObject GetEnemyLandResObj(int _idx) => enemyLandResDB.GetPrefab(_idx);
     #endregion End Map
 
+
+
     #region Start Character
     private List<HeroData> heroDataList = new List<HeroData>();
-    public HeroData GetCharacterDataToHeroData(CharacterData _data) => heroDataList.Find(x => x.index == _data.index);
+    public HeroData GetIdxToHeroData(int _idx) => heroDataList.Find(x => x.index == _idx);
     private List<EnemyData> enemyDataList = new List<EnemyData>();
-    public EnemyData GetCharacterDataToEnemyData(CharacterData _data) => enemyDataList.Find(x => x.index == _data.index);
+    public EnemyData GetIdxToEnemyData(int _idx) => enemyDataList.Find(x => x.index == _idx);
     [SerializeField]
     private CharacterResDB heroResDB;
     public GameObject GetHeroResObj(int _idx) => heroResDB.GetPrefab(_idx);
@@ -75,6 +81,7 @@ public class DataManager : Singleton<DataManager>
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");
         enemyDataList = NewtonSoftJson.LoadJsonArray<EnemyData>(Application.streamingAssetsPath, "EnemyData");
 
+        subStageDataList= NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
         List<StageData> maps = NewtonSoftJson.LoadJsonArray<StageData>(Application.streamingAssetsPath, "MapData");
 
 

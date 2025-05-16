@@ -45,12 +45,13 @@ public class MapEditorWindow : EditorWindow
     private LandIndexPair[,] grid = new LandIndexPair[gridSize, gridSize];
 
     private int stageIndex = 0;
-    private Vector2 startPoint = Vector2.zero;
-    private Vector2 endPoint = Vector2.zero;
+    private int subStageIndex = 0;
+    private Vector3 startPoint = Vector3.zero;
+    private Vector3 endPoint = Vector3.zero;
 
     private int life = 10;
 
-    private List<SubStageData> subStages = new();
+    private List<int> subStageIdxList = new();
     private List<StageData> stageDataList = new();
     private Vector2 scrollPos;
 
@@ -76,8 +77,8 @@ public class MapEditorWindow : EditorWindow
     {
         GUILayout.Label("Stage Configuration", EditorStyles.boldLabel);
         stageIndex = EditorGUILayout.IntField("Stage Index", stageIndex);
-        startPoint = EditorGUILayout.Vector2Field("Start Point", startPoint);
-        endPoint = EditorGUILayout.Vector2Field("End Point", endPoint);
+        startPoint = EditorGUILayout.Vector3Field("Start Point", startPoint);
+        endPoint = EditorGUILayout.Vector3Field("End Point", endPoint);
         life = EditorGUILayout.IntField("Life", life);
 
         GUILayout.Space(10);
@@ -89,11 +90,11 @@ public class MapEditorWindow : EditorWindow
             GUILayout.BeginHorizontal();
             for (int x = 0; x < gridSize; x++)
             {
-                if (startPoint.x == x && startPoint.y == z)
+                if (startPoint.x == x && startPoint.z == z)
                 {
                     GUI.backgroundColor = Color.blue;
                 }
-                else if (endPoint.x == x && endPoint.y == z)
+                else if (endPoint.x == x && endPoint.z == z)
                 {
                     GUI.backgroundColor = Color.black;
                 }
@@ -126,14 +127,14 @@ public class MapEditorWindow : EditorWindow
                         () => 
                         {
                             Debug.LogError($"OnStartPointed x : {capturedX} ,. z : {capturedZ}");
-                            startPoint = new Vector2(capturedX, capturedZ);
+                            startPoint = new Vector3(capturedX, 0, capturedZ);
                             grid[capturedZ, capturedX].type = LandType.enemy;
                         }
                         ,
                         () => 
                         {
                             Debug.LogError($"OnEndPointed x : {capturedX} ,. z : {capturedZ}");
-                            endPoint = new Vector2(capturedX, capturedZ);
+                            endPoint = new Vector3(capturedX, 0, capturedZ);
                             grid[capturedZ, capturedX].type = LandType.enemy;
                         }
                         );
@@ -182,55 +183,24 @@ public class MapEditorWindow : EditorWindow
     {
         GUILayout.Label("Sub Stage Editor", EditorStyles.boldLabel);
 
+        subStageIndex = EditorGUILayout.IntField("subStage Index", subStageIndex);
+
         if (GUILayout.Button("Add SubStage"))
         {
-            subStages.Add(new SubStageData
-            {
-                index = subStages.Count,
-                restTime = 30f,
-                enemyDataList = new List<EnemyData> { new EnemyData { index = 0, dieGold = 10 } }
-            });
+            subStageIdxList.Add(subStageIndex);
         }
 
         scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Height(200));
 
-        for (int i = 0; i < subStages.Count; i++)
+        for (int i = 0; i < subStageIdxList.Count; i++)
         {
             GUILayout.BeginVertical("box");
-            GUILayout.Label($"SubStage {i}");
-
-            SubStageData subStage = subStages[i];
-            subStage.restTime = EditorGUILayout.FloatField("Rest Time", subStage.restTime);
-
-            for (int j = 0; j < subStage.enemyDataList.Count; j++)
-            {
-                GUILayout.BeginHorizontal();
-                var enemy = subStage.enemyDataList[j];
-                enemy.index = EditorGUILayout.IntField("Enemy Index", enemy.index);
-                enemy.dieGold = EditorGUILayout.IntField("Die Gold", enemy.dieGold);
-                subStage.enemyDataList[j] = enemy;
-
-                if (GUILayout.Button("-", GUILayout.Width(20)))
-                {
-                    subStage.enemyDataList.RemoveAt(j);
-                    j--;
-                }
-                GUILayout.EndHorizontal();
-            }
-
-            if (GUILayout.Button("Add Enemy"))
-            {
-                subStage.enemyDataList.Add(new EnemyData { index = 0, dieGold = 10 });
-            }
+            GUILayout.Label($"List index : {i}, SubStageIdx : {subStageIdxList[i]}");
 
             if (GUILayout.Button("Remove SubStage"))
             {
-                subStages.RemoveAt(i);
+                subStageIdxList.RemoveAt(i);
                 i--;
-            }
-            else
-            {
-                subStages[i] = subStage;
             }
 
             GUILayout.EndVertical();
@@ -263,14 +233,14 @@ public class MapEditorWindow : EditorWindow
             startPoint = startPoint,
             endPoint = endPoint,
             landDataList = landList,
-            subStageDataList = new List<SubStageData>(subStages)
+            subStageIdxList = new List<int>(subStageIdxList)
         };
 
         stageDataList.Add(stage);
 
         // 초기화
         stageIndex++;
-        subStages.Clear();
+        subStageIdxList.Clear();
         grid = new LandIndexPair[gridSize, gridSize];
         OnEnable();
     }
@@ -285,6 +255,8 @@ public class MapEditorWindow : EditorWindow
 
         JsonSerializerSettings settings = new JsonSerializerSettings();
         settings.Converters.Add(new Vector2Converter());
+        settings.Converters.Add(new Vector3Converter());
+
         string json = JsonConvert.SerializeObject(stageDataList, settings);
         string path = EditorUtility.SaveFilePanel("Save Stage List JSON", Application.dataPath, "MapData", "json");
         if (!string.IsNullOrEmpty(path))
@@ -325,7 +297,7 @@ public class MapEditorWindow : EditorWindow
     {
         stageIndex = _stage.index;
         life = _stage.life;
-        subStages = new List<SubStageData>(_stage.subStageDataList);
+        subStageIdxList = new List<int>(_stage.subStageIdxList);
 
         // Grid 초기화
         grid = new LandIndexPair[gridSize, gridSize];

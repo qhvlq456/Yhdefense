@@ -1,34 +1,21 @@
 using System.Collections;
-using UnityEditor.Overlays;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField]
-    private int selectStageIdx;
-    [SerializeField]
-    private int selectSubStageIdx;
-
-    [SerializeField]
-    private int life;
+    private float enemySpawnDelay = 0.3f;
 
     private IEnumerator GameFlowRoutine = null;
+    private IEnumerator EnemySpawnRoutine = null;
 
     [SerializeField]
-    private Enemy testEnemy;
-    public Vector3 startPos;
-    public Vector3 endPos;
-
+    private StageData currentStageData;
     [SerializeField]
-    private StageData stageData;
-
-    public int selectStage = 0;
-    public bool isDataLoad = false;
-    public bool isCreateMap = false;
-    public bool isShowUI = false;
-    public bool isStartEnemy = false;
-
-    public UIData uiData;
+    private int currentSubStageIdx;
+    [SerializeField]
+    private int life;
 
     private Camera mainCamera;
     public Camera MainCamera
@@ -43,40 +30,27 @@ public class GameManager : Singleton<GameManager>
             return mainCamera;
         }
     }
-    private void StartGame(StageData _stageData)
+    public void StartGame(StageData _stageData)
     {
-        stageData = _stageData;
+        currentStageData = _stageData;
+        // 후에 변경하기
+        currentSubStageIdx = 0;
+        life = currentStageData.life;
+
         MapManager.Instance.SetMap(_stageData);
+        SubStageData subStageData = DataManager.Instance.GetIdxToSubStageData(_stageData.subStageIdxList[currentSubStageIdx]);
+        string log = "";
+        for(int i = 0; i < _stageData.subStageIdxList.Count; i++)
+        {
+            log += $"{i} : {_stageData.subStageIdxList[i]}, ";
+        }
+        Debug.LogError($"{log}");
+        StartEnemySpawn(subStageData);
     }
-    private void Update()
+    public void EndGame()
     {
-        if(isDataLoad)
-        {
-            DataManager.Instance.LoadGameData();
-            isDataLoad = false;
-        }
-
-        if (isCreateMap)
-        {
-            MapManager.Instance.SetMap(DataManager.Instance.GetStageData(selectStage));
-            isCreateMap = false;
-        }
-
-        if (isShowUI) {
-            UIManager.Instance.ShowUI<BaseUI>(uiData);
-            isShowUI = false;
-        }
-
-        if (isStartEnemy) 
-        {
-            Enemy enemy = Instantiate(testEnemy, startPos, Quaternion.identity);
-            enemy.Spawn(startPos, endPos);
-            isStartEnemy = false;
-        }
-    }
-    private void EndGame()
-    {
-
+        MapManager.Instance.ClearMap();
+        CharacterManager.Instance.ClearCharacter();
     }
     private IEnumerator CoDataLoadFlow()
     {
@@ -84,6 +58,34 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator CoGameFlow()
     {
+        yield return null;
+    }
+
+    public void StartEnemySpawn(SubStageData _subStageData)
+    {
+        if(EnemySpawnRoutine != null)
+        {
+            StopCoroutine(EnemySpawnRoutine);
+        }
+
+        EnemySpawnRoutine = CoEnemySpawnFlow(_subStageData);
+        StartCoroutine(EnemySpawnRoutine);
+    }
+    private IEnumerator CoEnemySpawnFlow(SubStageData _subStageData)
+    {
+        Vector3 startPoint = currentStageData.startPoint;
+        Vector3 endPoint = currentStageData.endPoint;
+
+        List<int> enemyList = _subStageData.enemyIdxList;
+
+        Debug.LogError($"[GameManager] [CoEnemySpawnFlow] startPoint : {startPoint}, endPoint : {endPoint} enemyList cnt : {enemyList.Count}");
+        for (int i = 0; i < enemyList.Count; i++) 
+        {
+            int idx = enemyList[i];
+            CharacterManager.Instance.SpawnEnemy(idx, startPoint, endPoint);
+            yield return new WaitForSeconds(enemySpawnDelay);
+        }
+
         yield return null;
     }
 }

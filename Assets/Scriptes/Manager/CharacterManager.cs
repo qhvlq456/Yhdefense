@@ -4,16 +4,25 @@ using System.Linq;
 
 public class CharacterManager : Singleton<CharacterManager>
 {
+    private List<Character> instanceCharacterList = new List<Character>();
     public GameObject CreateHero()
     {
         return null;
     }
     // spawn 및 건설 현장 
-    public GameObject SpawnEnemy(CharacterData _data, Vector3 _spawnPos, Vector3 _targetPos)
+    public void SpawnEnemy(int _idx, Vector3 _spawnPos, Vector3 _targetPos)
     {
-        var enemy = ObjectPoolManager.Instance.Create(PoolingType.enemy, _data.index).GetComponent<Enemy>();
-        enemy.Create(_data);
+        var enemy = ObjectPoolManager.Instance.Create(PoolingType.enemy, _idx).GetComponent<Enemy>();
+        enemy.Create(_idx);
         enemy.Spawn(_spawnPos, _targetPos);
-        return enemy.gameObject;
+        instanceCharacterList.Add(enemy);
+    }
+
+    public void ClearCharacter()
+    {
+        for (int i = 0; i < instanceCharacterList.Count; i++)
+        {
+            instanceCharacterList[i].Retrieve();
+        }
     }
 }

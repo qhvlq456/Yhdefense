@@ -15,18 +15,19 @@ public struct StageData
 {
     public int index;
     public int life;
-    public Vector2 startPoint;
-    public Vector2 endPoint;
+    public Vector3 startPoint;
+    public Vector3 endPoint;
 
     public List<LandData> landDataList;
-    public List<SubStageData> subStageDataList;
+    public List<int> subStageIdxList;
 }
 [Serializable]
 public struct SubStageData
 {
     public int index;
     public float restTime;
-    public List<EnemyData> enemyDataList;
+    // 후에 int 즉 enemy index로 수정
+    public List<int> enemyIdxList;
 }
 [Serializable]
 public struct LandData

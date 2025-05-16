@@ -11,6 +11,7 @@ public static class NewtonSoftJson
     {
         JsonSerializerSettings settings = new JsonSerializerSettings();
         settings.Converters.Add(new Vector2Converter());
+        settings.Converters.Add(new Vector3Converter());
 
         return JsonConvert.SerializeObject(_obj, settings);
     }
@@ -18,6 +19,7 @@ public static class NewtonSoftJson
     {
         JsonSerializerSettings settings = new JsonSerializerSettings();
         settings.Converters.Add(new Vector2Converter());
+        settings.Converters.Add(new Vector3Converter());
 
         return JsonConvert.DeserializeObject<T>(_jsonData, settings); 
     }

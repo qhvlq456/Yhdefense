@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Hero : Character
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private HeroData heroData;
+    public override void Create(int _idx)
     {
-        
+        heroData = DataManager.Instance.GetIdxToHeroData(_idx);
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void Retrieve()
     {
-        
+        base.Retrieve();
+        move.Revert();
+        ObjectPoolManager.Instance.Retrieve(PoolingType.hero, heroData.index, transform);
     }
 }

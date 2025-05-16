@@ -11,12 +11,10 @@ public class Character : MonoBehaviour
 
     [SerializeField]
     protected Attack attack;
-
-    protected CharacterData data;
     
-    public virtual void Create(CharacterData _data)
+    public virtual void Create(int _idx)
     {
-        data = _data;
+        
     }
     public virtual void Retrieve()
     {

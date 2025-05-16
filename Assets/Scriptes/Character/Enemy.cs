@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.AI.Navigation;
 
 
 public class Enemy : Character
 {
     [SerializeField]
     private EnemyData enemyData;
-    public override void Create(CharacterData _data)
+    public override void Create(int _idx)
     {
-        base.Create(_data);
-        enemyData = DataManager.Instance.GetCharacterDataToEnemyData(_data);
+        enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
     }
     public void TakeDamage(float _float)
     {
@@ -19,6 +19,7 @@ public class Enemy : Character
 
     public void Spawn(Vector3 _spawnPos, Vector3 _destination)
     {
+        Debug.LogError($"_spawnPos : {_spawnPos}, _destination : {_destination}");
         NavMeshHit hit;
         // _spawnPos위치가 NavMesh 위에 있는지 확인
         if (NavMesh.SamplePosition(_spawnPos, out hit, 1f, NavMesh.AllAreas))
@@ -49,5 +50,6 @@ public class Enemy : Character
     {
         base.Retrieve();
         move.Revert();
+        ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
     }
 }

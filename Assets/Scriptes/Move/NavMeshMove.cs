@@ -7,7 +7,7 @@ public class NavMeshMove : Move
     [SerializeField] private NavMeshAgent agent;
 
     [Header("Agent Settings")]
-    [SerializeField] private float angularSpeed = 3;
+    [SerializeField] private float angularSpeed = 1000;
     [SerializeField] private float acceleration = 24f;
     [SerializeField] private int avoidancePriority = 50;
 
@@ -24,7 +24,7 @@ public class NavMeshMove : Move
         agent.autoRepath = true;
         agent.avoidancePriority = avoidancePriority;
         agent.updatePosition = true;
-        agent.updateRotation = true;
+        agent.updateRotation = false;
         agent.stoppingDistance = 0.1f; // 너무 멀리서 멈추는 거 방지
     }
 
@@ -45,6 +45,20 @@ public class NavMeshMove : Move
         SetupAgent(); // 초기화 시 재세팅 보장
     }
 
+    private void LateUpdate()
+    {
+        if (agent.enabled && agent.hasPath && agent.velocity.sqrMagnitude > 0.01f)
+        {
+            Vector3 direction = agent.velocity.normalized;
+            direction.y = 0;
+
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }
+        }
+    }
     public override void Movement(Vector3 _destination)
     {
         if (!agent.isOnNavMesh)

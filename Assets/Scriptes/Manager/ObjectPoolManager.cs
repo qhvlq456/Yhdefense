@@ -12,7 +12,7 @@ public class Pooling
         root = new GameObject(_type.ToString()).transform;
         root.position = Vector3.left * 1000;
         poolingdic = new Dictionary<int, Transform>();
-        root.SetParent(root);
+        root.SetParent(_parent);
     }
 
     public Transform Create(PoolingType _type, int _idx)
@@ -25,6 +25,7 @@ public class Pooling
         {
             parent = new GameObject($"Idx_{_idx}").transform;
             parent.SetParent(root);
+            parent.localPosition = Vector3.zero;
             poolingdic.Add(_idx, parent);
         }
 
@@ -58,7 +59,6 @@ public class Pooling
 
         _trf.localPosition = Vector3.zero;
         _trf.localRotation = Quaternion.identity;
-        _trf.localScale = Vector3.one;
         _trf.gameObject.SetActive(false);
     }
 }
