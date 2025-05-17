@@ -1,18 +1,34 @@
 [
   {
     "index": 0,
-    "dieGold": 10
+    "name": "enemy0",
+    "maxHealth": 10.0,
+    "moveSpeed": 2.0,
+    "dieGold": 10,
+    "groundType": 0
   },
   {
     "index": 1,
-    "dieGold": 20
+    "name": "enemy1",
+    "maxHealth": 20.0,
+    "moveSpeed": 2.5,
+    "dieGold": 15,
+    "groundType": 0
   },
   {
     "index": 2,
-    "dieGold": 30
+    "name": "enemy2",
+    "maxHealth": 30.0,
+    "moveSpeed": 3.0,
+    "dieGold": 20,
+    "groundType": 1
   },
   {
     "index": 3,
-    "dieGold": 40
+    "name": "enemy3",
+    "maxHealth": 30.0,
+    "moveSpeed": 3.5,
+    "dieGold": 30,
+    "groundType": 2
   }
 ]

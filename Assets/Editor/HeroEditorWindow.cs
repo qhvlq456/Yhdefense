@@ -48,6 +48,7 @@ public class HeroEditorWindow : EditorWindow
             if (GUILayout.Button("Remove Hero"))
             {
                 heroList.RemoveAt(i);
+                GUILayout.EndVertical();  // 반드시 먼저 EndVertical 호출
                 break;
             }
 

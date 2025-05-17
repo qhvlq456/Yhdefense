@@ -11,6 +11,8 @@ public class Enemy : Character, IHittable
     public override void Create(int _idx)
     {
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
+        move.Initialize();
+        health.ResetHealth(enemyData.maxHealth);
     }
     public void TakeDamage(float _float)
     {

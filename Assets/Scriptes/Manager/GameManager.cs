@@ -51,6 +51,8 @@ public class GameManager : Singleton<GameManager>
     {
         MapManager.Instance.ClearMap();
         CharacterManager.Instance.ClearCharacter();
+        UIManager.Instance.HideAllUI();
+        UIManager.Instance.RecycleAllUI();
     }
     private IEnumerator CoDataLoadFlow()
     {

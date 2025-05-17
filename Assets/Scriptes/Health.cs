@@ -10,6 +10,12 @@ public class Health : MonoBehaviour
     {
         maxHealth = _max;
         currentHealth = _max;
+        
+        // 재활용이기 때문에 생성된 다른 hud가 붙을 수 있다
+        hpSlider = UIManager.Instance.ShowMultipleUI<HPSlider>(UIPanelType.hpSlider);
+        hpSlider.SetTarget(transform);
+
+        hpSlider.OnChangedValue(GetHealthRatio());
     }
     // 현재 체력 비율 (0~1)
     public float GetHealthRatio()
@@ -40,5 +46,9 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         hpSlider.OnChangedValue(GetHealthRatio());
+    }
+    private void Update()
+    {
+        hpSlider.FollowTarget();
     }
 }

@@ -1,0 +1,74 @@
+[
+  {
+    "heroIdx": 0,
+    "cost": 100,
+    "attackSpeed": 1.0,
+    "attackDamage": 10.0,
+    "attackRadius": 3.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 0,
+    "cost": 200,
+    "attackSpeed": 1.5,
+    "attackDamage": 15.0,
+    "attackRadius": 3.5,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 0,
+    "cost": 300,
+    "attackSpeed": 2.0,
+    "attackDamage": 20.0,
+    "attackRadius": 4.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 1,
+    "cost": 150,
+    "attackSpeed": 2.0,
+    "attackDamage": 20.0,
+    "attackRadius": 3.5,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 1,
+    "cost": 200,
+    "attackSpeed": 2.5,
+    "attackDamage": 30.0,
+    "attackRadius": 4.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 1,
+    "cost": 300,
+    "attackSpeed": 3.0,
+    "attackDamage": 40.0,
+    "attackRadius": 5.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 2,
+    "cost": 300,
+    "attackSpeed": 4.0,
+    "attackDamage": 30.0,
+    "attackRadius": 4.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 2,
+    "cost": 400,
+    "attackSpeed": 5.0,
+    "attackDamage": 45.0,
+    "attackRadius": 5.0,
+    "buffValue": 0.0
+  },
+  {
+    "heroIdx": 2,
+    "cost": 500,
+    "attackSpeed": 6.0,
+    "attackDamage": 50.0,
+    "attackRadius": 6.0,
+    "buffValue": 0.0
+  }
+]

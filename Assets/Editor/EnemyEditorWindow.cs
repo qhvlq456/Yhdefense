@@ -36,13 +36,17 @@ public class EnemyEditorWindow : EditorWindow
                 index = EditorGUILayout.IntField("Index", enemyList[i].index),
                 name = EditorGUILayout.TextField("name", enemyList[i].name),
                 maxHealth = EditorGUILayout.FloatField("maxHealth", enemyList[i].maxHealth),
-                moveSpeed = EditorGUILayout.FloatField("maxHealth", enemyList[i].moveSpeed),
+                moveSpeed = EditorGUILayout.FloatField("moveSpeed", enemyList[i].moveSpeed),
                 dieGold = EditorGUILayout.IntField("Die Gold", enemyList[i].dieGold),
                 groundType = (GroundType)EditorGUILayout.EnumPopup("Die Gold", enemyList[i].groundType)
             };
 
             if (GUILayout.Button("Remove Enemy"))
+            {
                 enemyList.RemoveAt(i);
+                GUILayout.EndVertical();  // 반드시 먼저 EndVertical 호출
+                break;
+            }
 
             GUILayout.EndVertical();
         }

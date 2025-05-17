@@ -17,7 +17,7 @@ public class MapManager : Singleton<MapManager>
         string log = "";
 
         List<LandData> list = stageData.landDataList;
-
+        float maxX = 0, maxZ = 0;
         for (int i = 0; i < list.Count; i++)
         {
             // 생성하는 부분이 사라졌네??
@@ -37,10 +37,15 @@ public class MapManager : Singleton<MapManager>
             land.transform.SetParent(root);
             land.transform.localPosition = new Vector3(landData.x, 0, landData.z);
             instanceMapObjectList.Add(land.gameObject);
+            maxX = Mathf.Max(maxX, landData.x);
+            maxZ = Mathf.Max(maxZ, landData.z);
             log += $"landType = {landData.landType}, x = {landData.x} , z = {landData.z}, \n";
         }
         surfaces.BuildNavMesh();
-        // GameManager.Instance.MainCamera.transform.position = new Vector3()
+        Vector3 cameraPos = GameManager.Instance.MainCamera.transform.position;
+        cameraPos.x = maxX / 2;
+        cameraPos.z = maxZ / 2 * -1;
+        GameManager.Instance.MainCamera.transform.position = cameraPos;
         // 후에 navmesh굽는 작업 필요
         Debug.LogError(log);
     }

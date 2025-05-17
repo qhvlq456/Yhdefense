@@ -1,7 +1,12 @@
+using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class TestScene : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject TestEnemy;
+    
     private Vector2 position = new Vector2(10, 10);
     private Vector2 btnSize = new Vector2(200, 50);
     private Vector2 textSize = new Vector2(200, 50);
@@ -49,6 +54,11 @@ public class TestScene : MonoBehaviour
         if (GUI.Button(new Rect(position.x, 280, btnSize.x, btnSize.y), "모두 회수", btnGUIStyle))
         {
             GameManager.Instance.EndGame();
+        }
+        
+        if (GUI.Button(new Rect(position.x, 350, btnSize.x, btnSize.y), "테스트 적 소환", btnGUIStyle))
+        {
+            CharacterManager.Instance.SpawnEnemy(0, currentStageData.startPoint, currentStageData.endPoint);
         }
 
         //if (isShowUI)

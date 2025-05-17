@@ -89,10 +89,5 @@ public struct HeroUpgradeData
 
     public float buffValue; // buffer/debuffer¿¡ À¯¿ë
 }
-[Serializable]
-public struct UIData
-{
-    public UIType type;
-    public UIPanelType panelType;
-}
+
 

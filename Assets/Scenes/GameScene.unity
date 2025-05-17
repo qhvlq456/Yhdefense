@@ -167,10 +167,6 @@ MonoBehaviour:
   enemyLandResDB: {fileID: 11400000, guid: 55c680fb6e2e45648b35325cc7a9479c, type: 2}
   heroResDB: {fileID: 11400000, guid: 88ed7fcf4010d8d40bef19cf4298ca11, type: 2}
   enemyResDB: {fileID: 11400000, guid: b0e7092b5fbdb83468e7d8f9359dc030, type: 2}
-  uiMainResDB: {fileID: 0}
-  uiContextResDB: {fileID: 0}
-  uiTooltipResDB: {fileID: 0}
-  uiPopupResDB: {fileID: 0}
 --- !u!4 &217937616
 Transform:
   m_ObjectHideFlags: 0
@@ -612,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cff389df9512c64db6a29e10c9d2645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TestEnemy: {fileID: 1745245048377955168, guid: bc475b890d88be244b9345964cf58073, type: 3}
   currentStageData:
     index: 0
     life: 0
@@ -1927,6 +1924,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280394834}
   m_CullTransparentMesh: 1
+--- !u!1 &1309084725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309084727}
+  - component: {fileID: 1309084726}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1309084726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309084725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28af519458984844d8c91757b3e9baf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDataDB: {fileID: 11400000, guid: 82d8f980cfe69d34e951b8d487eb1aed, type: 2}
+  canvasMaps:
+  - uiType: 1
+    canvas: {fileID: 829019132}
+  - uiType: 0
+    canvas: {fileID: 1811998629}
+  - uiType: 2
+    canvas: {fileID: 1950164412}
+  - uiType: 3
+    canvas: {fileID: 1608738095}
+  - uiType: 4
+    canvas: {fileID: 621555190}
+--- !u!4 &1309084727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309084725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426930232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,3 +2691,4 @@ SceneRoots:
   - {fileID: 5102853343589069725}
   - {fileID: 570864179}
   - {fileID: 1426930234}
+  - {fileID: 1309084727}

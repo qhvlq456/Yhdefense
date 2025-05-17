@@ -15,9 +15,8 @@ public class LobyPanelUI : BaseUI
 
     [SerializeField]
     private Button exitBtn;
-    public override void ShowUI(UIData _data)
+    public override void ShowUI()
     {
-        base.ShowUI(_data);
         // exitBtn.clickable.clicked += () => HideUI();
         exitBtn.onClick.AddListener(HideUI);
     }

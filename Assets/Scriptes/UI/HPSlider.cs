@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPSlider : MonoBehaviour
+public class HPSlider : BaseUI
 {
     [SerializeField]
     private RectTransform mRect;
@@ -12,10 +12,9 @@ public class HPSlider : MonoBehaviour
     private Vector3 offset = Vector3.zero;
 
     private Transform target;
-    
-    public void Attach()
+    public void SetTarget(Transform _target)
     {
-
+        target = _target;
     }
     public void FollowTarget()
     {

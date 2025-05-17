@@ -1,22 +1,14 @@
 using UnityEngine;
 
-public class BaseUI : MonoBehaviour
+public abstract class BaseUI : MonoBehaviour
 {
-    [SerializeField]
-    protected UIData data;
-    public UIData GetUIData() => data;
+    public UIPanelType panelType { get; private set; }
 
-    public virtual void ShowUI(UIData _data)
+    public virtual void Initialize(UIPanelType _panelType)
     {
-        data = _data;
+        panelType = _panelType;
     }
-    public virtual void MoveUI()
-    {
 
-    }
-    public virtual void HideUI() 
-    { 
-
-    }
+    public virtual void ShowUI() => gameObject.SetActive(true);
+    public virtual void HideUI() => gameObject.SetActive(false);
 }
-

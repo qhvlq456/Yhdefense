@@ -211,6 +211,7 @@ public class MapEditorWindow : EditorWindow
 
     private void AddCurrentStageToList()
     {
+        // 의도치 않게 정확히 offset 1단위로 우상단으로 올라가게 설정
         List<LandData> landList = new();
         for (int z = 0; z < gridSize; z++)
         {

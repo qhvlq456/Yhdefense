@@ -13,9 +13,10 @@ public class CharacterManager : Singleton<CharacterManager>
     public void SpawnEnemy(int _idx, Vector3 _spawnPos, Vector3 _targetPos)
     {
         var enemy = ObjectPoolManager.Instance.Create(PoolingType.enemy, _idx).GetComponent<Enemy>();
-        enemy.Create(_idx);
         enemy.Spawn(_spawnPos, _targetPos);
+        enemy.Create(_idx);
         instanceCharacterList.Add(enemy);
+        // agent.enabled = false; → position 설정 → enabled = true; 순서 중요!
     }
 
     public void ClearCharacter()

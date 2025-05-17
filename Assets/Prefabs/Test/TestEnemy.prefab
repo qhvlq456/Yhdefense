@@ -620,9 +620,9 @@ MonoBehaviour:
   attack: {fileID: 0}
   enemyData:
     index: 0
-    name: 
-    maxHealth: 0
-    moveSpeed: 0
+    name: enemyTest
+    maxHealth: 30
+    moveSpeed: 1
     dieGold: 10
     groundType: 0
 --- !u!114 &8344155602905632611

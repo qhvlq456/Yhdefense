@@ -1,14 +1,23 @@
 [
   {
     "index": 0,
-    "cost": 100
+    "name": "Hero0",
+    "groundType": 0,
+    "heroType": 0,
+    "skillIdList": []
   },
   {
     "index": 1,
-    "cost": 200
+    "name": "Hero1",
+    "groundType": 1,
+    "heroType": 0,
+    "skillIdList": []
   },
   {
-    "index": 3,
-    "cost": 300
+    "index": 2,
+    "name": "Hero2",
+    "groundType": 2,
+    "heroType": 0,
+    "skillIdList": []
   }
 ]

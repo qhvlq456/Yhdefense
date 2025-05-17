@@ -47,43 +47,6 @@ public class DataManager : Singleton<DataManager>
     #endregion End Character
     [Header("End Character")]
     [Space()]
-
-    [Header("Start UI")]
-    #region Start UIData
-    [SerializeField]
-    private UIResDB uiMainResDB;
-    [SerializeField]
-    private UIResDB uiContextResDB;
-    [SerializeField]
-    private UIResDB uiTooltipResDB;
-    [SerializeField]
-    private UIResDB uiPopupResDB;
-
-    public GameObject GetUIResObj(UIData _uiData)
-    {
-        UIResDB uiResDB = null;
-
-        switch (_uiData.type)
-        {
-            case UIType.main:
-                uiResDB = uiMainResDB;
-                break;
-            case UIType.context:
-                uiResDB = uiContextResDB;
-                break;
-            case UIType.tooltip:
-                uiResDB = uiTooltipResDB;
-                break;
-            case UIType.popup:
-                uiResDB = uiPopupResDB;
-                break;
-        }
-
-        return uiResDB.GetPrefab(_uiData.panelType);
-    }
-    #endregion End UIData
-    [Header("End UIData")]
-    [Space()]
     #region Start UpgradeData
     private Dictionary<int, List<HeroUpgradeData>> heroUpgradeDataDic = new Dictionary<int, List<HeroUpgradeData>>();
     public HeroUpgradeData GetHeroUpgradeData(int _heroIdx, int _level)
