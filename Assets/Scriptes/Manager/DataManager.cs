@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
@@ -8,6 +9,7 @@ public class DataManager : Singleton<DataManager>
     #endregion End Path
 
     #region Start Map
+    [Header("Start Map")]
     public const int MAX_X = 10;
     public const int MAX_Z = 10;
     public int TotalLandNum => MAX_X * MAX_Z;
@@ -27,9 +29,10 @@ public class DataManager : Singleton<DataManager>
     private LandResDB enemyLandResDB;
     public GameObject GetEnemyLandResObj(int _idx) => enemyLandResDB.GetPrefab(_idx);
     #endregion End Map
+    [Header("End Map")]
+    [Space()]
 
-
-
+    [Header("Start Character")]
     #region Start Character
     private List<HeroData> heroDataList = new List<HeroData>();
     public HeroData GetIdxToHeroData(int _idx) => heroDataList.Find(x => x.index == _idx);
@@ -42,7 +45,10 @@ public class DataManager : Singleton<DataManager>
     private CharacterResDB enemyResDB;
     public GameObject GetEnemyResObj(int _idx) => enemyResDB.GetPrefab(_idx);
     #endregion End Character
+    [Header("End Character")]
+    [Space()]
 
+    [Header("Start UI")]
     #region Start UIData
     [SerializeField]
     private UIResDB uiMainResDB;
@@ -75,16 +81,43 @@ public class DataManager : Singleton<DataManager>
 
         return uiResDB.GetPrefab(_uiData.panelType);
     }
-    #endregion End UIDAta
+    #endregion End UIData
+    [Header("End UIData")]
+    [Space()]
+    #region Start UpgradeData
+    private Dictionary<int, List<HeroUpgradeData>> heroUpgradeDataDic = new Dictionary<int, List<HeroUpgradeData>>();
+    public HeroUpgradeData GetHeroUpgradeData(int _heroIdx, int _level)
+    {
+        if (!heroUpgradeDataDic.ContainsKey(_heroIdx))
+        {
+            Debug.LogError($"Hero idx {_heroIdx} not found in upgrade data!");
+            return default;
+        }
+
+        var list = heroUpgradeDataDic[_heroIdx];
+        int safeLevel = Mathf.Clamp(_level - 1, 0, list.Count - 1);
+        return list[safeLevel];
+    }
+
+    #endregion End UpgradeData
     public void LoadGameData()
     {
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");
         enemyDataList = NewtonSoftJson.LoadJsonArray<EnemyData>(Application.streamingAssetsPath, "EnemyData");
-
         subStageDataList= NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
+
+        List<HeroUpgradeData> upgradeDataList = NewtonSoftJson.LoadJsonArray<HeroUpgradeData>(Application.streamingAssetsPath, "HeroUpgradeData");
+        heroUpgradeDataDic.Clear();
+        foreach (var data in upgradeDataList)
+        {
+            if (!heroUpgradeDataDic.ContainsKey(data.heroIdx))
+                heroUpgradeDataDic[data.heroIdx] = new List<HeroUpgradeData>();
+
+            heroUpgradeDataDic[data.heroIdx].Add(data);
+        }
+
+        mapDataList.Clear();
         List<StageData> maps = NewtonSoftJson.LoadJsonArray<StageData>(Application.streamingAssetsPath, "MapData");
-
-
         for (int i = 0; i < maps.Count; i++)
         {
             MapData data = new MapData();

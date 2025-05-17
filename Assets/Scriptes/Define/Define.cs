@@ -1,8 +1,8 @@
-using System;
 
-
+public enum HeroType { Attack, Buffer, Debuffer}
+public enum GroundType {gorund, fly, both }
+public enum SkillType { Active, Passive }
 public enum LandType { hero, enemy, deco }
-public enum CharacterType { hero, enemy }
 public enum PoolingType { hero, enemy, heroLand, enemyLand}
 
 public enum UIType { main, HUD, context, tooltip, popup }

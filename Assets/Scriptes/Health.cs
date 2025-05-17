@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField]
+    private HPSlider hpSlider;
     public float currentHealth { get; private set; }
     public float maxHealth { get; private set; }
     public void ResetHealth(float _max)
@@ -31,10 +33,12 @@ public class Health : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Max(currentHealth - _damage, 0);
+        hpSlider.OnChangedValue(GetHealthRatio());
     }
 
     public void Heal(float amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        hpSlider.OnChangedValue(GetHealthRatio());
     }
 }

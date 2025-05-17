@@ -20,7 +20,14 @@ public class HeroEditorWindow : EditorWindow
     {
         if (GUILayout.Button("Add New Hero"))
         {
-            heroList.Add(new HeroData { index = 0, cost = 100 });
+            heroList.Add(new HeroData
+            {
+                index = 0,
+                name = "NewHero",
+                groundType = GroundType.gorund,
+                heroType = HeroType.Attack,
+                skillIdList = new List<int>()
+            });
         }
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
@@ -32,11 +39,17 @@ public class HeroEditorWindow : EditorWindow
             heroList[i] = new HeroData
             {
                 index = EditorGUILayout.IntField("Index", heroList[i].index),
-                cost = EditorGUILayout.IntField("Cost", heroList[i].cost)
+                name = EditorGUILayout.TextField("Name", heroList[i].name),
+                groundType = (GroundType)EditorGUILayout.EnumPopup("Ground Type", heroList[i].groundType),
+                heroType = (HeroType)EditorGUILayout.EnumPopup("Hero Type", heroList[i].heroType),
+                skillIdList = DrawSkillList(heroList[i].skillIdList)
             };
 
             if (GUILayout.Button("Remove Hero"))
+            {
                 heroList.RemoveAt(i);
+                break;
+            }
 
             GUILayout.EndVertical();
         }
@@ -51,6 +64,20 @@ public class HeroEditorWindow : EditorWindow
         if (GUILayout.Button("Load JSON"))
             LoadJson();
         EditorGUILayout.EndHorizontal();
+    }
+
+    private List<int> DrawSkillList(List<int> skillList)
+    {
+        int count = Mathf.Max(0, EditorGUILayout.IntField("Skill Count", skillList.Count));
+        while (skillList.Count < count) skillList.Add(0);
+        while (skillList.Count > count) skillList.RemoveAt(skillList.Count - 1);
+
+        for (int j = 0; j < skillList.Count; j++)
+        {
+            skillList[j] = EditorGUILayout.IntField($"Skill {j}", skillList[j]);
+        }
+
+        return skillList;
     }
 
     private void SaveJson()

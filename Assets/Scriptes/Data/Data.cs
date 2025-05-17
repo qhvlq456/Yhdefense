@@ -47,26 +47,48 @@ public struct MapData
     public StageData stageData;
 }
 [Serializable]
-public struct CharacterData
-{
-    public int index;
-    public string resName;
-    public string name;
-    public CharacterType characterType;
-}
-[Serializable]
 public struct HeroData
 {
     public int index;
-    public int cost;
+    public string name;
+    public GroundType groundType;
+    public HeroType heroType;
+
+    public List<int> skillIdList; // 스킬 시스템 추가 대비
 }
 [Serializable]
 public struct EnemyData
 {
     public int index;
+    public string name;
+    public float maxHealth;
+    public float moveSpeed;
     public int dieGold;
+    public GroundType groundType;
 }
 
+[Serializable]
+public struct SkillData
+{
+    public int index;
+    public string name;
+    public float cooldown;
+    public float range;
+    public float power;
+    public SkillType skillType;
+}
+
+[Serializable]
+public struct HeroUpgradeData
+{
+    public int heroIdx; // == hero idx 
+    public int cost;
+    public float attackSpeed;
+    public float attackDamage;
+    public float attackRadius;
+
+    public float buffValue; // buffer/debuffer에 유용
+}
 [Serializable]
 public struct UIData
 {

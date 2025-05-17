@@ -14,7 +14,7 @@ public class Enemy : Character
     }
     public void TakeDamage(float _float)
     {
-
+        health.TakeDamage(_float);
     }
 
     public void Spawn(Vector3 _spawnPos, Vector3 _destination)
@@ -50,6 +50,7 @@ public class Enemy : Character
     {
         base.Retrieve();
         move.Revert();
+        health.ResetHealth(enemyData.maxHealth);
         ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
     }
 }
