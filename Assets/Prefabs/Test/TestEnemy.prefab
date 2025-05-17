@@ -555,7 +555,6 @@ GameObject:
   - component: {fileID: 8899924378679905855}
   - component: {fileID: 8344155602905632611}
   - component: {fileID: 3006275487849309022}
-  - component: {fileID: 5102018499690246374}
   - component: {fileID: 6750223875753031201}
   - component: {fileID: -6436986699779330540}
   m_Layer: 0
@@ -618,10 +617,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3006275487849309022}
   move: {fileID: 8344155602905632611}
-  attack: {fileID: 5102018499690246374}
+  attack: {fileID: 0}
   enemyData:
     index: 0
+    name: 
+    maxHealth: 0
+    moveSpeed: 0
     dieGold: 10
+    groundType: 0
 --- !u!114 &8344155602905632611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +638,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6750223875753031201}
+  angularSpeed: 1000
+  acceleration: 24
+  avoidancePriority: 50
 --- !u!114 &3006275487849309022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,18 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c526e072a3e1a49af9d90e001c4081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5102018499690246374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745245048377955168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aab02d59792c0b40ba10ac9fa275f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
 --- !u!195 &6750223875753031201
 NavMeshAgent:
   m_ObjectHideFlags: 0

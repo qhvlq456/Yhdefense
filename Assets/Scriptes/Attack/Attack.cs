@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public abstract class Attack : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     [Header("Targeting Options")]
     [SerializeField] private string targetTag = "Enemy"; // 기본 태그
     [SerializeField] private LayerMask obstacleMask;     // 시야를 가리는 오브젝트용
 
     // 자식이 반지름, 색상 제공
-    protected abstract float GetAttackRadius();
-    protected abstract GroundType GetGroundType(); // 지형 타입 확인용
+    protected virtual float GetAttackRadius() => float.MinValue;
+    protected virtual GroundType GetGroundType() => GroundType.none;
     protected virtual Color GetGizmoColor() => Color.red;
 
     // 공통 탐색 함수
