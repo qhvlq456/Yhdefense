@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.AI.Navigation;
 
 
-public class Enemy : Character
+public class Enemy : Character, IHittable
 {
     [SerializeField]
     private EnemyData enemyData;
@@ -15,6 +15,11 @@ public class Enemy : Character
     public void TakeDamage(float _float)
     {
         health.TakeDamage(_float);
+
+        if (health.currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Spawn(Vector3 _spawnPos, Vector3 _destination)
@@ -45,12 +50,17 @@ public class Enemy : Character
 
         move.Movement(_destination);
     }
+    private void Die()
+    {
+
+    }
 
     public override void Retrieve()
     {
-        base.Retrieve();
         move.Revert();
         health.ResetHealth(enemyData.maxHealth);
         ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
     }
+
+    public override GroundType GetGroundType() => enemyData.groundType;
 }

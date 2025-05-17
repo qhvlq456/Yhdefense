@@ -1,7 +1,7 @@
 using System.Reflection;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     [SerializeField]
     protected Health health;
@@ -11,13 +11,8 @@ public class Character : MonoBehaviour
 
     [SerializeField]
     protected Attack attack;
-    
-    public virtual void Create(int _idx)
-    {
-        
-    }
-    public virtual void Retrieve()
-    {
-        
-    }
+
+    public abstract GroundType GetGroundType();
+    public abstract void Create(int _idx);
+    public abstract void Retrieve();
 }

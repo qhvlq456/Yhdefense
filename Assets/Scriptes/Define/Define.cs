@@ -1,6 +1,6 @@
 
 public enum HeroType { Attack, Buffer, Debuffer}
-public enum GroundType {gorund, fly, both }
+public enum GroundType {none = -1, gorund, fly, both }
 public enum SkillType { Active, Passive }
 public enum LandType { hero, enemy, deco }
 public enum PoolingType { hero, enemy, heroLand, enemyLand}

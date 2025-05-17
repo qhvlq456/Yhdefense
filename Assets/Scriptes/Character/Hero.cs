@@ -26,10 +26,10 @@ public class Hero : Character
         return null;
     }
 
+    public override GroundType GetGroundType() => heroData.groundType;
 
     public override void Retrieve()
     {
-        base.Retrieve();
         move.Revert();
         ObjectPoolManager.Instance.Retrieve(PoolingType.hero, heroData.index, transform);
     }

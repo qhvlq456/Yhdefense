@@ -20,7 +20,9 @@ public class EnemyEditorWindow : EditorWindow
     {
         if (GUILayout.Button("Add New Enemy"))
         {
-            enemyList.Add(new EnemyData { index = 0, dieGold = 10 });
+            enemyList.Add(new EnemyData { index = 0, name = "" ,
+                maxHealth = 10,
+                moveSpeed = 2f, dieGold = 10, groundType = GroundType.gorund });
         }
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
@@ -32,7 +34,11 @@ public class EnemyEditorWindow : EditorWindow
             enemyList[i] = new EnemyData
             {
                 index = EditorGUILayout.IntField("Index", enemyList[i].index),
-                dieGold = EditorGUILayout.IntField("Die Gold", enemyList[i].dieGold)
+                name = EditorGUILayout.TextField("name", enemyList[i].name),
+                maxHealth = EditorGUILayout.FloatField("maxHealth", enemyList[i].maxHealth),
+                moveSpeed = EditorGUILayout.FloatField("maxHealth", enemyList[i].moveSpeed),
+                dieGold = EditorGUILayout.IntField("Die Gold", enemyList[i].dieGold),
+                groundType = (GroundType)EditorGUILayout.EnumPopup("Die Gold", enemyList[i].groundType)
             };
 
             if (GUILayout.Button("Remove Enemy"))
