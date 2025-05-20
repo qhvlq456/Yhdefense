@@ -881,9 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f9de7e514b1904ebad544ca73186cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    type: 0
-    panelType: 0
   btnItemRes: {fileID: 6973998249284003875, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
   itemBtnList: []
   scrollRect: {fileID: 4550419944324097746}
@@ -1127,29 +1124,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1418900516306992260, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
-      propertyPath: m_text
-      value: "\uC2A4\uD14C\uC774\uC9C0"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418900516306992260, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
-      propertyPath: m_fontSize
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418900516306992260, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: f65b7248786f86b4181b8daccb784ec7, type: 2}
-    - target: {fileID: 1418900516306992260, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418900516306992260, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1293242556740120465, guid: f65b7248786f86b4181b8daccb784ec7, type: 2}
     - target: {fileID: 6973998249284003875, guid: 47ee5dbe96271914ebb21adf3e456ce3, type: 3}
       propertyPath: m_Name
-      value: LobyPanelUIItemBtn
+      value: LobyPanelItemUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
         currentHealth = _max;
         
         // 재활용이기 때문에 생성된 다른 hud가 붙을 수 있다
-        hpSlider = UIManager.Instance.ShowMultipleUI<HPSlider>(UIPanelType.hpSlider);
+        hpSlider = UIManager.Instance.ShowMultipleUI<HPSlider>(UIPanelType.HpSlider);
         hpSlider.SetTarget(transform);
 
         hpSlider.OnChangedValue(GetHealthRatio());

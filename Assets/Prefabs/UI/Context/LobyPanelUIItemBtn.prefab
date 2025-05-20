@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3594683134736555912}
   - component: {fileID: 3893890469739578098}
   - component: {fileID: 2776139458293457219}
-  - component: {fileID: 6852910214973079429}
+  - component: {fileID: 1895966098588871986}
   m_Layer: 5
   m_Name: LobyPanelUIItemBtn
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6852910214973079429
+--- !u!114 &1895966098588871986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,11 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6973998249284003875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4af4461b5b8d474aaeb995a917ce1aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 496b728730121ae43aa156d7f35539c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn: {fileID: 2776139458293457219}
-  text: {fileID: 1418900516306992260}
 --- !u!1 &7504012071128896824
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,10 +199,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\uC2A4\uD14C\uC774\uC9C0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f65b7248786f86b4181b8daccb784ec7, type: 2}
+  m_sharedMaterial: {fileID: -1293242556740120465, guid: f65b7248786f86b4181b8daccb784ec7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -228,8 +226,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

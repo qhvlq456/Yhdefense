@@ -8,15 +8,22 @@ public class HeroLand : Land
     private NavMeshObstacle navObstacle;
     [SerializeField]
     private Transform head;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void CreateHero()
     {
-        
+        // open ui
+        // callback 받아야함
+    }
+    
+    public void SetHero(Hero _hero)
+    {
+        if(head == null)
+        {
+            
+        }
+    }
+    public void RemoveHero(Hero _hero) 
+    { 
+
     }
 }
