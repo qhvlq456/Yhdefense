@@ -1,16 +1,72 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CreateHeroUI : MonoBehaviour
+public class CreateHeroUI : BaseUI
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private GameObject itemRes;
+    [SerializeField]
+    private Transform contentTrf;
+    [SerializeField]
+    private List<CreateHeroInfoItemUI> itemList = new List<CreateHeroInfoItemUI>();
+    [SerializeField]
+    private Button exitBtn;
+    private void Awake()
     {
-        
+        exitBtn.onClick.AddListener(ExitBtnClick);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Open(List<HeroData> _heroDataList)
     {
-        
+        if(_heroDataList.Count > itemList.Count)
+        {
+            int diff = _heroDataList.Count - itemList.Count;
+            for(int i = 0; i < diff; i++)
+            {
+                CreateHeroInfoItemUI item = Instantiate(itemRes, contentTrf).GetComponent<CreateHeroInfoItemUI>();
+                itemList.Add(item);
+            }
+        }
+
+        _heroDataList.Sort(IndexOfSort);
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (i < _heroDataList.Count)
+            {
+                itemList[i].Set(_heroDataList[i]);
+                itemList[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                itemList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+    private void ExitBtnClick()
+    {
+        HideUI();
+    }
+    /// <summary>
+    /// index 순으로 정렬 오름차순 정렬
+    /// </summary>
+    private int IndexOfSort(HeroData _a, HeroData _b)
+    {
+        if(_a.index > _b.index)
+        {
+            return 1;
+        }
+        else if(_a.index < _b.index)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    public override void HideUI()
+    {
+        base.HideUI();
     }
 }

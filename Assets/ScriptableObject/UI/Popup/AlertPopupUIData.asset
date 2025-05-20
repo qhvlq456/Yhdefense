@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc229a43278c6a4194b579edff3f8d3, type: 3}
+  m_Name: AlertPopupUIData
+  m_EditorClassIdentifier: 
+  panelType: 5
+  canvasType: 4
+  prefab: {fileID: 5818531526339684053, guid: 57b1b45d52cfbba4d85247d749f30477, type: 3}
+  usePooling: 0

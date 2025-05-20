@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc229a43278c6a4194b579edff3f8d3, type: 3}
+  m_Name: CharacterInfoUI
+  m_EditorClassIdentifier: 
+  panelType: 3
+  canvasType: 2
+  prefab: {fileID: 6009637736877997001, guid: b2c1ec2e25b70d344ba3e2c4cb9d6893, type: 3}
+  usePooling: 0

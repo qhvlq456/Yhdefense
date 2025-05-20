@@ -6,8 +6,12 @@ public class HeroLand : Land
 {
     [SerializeField]
     private NavMeshObstacle navObstacle;
+
     [SerializeField]
     private Transform head;
+
+    [SerializeField]
+    private Hero hero;
 
     public void CreateHero()
     {

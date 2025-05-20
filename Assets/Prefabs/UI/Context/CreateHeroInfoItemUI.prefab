@@ -238,9 +238,9 @@ GameObject:
   - component: {fileID: 4887604192140833209}
   - component: {fileID: 5238549450322790223}
   - component: {fileID: 3885378741949628956}
-  - component: {fileID: 263438914947229640}
+  - component: {fileID: 402128771275697646}
   m_Layer: 5
-  m_Name: CreaetHeroInfoItemUI
+  m_Name: CreateHeroInfoItemUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &263438914947229640
+--- !u!114 &402128771275697646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,9 +359,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4413835222195340298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3f6104cbd60f454f9e1547ba3452e85, type: 3}
+  m_Script: {fileID: 11500000, guid: 696ba7919b793d448b03ec35fad8ea8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroData:
+    index: 0
+    name: 
+    groundType: 0
+    heroType: 0
+    skillIdList: 
+  titleText: {fileID: 7063502245028070495}
+  heroImg: {fileID: 7495705710884293969}
+  infoText: {fileID: 4399955529125995683}
 --- !u!1 &5290032107382493439
 GameObject:
   m_ObjectHideFlags: 0
