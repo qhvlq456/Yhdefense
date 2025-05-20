@@ -34,7 +34,8 @@ public class HeroLand : Land, IClickable
         // hero »ý¼ºÃ¢
         else
         {
-            UIManager.Instance.ShowUI<CreateHeroUI>(UIPanelType.CreateHero);
+            CreateHeroUI createHeroUI = UIManager.Instance.ShowUI<CreateHeroUI>(UIPanelType.CreateHero);
+            createHeroUI.Open(this, DataManager.Instance.HeroDataList);
         }
     }
 }

@@ -371,6 +371,7 @@ MonoBehaviour:
   titleText: {fileID: 7063502245028070495}
   heroImg: {fileID: 7495705710884293969}
   infoText: {fileID: 4399955529125995683}
+  selectBtn: {fileID: 3885378741949628956}
 --- !u!1 &5290032107382493439
 GameObject:
   m_ObjectHideFlags: 0

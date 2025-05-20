@@ -15,3 +15,7 @@ MonoBehaviour:
   uiResources:
   - {fileID: 11400000, guid: cb39d8783aa2e0148b7b89e81da7eb72, type: 2}
   - {fileID: 11400000, guid: 5025b3615f84b4b458803728f43771cb, type: 2}
+  - {fileID: 11400000, guid: 8e268ba255ce18440af0465ec4ddbe74, type: 2}
+  - {fileID: 11400000, guid: 5892978ac073f8b4cbf8bf59d2411cdc, type: 2}
+  - {fileID: 11400000, guid: ceb380082bd9a144ba4c0f0b91363bf5, type: 2}
+  - {fileID: 11400000, guid: 459e49cb3e658d04cbb65cfee4d9573d, type: 2}

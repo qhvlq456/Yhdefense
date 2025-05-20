@@ -35,6 +35,7 @@ public class DataManager : Singleton<DataManager>
     [Header("Start Character")]
     #region Start Character
     private List<HeroData> heroDataList = new List<HeroData>();
+    public List<HeroData> HeroDataList => heroDataList;
     public HeroData GetIdxToHeroData(int _idx) => heroDataList.Find(x => x.index == _idx);
     private List<EnemyData> enemyDataList = new List<EnemyData>();
     public EnemyData GetIdxToEnemyData(int _idx) => enemyDataList.Find(x => x.index == _idx);

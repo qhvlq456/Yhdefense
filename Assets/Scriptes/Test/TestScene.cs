@@ -16,6 +16,7 @@ public class TestScene : MonoBehaviour
     // stage
     private string stageIdxStr = string.Empty;
     private string subStageIdxStr = string.Empty;
+    private string addGoldStr = string.Empty;
     public StageData currentStageData;
     private void OnGUI()
     {
@@ -61,6 +62,11 @@ public class TestScene : MonoBehaviour
             CharacterManager.Instance.SpawnEnemy(0, currentStageData.startPoint, currentStageData.endPoint);
         }
 
+        addGoldStr = GUI.TextField(new Rect(position.x + textSize.x + 30, 420, textSize.x, textSize.y), addGoldStr, textFieldStyle);
+        if (GUI.Button(new Rect(position.x, 420, btnSize.x, btnSize.y), "°ñµå Ãß°¡", btnGUIStyle))
+        {
+            GameManager.Instance.gold = int.Parse(addGoldStr);
+        }
         //if (isShowUI)
         //{
         //    UIManager.Instance.ShowUI<BaseUI>(uiData);

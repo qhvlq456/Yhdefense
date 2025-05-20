@@ -34,7 +34,11 @@ public class CreateHeroUI : BaseUI
         {
             if (i < _heroDataList.Count)
             {
-                itemList[i].Set(_heroDataList[i], (int _idx) => { _heroLand.SetHero(_heroDataList[i].index); });
+                itemList[i].Set(_heroDataList[i], 
+                    (int _idx) => 
+                    { 
+                        _heroLand.SetHero(_idx);
+                    });
                 itemList[i].gameObject.SetActive(true);
             }
             else
