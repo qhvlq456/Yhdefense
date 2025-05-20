@@ -15,7 +15,7 @@ public class Hero : Character
     public override void Create(int _idx)
     {
         heroData = DataManager.Instance.GetIdxToHeroData(_idx);
-        upgradeData = DataManager.Instance.GetHeroUpgradeData(_idx, lv);
+        upgradeData = DataManager.Instance.GetHeroUpgradeData(_idx, 1);
     }
 
     

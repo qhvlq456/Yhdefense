@@ -15,7 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private int currentSubStageIdx;
     [SerializeField]
-    private int life;
+    public int life { private set; get; }
+    [SerializeField]
+    public int gold { private set; get; }
 
     private Camera mainCamera;
     public Camera MainCamera

@@ -12,7 +12,6 @@ public class Land : MonoBehaviour
     {
         data = _data;
     }
-
     public virtual void Retrieve()
     {
         ObjectPoolManager.Instance.Retrieve(Utility.LandTypeToPoolingType(data.landType), data.index, transform);
