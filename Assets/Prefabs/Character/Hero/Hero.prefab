@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4244075422512444117}
   - component: {fileID: 7038676094796759860}
   - component: {fileID: 753519337379923225}
+  - component: {fileID: 7031359418925127928}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -125,9 +126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 0}
   move: {fileID: 0}
-  attack: {fileID: 0}
+  attack: {fileID: 7031359418925127928}
+  buff: {fileID: 0}
   heroData:
     index: 0
+    weaponIdx: 0
     name: 
     groundType: 0
     heroType: 0
@@ -140,3 +143,27 @@ MonoBehaviour:
     attackRadius: 0
     buffValue: 0
   lv: 0
+--- !u!114 &7031359418925127928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578662214258465536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e88bf0c9720a454e99386769c94d487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  heroUpgradeData:
+    heroIdx: 0
+    cost: 0
+    attackSpeed: 0
+    attackDamage: 0
+    attackRadius: 0
+    buffValue: 0
+  bulletRes: {fileID: 8080928056394805481, guid: c51d0fe93cd36b8419948bf45082b444, type: 3}

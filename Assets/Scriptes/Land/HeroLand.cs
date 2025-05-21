@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 [RequireComponent(typeof(NavMeshObstacle))]
 public class HeroLand : Land, IClickable
@@ -19,6 +20,7 @@ public class HeroLand : Land, IClickable
         hero.transform.SetParent(head);
         // head는 쫌... land보다 위에 있어야 할듯...
         hero.transform.localPosition = Vector3.zero + heroPosOffset;
+        hero.gameObject.layer = gameObject.layer;
     }
     public void RemoveHero(HeroData _heroData) 
     { 
@@ -39,6 +41,5 @@ public class HeroLand : Land, IClickable
             createHeroUI.Open(this, DataManager.Instance.HeroDataList);
         }
     }
-
 }
 

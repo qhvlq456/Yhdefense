@@ -2364,11 +2364,11 @@ GameObject:
   - component: {fileID: -1591047207820178523}
   - component: {fileID: 961769273690910092}
   - component: {fileID: -5413542100835095433}
-  - component: {fileID: 5407841960176511176}
   - component: {fileID: -8359870950464890809}
+  - component: {fileID: 2842887720628991155}
   m_Layer: 0
   m_Name: Enemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2426,10 +2426,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 961769273690910092}
   move: {fileID: -5413542100835095433}
-  attack: {fileID: 5407841960176511176}
+  attack: {fileID: 0}
+  buff: {fileID: 0}
   enemyData:
     index: 0
+    name: 
+    maxHealth: 0
+    moveSpeed: 0
     dieGold: 0
+    groundType: 0
 --- !u!114 &961769273690910092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,6 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c526e072a3e1a49af9d90e001c4081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
 --- !u!114 &-5413542100835095433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2458,18 +2464,6 @@ MonoBehaviour:
   angularSpeed: 3
   acceleration: 24
   avoidancePriority: 50
---- !u!114 &5407841960176511176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7694948261200160419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aab02d59792c0b40ba10ac9fa275f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &-8359870950464890809
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2492,6 +2486,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &2842887720628991155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694948261200160419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 3, z: -1.5}
 --- !u!1 &7716598703906215007
 GameObject:
   m_ObjectHideFlags: 0

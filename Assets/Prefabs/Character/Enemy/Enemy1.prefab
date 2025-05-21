@@ -905,11 +905,11 @@ GameObject:
   - component: {fileID: 5494940035747274054}
   - component: {fileID: -1561982758435099766}
   - component: {fileID: -6543758303006088925}
-  - component: {fileID: 9007151835839071182}
   - component: {fileID: -2273819522436823746}
+  - component: {fileID: 6865026793982507517}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -967,10 +967,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: -1561982758435099766}
   move: {fileID: -6543758303006088925}
-  attack: {fileID: 9007151835839071182}
+  attack: {fileID: 0}
+  buff: {fileID: 0}
   enemyData:
     index: 0
+    name: 
+    maxHealth: 0
+    moveSpeed: 0
     dieGold: 0
+    groundType: 0
 --- !u!114 &-1561982758435099766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c526e072a3e1a49af9d90e001c4081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
 --- !u!114 &-6543758303006088925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,18 +1005,6 @@ MonoBehaviour:
   angularSpeed: 3
   acceleration: 24
   avoidancePriority: 50
---- !u!114 &9007151835839071182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3988373862051442176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aab02d59792c0b40ba10ac9fa275f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &-2273819522436823746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1033,6 +1027,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6865026793982507517
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988373862051442176}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 5, z: 8}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &4144058129062701487
 GameObject:
   m_ObjectHideFlags: 0

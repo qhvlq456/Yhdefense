@@ -14,10 +14,10 @@ public class NavMeshMove : Move
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        SetupAgent(); // 설정 통합
     }
 
-    private void SetupAgent()
+    // enemydata가 아닌 movedata로 따로 빼놓을 것!
+    private void SetupAgent(MoveData _moveData)
     {
         agent.angularSpeed = angularSpeed;
         agent.acceleration = acceleration;
@@ -28,7 +28,7 @@ public class NavMeshMove : Move
         agent.stoppingDistance = 0.1f; // 너무 멀리서 멈추는 거 방지
     }
 
-    public override void Initialize()
+    public override void Initialize(MoveData _moveData)
     {
         if (!agent.enabled)
         {
@@ -42,7 +42,8 @@ public class NavMeshMove : Move
         }
 
         agent.isStopped = false;
-        SetupAgent(); // 초기화 시 재세팅 보장
+
+        SetupAgent(_moveData);
     }
 
     private void LateUpdate()

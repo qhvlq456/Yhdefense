@@ -3,15 +3,19 @@ using UnityEngine.AI;
 using System.Collections;
 using Unity.AI.Navigation;
 
-
 public class Enemy : Character, IHittable
 {
     [SerializeField]
     private EnemyData enemyData;
+
+    public bool isDie { get; private set; }
     public override void Create(int _idx)
     {
+        isDie = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
-        move.Initialize();
+        
+        // 임시 수정할 것
+        move.Initialize(new MoveData());
         health.ResetHealth(enemyData.maxHealth);
     }
     public void TakeDamage(float _float)
@@ -45,16 +49,19 @@ public class Enemy : Character, IHittable
         yield return null;
 
         var agent = GetComponent<NavMeshAgent>();
+
         while (!agent.isOnNavMesh)
         {
+            Debug.Log("아직 NavMesh 위에 없음");
             yield return null;
         }
 
+        Debug.Log("NavMesh 위에 올라감");
         move.Movement(_destination);
     }
     private void Die()
     {
-
+        isDie = true;
     }
 
     public override void Retrieve()
@@ -65,4 +72,10 @@ public class Enemy : Character, IHittable
     }
 
     public override GroundType GetGroundType() => enemyData.groundType;
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
 }

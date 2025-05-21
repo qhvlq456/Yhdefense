@@ -38,6 +38,7 @@ public class CreateHeroUI : BaseUI
                     (int _idx) => 
                     { 
                         _heroLand.SetHero(_idx);
+                        ExitBtnClick();
                     });
                 itemList[i].gameObject.SetActive(true);
             }

@@ -2093,11 +2093,11 @@ GameObject:
   - component: {fileID: 9167318695925765618}
   - component: {fileID: -8796438282347391855}
   - component: {fileID: 171697873695654078}
-  - component: {fileID: 5453607180449398473}
   - component: {fileID: 9049892681200649870}
+  - component: {fileID: 6532252327309245982}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2155,10 +2155,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: -8796438282347391855}
   move: {fileID: 171697873695654078}
-  attack: {fileID: 5453607180449398473}
+  attack: {fileID: 0}
+  buff: {fileID: 0}
   enemyData:
     index: 0
+    name: 
+    maxHealth: 0
+    moveSpeed: 0
     dieGold: 0
+    groundType: 0
 --- !u!114 &-8796438282347391855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2171,6 +2176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c526e072a3e1a49af9d90e001c4081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
 --- !u!114 &171697873695654078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2187,18 +2193,6 @@ MonoBehaviour:
   angularSpeed: 3
   acceleration: 24
   avoidancePriority: 50
---- !u!114 &5453607180449398473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668132321104247660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aab02d59792c0b40ba10ac9fa275f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &9049892681200649870
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2221,6 +2215,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6532252327309245982
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668132321104247660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2, z: -1}
 --- !u!1 &6942718592025240792
 GameObject:
   m_ObjectHideFlags: 0

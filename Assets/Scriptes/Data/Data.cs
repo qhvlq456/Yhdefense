@@ -50,6 +50,7 @@ public struct MapData
 public struct HeroData
 {
     public int index;
+    public int weaponIdx;
     public string name;
     public GroundType groundType;
     public HeroType heroType;
@@ -90,4 +91,33 @@ public struct HeroUpgradeData
     public float buffValue; // buffer/debuffer¿¡ À¯¿ë
 }
 
+[Serializable]
+public struct WeaponData
+{
+    // weapon idx
+    public int index;
+    public float speed;
+    public string name;
+    public WeapondType weaponType;
+}
 
+[Serializable]
+public struct MoveData
+{
+
+}
+[Serializable]
+public struct AttackData
+{
+
+}
+[Serializable]
+public struct BuffData
+{
+
+}
+[Serializable]
+public struct DebuffData
+{
+
+}

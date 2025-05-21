@@ -49,8 +49,8 @@ public static class Utility
     public static string GetHeroInfo(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
-        return string.Format("Lv : 1 ,     Ground Type : {0},   Hero Type : {1},   " +
-            "Cost : {2},    Attack Speed : {3},     Attack Damage : {4},    Attack Radius : {5}",
+        return string.Format("Lv : 1 ,     공격타입 : {0},   영웅타입 : {1},   " +
+            "비용 : {2},    공격속도 : {3},     공격력 : {4},    공격범위 : {5}",
             _heroData.groundType, _heroData.heroType, heroUpgradeData.cost, heroUpgradeData.attackSpeed, heroUpgradeData.attackDamage, heroUpgradeData.attackRadius);
     }
 

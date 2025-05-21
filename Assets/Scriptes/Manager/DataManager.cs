@@ -64,11 +64,18 @@ public class DataManager : Singleton<DataManager>
     }
 
     #endregion End UpgradeData
+
+    [Header("Start Weapon")]
+    #region Start Weapon
+    private List<WeaponData> weaponDataList = new List<WeaponData>();
+    public WeaponData GetHeroIdxToWeaponData(int _idx) => weaponDataList.Find(x => x.index == _idx);
+    #endregion End Weapon
     public void LoadGameData()
     {
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");
         enemyDataList = NewtonSoftJson.LoadJsonArray<EnemyData>(Application.streamingAssetsPath, "EnemyData");
-        subStageDataList= NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
+        subStageDataList = NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
+        weaponDataList = NewtonSoftJson.LoadJsonArray<WeaponData>(Application.streamingAssetsPath, "WeaponData");
 
         List<HeroUpgradeData> upgradeDataList = NewtonSoftJson.LoadJsonArray<HeroUpgradeData>(Application.streamingAssetsPath, "HeroUpgradeData");
         heroUpgradeDataDic.Clear();
