@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 8925673754057019566}
   - component: {fileID: 4929749530075263133}
   - component: {fileID: 3060329732304441772}
-  - component: {fileID: 6203785827020970001}
   - component: {fileID: 7979741871616885358}
+  - component: {fileID: 6203785827020970001}
+  - component: {fileID: 158898887484922815}
   m_Layer: 0
   m_Name: HeroLand
   m_TagString: Untagged
@@ -66,6 +67,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376018607775926977}
+  - {fileID: 5507534131754870096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8925673754057019566
@@ -142,21 +144,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6203785827020970001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416688396774008293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 211f692a4d329ce4e829789199a9a029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 4929749530075263133}
-  navObstacle: {fileID: 7979741871616885358}
-  head: {fileID: 1376018607775926977}
 --- !u!208 &7979741871616885358
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -173,3 +160,73 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &6203785827020970001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416688396774008293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211f692a4d329ce4e829789199a9a029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 4929749530075263133}
+  navObstacle: {fileID: 7979741871616885358}
+  heroPosOffset: {x: 0, y: 0.5, z: 0}
+  head: {fileID: 1376018607775926977}
+--- !u!114 &158898887484922815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416688396774008293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5b2c31066021c439678e3ad572ce86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5507534131754870096}
+  frontFaceRenderer: {fileID: 0}
+  backFaceRenderer: {fileID: 0}
+  topFaceRenderer: {fileID: 0}
+  bottomFaceRenderer: {fileID: 0}
+  center: {x: 0, y: 0, z: 0}
+  sizeX: 1
+  sizeY: 1
+  sizeZ: 1
+  lineWidth: 0.05
+  lineColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!1 &7651270169476081230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5507534131754870096}
+  m_Layer: 0
+  m_Name: LineRednerer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5507534131754870096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651270169476081230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716016422963706823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

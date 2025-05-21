@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ public class MapManager : Singleton<MapManager>
 {
     [SerializeField]
     private Transform root;
+
     [SerializeField]
     private NavMeshSurface surfaces = null;
+
     private List<GameObject> instanceMapObjectList = new List<GameObject>();
     public void SetMap(StageData _stageData)
     {
@@ -41,6 +44,7 @@ public class MapManager : Singleton<MapManager>
             maxZ = Mathf.Max(maxZ, landData.z);
             log += $"landType = {landData.landType}, x = {landData.x} , z = {landData.z}, \n";
         }
+
         surfaces.BuildNavMesh();
         Vector3 cameraPos = GameManager.Instance.MainCamera.transform.position;
         cameraPos.x = maxX / 2;
