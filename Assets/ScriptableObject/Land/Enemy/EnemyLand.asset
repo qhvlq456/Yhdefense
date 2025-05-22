@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9f5f597420a1f4481f5c894f5bf19a, type: 3}
-  m_Name: Enemy1
-  m_EditorClassIdentifier: 
-  index: 1
-  prefab: {fileID: 3988373862051442176, guid: 429c3789cb523fa4eaa060d103d084d8, type: 3}
+  m_Script: {fileID: 0}
+  m_Name: EnemyLand
+  m_EditorClassIdentifier: Assembly-CSharp::LandResData
+  index: 0
+  prefab: {fileID: 469668648379152756, guid: 57ed57d8624da244e8bb6e2343de5c70, type: 3}

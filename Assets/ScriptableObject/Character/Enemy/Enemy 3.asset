@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9fc78ad418d924f8d4bdc335b751f0, type: 3}
-  m_Name: HeroLandResDB
+  m_Script: {fileID: 11500000, guid: c3c71f0cc894e5c48a79bd627b5cb8b4, type: 3}
+  m_Name: Enemy 3
   m_EditorClassIdentifier: 
-  resList:
-  - {fileID: 11400000, guid: 96b8dbc029dd47b46931cb35bd24aba0, type: 2}
+  index: 3
+  prefab: {fileID: 3449169452147545714, guid: 8b61ceba5f684ef4294f29a1fae8f044, type: 3}

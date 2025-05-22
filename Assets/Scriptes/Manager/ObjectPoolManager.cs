@@ -18,7 +18,7 @@ public class Pooling
     public Transform Create(PoolingType _type, int _idx)
     {
         Transform ret = null;
-        GameObject res = Utility.GetResObj(_type, _idx);
+        GameObject res = DataManager.Instance.GetResObj(_type, _idx);
         Transform parent = null;
 
         if (!poolingdic.TryGetValue(_idx, out parent))

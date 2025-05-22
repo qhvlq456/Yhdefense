@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
@@ -21,13 +20,6 @@ public class DataManager : Singleton<DataManager>
     public SubStageData GetIdxToSubStageData(int _idx) => subStageDataList.Find(x => x.index == _idx);
     private List<MapData> mapDataList = new List<MapData>();
     public StageData GetStageData(int _idx) => mapDataList.Find(x => x.index == _idx).stageData;
-
-    [SerializeField]
-    private LandResDB heroLandResDB;
-    public GameObject GetHeroLandResObj(int _idx) => heroLandResDB.GetPrefab(_idx);
-    [SerializeField]
-    private LandResDB enemyLandResDB;
-    public GameObject GetEnemyLandResObj(int _idx) => enemyLandResDB.GetPrefab(_idx);
     #endregion End Map
     [Header("End Map")]
     [Space()]
@@ -39,12 +31,7 @@ public class DataManager : Singleton<DataManager>
     public HeroData GetIdxToHeroData(int _idx) => heroDataList.Find(x => x.index == _idx);
     private List<EnemyData> enemyDataList = new List<EnemyData>();
     public EnemyData GetIdxToEnemyData(int _idx) => enemyDataList.Find(x => x.index == _idx);
-    [SerializeField]
-    private CharacterResDB heroResDB;
-    public GameObject GetHeroResObj(int _idx) => heroResDB.GetPrefab(_idx);
-    [SerializeField]
-    private CharacterResDB enemyResDB;
-    public GameObject GetEnemyResObj(int _idx) => enemyResDB.GetPrefab(_idx);
+    
     #endregion End Character
     [Header("End Character")]
     [Space()]
@@ -69,7 +56,23 @@ public class DataManager : Singleton<DataManager>
     #region Start Weapon
     private List<WeaponData> weaponDataList = new List<WeaponData>();
     public WeaponData GetHeroIdxToWeaponData(int _idx) => weaponDataList.Find(x => x.index == _idx);
+
+
     #endregion End Weapon
+
+    [SerializeField]
+    private ResDBRegistry resDBRegistry;
+    public GameObject GetResObj(PoolingType _type, int _idx)
+    {
+        if (resDBRegistry == null)
+        {
+            Debug.LogError("ResRegistry not assigned!");
+            return null;
+        }
+
+        return resDBRegistry.GetResObj(_type, _idx);
+    }
+
     public void LoadGameData()
     {
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bbe68be2d23d70458164d26faecbcea, type: 3}
-  m_Name: HeroLandData
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: Bullet
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponResData
   index: 0
-  prefab: {fileID: 1416688396774008293, guid: ad91d649357f9214da381871b28cef1f, type: 3}
+  prefab: {fileID: 8080928056394805481, guid: c51d0fe93cd36b8419948bf45082b444, type: 3}

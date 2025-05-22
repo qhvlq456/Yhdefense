@@ -163,10 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subStageDataList: []
-  heroLandResDB: {fileID: 11400000, guid: 9ddec5692a2f60d4db503aba07227d2b, type: 2}
-  enemyLandResDB: {fileID: 11400000, guid: 55c680fb6e2e45648b35325cc7a9479c, type: 2}
-  heroResDB: {fileID: 11400000, guid: 88ed7fcf4010d8d40bef19cf4298ca11, type: 2}
-  enemyResDB: {fileID: 11400000, guid: b0e7092b5fbdb83468e7d8f9359dc030, type: 2}
+  resDBRegistry: {fileID: 11400000, guid: f6d55a810b389e944ac972c7bd115499, type: 2}
 --- !u!4 &217937616
 Transform:
   m_ObjectHideFlags: 0

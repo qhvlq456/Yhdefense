@@ -33,6 +33,10 @@ public class GameManager : Singleton<GameManager>
             return mainCamera;
         }
     }
+    protected override void Awake()
+    {
+        base.Awake();        
+    }
     public void StartGame(StageData _stageData)
     {
         currentStageData = _stageData;

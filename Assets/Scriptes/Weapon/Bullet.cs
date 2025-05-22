@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     {
         weaponData = _weaponData;
         callBack = _callBack;
+        target = _hittable;
         StartCoroutine(CoMove(_hittable.GetTransform().position));
     }
     private IEnumerator CoMove(Vector3 _destination)

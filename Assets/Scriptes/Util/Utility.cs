@@ -3,28 +3,6 @@ using UnityEngine;
 public static class Utility
 {
     #region Start Object Pool
-    public static GameObject GetResObj(PoolingType _type, int _idx)
-    {
-        GameObject go = null;
-
-        switch (_type)
-        {
-            case PoolingType.hero:
-                go = DataManager.Instance.GetHeroResObj(_idx);
-                break;
-            case PoolingType.enemy:
-                go = DataManager.Instance.GetEnemyResObj(_idx);
-                break;
-            case PoolingType.heroLand:
-                go = DataManager.Instance.GetHeroLandResObj(_idx);
-                break;
-            case PoolingType.enemyLand:
-                go = DataManager.Instance.GetEnemyLandResObj(_idx);
-                break;
-        }
-
-        return go;
-    }
 
     public static PoolingType LandTypeToPoolingType(LandType _type)
     {

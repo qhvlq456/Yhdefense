@@ -42,18 +42,18 @@ public class SingleAttack : Attack
     private void Shoot(IHittable _target)
     {
         SetDelay();
-        Bullet bullet = Instantiate(bulletRes, transform.position, Quaternion.identity).GetComponent<Bullet>();
 
         WeaponData weaponData = DataManager.Instance.GetHeroIdxToWeaponData(heroUpgradeData.heroIdx);
+        Bullet bullet = ObjectPoolManager.Instance.Create(PoolingType.weapon, weaponData.index).GetComponent<Bullet>();
+        // 후에 변경
+        bullet.transform.position = transform.position;
         bullet.Set(weaponData, _target,
-            (_) =>
+        (_) =>
         {
-            if(_ != null)
-            {
-                Debug.LogError("callback");
-                // 후에 계산식 buff 등등 통일하여 들어갈 것
-                _.TakeDamage(heroUpgradeData.attackDamage);
-            }
+            Debug.LogError("callback");
+            // 후에 계산식 buff 등등 통일하여 들어갈 것
+            _.TakeDamage(heroUpgradeData.attackDamage);
+
         });
     }
     private bool IsTargetInRange(IHittable _target)

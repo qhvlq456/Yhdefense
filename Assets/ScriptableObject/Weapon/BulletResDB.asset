@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9fc78ad418d924f8d4bdc335b751f0, type: 3}
-  m_Name: HeroLandResDB
+  m_Script: {fileID: 11500000, guid: 9362f97f133e9064c8832b974ad2eadf, type: 3}
+  m_Name: BulletResDB
   m_EditorClassIdentifier: 
   resList:
-  - {fileID: 11400000, guid: 96b8dbc029dd47b46931cb35bd24aba0, type: 2}
+  - {fileID: 11400000, guid: 2e981e2870e634d41a0e370ff12effb4, type: 2}
