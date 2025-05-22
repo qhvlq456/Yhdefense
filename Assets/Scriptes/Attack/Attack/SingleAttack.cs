@@ -4,9 +4,6 @@ using System.Linq;
 
 public class SingleAttack : Attack
 {
-    [SerializeField]
-    private GameObject bulletRes;
-
     private IHittable target;
     public override void Execute()
     {
@@ -46,7 +43,9 @@ public class SingleAttack : Attack
         WeaponData weaponData = DataManager.Instance.GetHeroIdxToWeaponData(heroUpgradeData.heroIdx);
         Bullet bullet = ObjectPoolManager.Instance.Create(PoolingType.weapon, weaponData.index).GetComponent<Bullet>();
         // 후에 변경
+        Debug.LogError($"before bullet position : {bullet.transform.position}");
         bullet.transform.position = transform.position;
+        Debug.LogError($"after bullet position : {bullet.transform.position}");
         bullet.Set(weaponData, _target,
         (_) =>
         {

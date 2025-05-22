@@ -29,4 +29,9 @@ public class CharacterManager : Singleton<CharacterManager>
             instanceCharacterList[i].Retrieve();
         }
     }
+
+    public void SampleCharacter()
+    {
+
+    }
 }

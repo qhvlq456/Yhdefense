@@ -32,6 +32,8 @@ public class CreateHeroInfoItemUI : MonoBehaviour
     {
         if(Utility.IsHeroPurchase(heroData))
         {
+            // select 이후 설치 가능한 곳은 녹색으로 번쩍, 불가능한곳 빨간색으로 번쩍, enemy land는 없음
+            // 설치 가능한 곳에 마우스를 인풋 업 하면 해당 heroland에 hero가 설치 빨간색이면 그냥 아무것도 없음
             // heroland in hero set
             onCreateHero?.Invoke(heroData.index);
         }

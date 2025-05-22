@@ -62,4 +62,9 @@ public class MapManager : Singleton<MapManager>
 
         surfaces.RemoveData();
     }
+
+    public bool IsPossibleSetHero()
+    {
+        return false;
+    }
 }

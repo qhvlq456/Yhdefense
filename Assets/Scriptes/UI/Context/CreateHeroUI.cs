@@ -16,7 +16,7 @@ public class CreateHeroUI : BaseUI
     {
         exitBtn.onClick.AddListener(ExitBtnClick);
     }
-    public void Open(HeroLand _heroLand, List<HeroData> _heroDataList)
+    public void Open(List<HeroData> _heroDataList)
     {
         if(_heroDataList.Count > itemList.Count)
         {
@@ -34,12 +34,13 @@ public class CreateHeroUI : BaseUI
         {
             if (i < _heroDataList.Count)
             {
-                itemList[i].Set(_heroDataList[i], 
-                    (int _idx) => 
-                    { 
-                        _heroLand.SetHero(_idx);
-                        ExitBtnClick();
-                    });
+                itemList[i].Set(_heroDataList[i],
+                    (int _idx) => { ExitBtnClick(); });
+                    //(int _idx) =>
+                    //{
+                    //    _heroLand.SetHero(_idx);
+                    //    ExitBtnClick();
+                    //});
                 itemList[i].gameObject.SetActive(true);
             }
             else
