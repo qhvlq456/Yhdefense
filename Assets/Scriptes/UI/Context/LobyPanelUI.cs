@@ -15,10 +15,10 @@ public class LobyPanelUI : BaseUI
 
     [SerializeField]
     private Button exitBtn;
-    public override void ShowUI()
+    public override void ActivateUI()
     {
         // exitBtn.clickable.clicked += () => HideUI();
-        exitBtn.onClick.AddListener(HideUI);
+        exitBtn.onClick.AddListener(DeactivateUI);
     }
 
 

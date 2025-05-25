@@ -41,7 +41,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (uiInstances.TryGetValue(panelType, out var ui))
         {
-            ui.ShowUI();
+            ui.ActivateUI();
             ui.transform.SetAsLastSibling(); // 최상단으로
             return ui as T;
         }
@@ -55,7 +55,7 @@ public class UIManager : Singleton<UIManager>
 
         var instance = Instantiate(res.prefab, canvas.transform).GetComponent<T>();
         instance.Initialize(panelType);
-        instance.ShowUI();
+        instance.ActivateUI();
         instance.transform.SetAsLastSibling();
         uiInstances[panelType] = instance;
 
@@ -93,7 +93,7 @@ public class UIManager : Singleton<UIManager>
             ret = Instantiate(res.prefab, canvas.transform).GetComponent<T>();
 
         ret.Initialize(panelType);
-        ret.ShowUI();
+        ret.ActivateUI();
         ret.transform.SetAsLastSibling();
 
         return ret;
@@ -115,7 +115,7 @@ public class UIManager : Singleton<UIManager>
         if (!uiPoolDic.TryGetValue(panelType, out var pool))
             pool = uiPoolDic[panelType] = new Queue<BaseUI>();
 
-        ui.HideUI();
+        ui.DeactivateUI();
         ui.gameObject.SetActive(false);
         pool.Enqueue(ui);
     }
@@ -123,13 +123,13 @@ public class UIManager : Singleton<UIManager>
     public void HideUI(UIPanelType panelType)
     {
         if (uiInstances.TryGetValue(panelType, out var ui))
-            ui.HideUI();
+            ui.DeactivateUI();
     }
 
     public void HideAllUI()
     {
         foreach (var ui in uiInstances.Values)
-            ui.HideUI();
+            ui.DeactivateUI();
     }
     /// <summary>
     /// 모든 재사용 UI를 회수 (다중 UI 전용)

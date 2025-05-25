@@ -5,6 +5,7 @@ public class Hero : Character, IBuffable
 {
     [SerializeField] 
     private HeroData heroData;
+    public HeroData HeroData => heroData;
 
     [SerializeField] 
     private HeroUpgradeData upgradeData;

@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &716016422963706823
 Transform:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: db5a28be276dd854b9e67cb331713291, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 4929749530075263133}
   navObstacle: {fileID: 7979741871616885358}
-  layerName: Obstacle
   heroPosOffset: {x: 0, y: 0.5, z: 0}
   head: {fileID: 1376018607775926977}
 --- !u!114 &158898887484922815

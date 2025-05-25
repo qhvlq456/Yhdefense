@@ -34,13 +34,7 @@ public class CreateHeroUI : BaseUI
         {
             if (i < _heroDataList.Count)
             {
-                itemList[i].Set(_heroDataList[i],
-                    (int _idx) => { ExitBtnClick(); });
-                    //(int _idx) =>
-                    //{
-                    //    _heroLand.SetHero(_idx);
-                    //    ExitBtnClick();
-                    //});
+                itemList[i].Set(_heroDataList[i], () => ExitBtnClick());
                 itemList[i].gameObject.SetActive(true);
             }
             else
@@ -51,7 +45,7 @@ public class CreateHeroUI : BaseUI
     }
     private void ExitBtnClick()
     {
-        HideUI();
+        DeactivateUI();
     }
     /// <summary>
     /// index 순으로 정렬 오름차순 정렬
@@ -71,8 +65,8 @@ public class CreateHeroUI : BaseUI
             return 0;
         }
     }
-    public override void HideUI()
+    public override void DeactivateUI()
     {
-        base.HideUI();
+        base.DeactivateUI();
     }
 }

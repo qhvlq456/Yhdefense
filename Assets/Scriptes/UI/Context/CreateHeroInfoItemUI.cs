@@ -17,13 +17,13 @@ public class CreateHeroInfoItemUI : MonoBehaviour
     [SerializeField]
     private Button selectBtn;
 
-    private System.Action<int> onCreateHero;
+    private System.Action callback = null;
 
-    public void Set(HeroData _heroData, System.Action<int> _onCreateHero)
+    public void Set(HeroData _heroData, System.Action _callback)
     {
         selectBtn.onClick.RemoveAllListeners();
         selectBtn.onClick.AddListener(SelectBtnClick);
-        onCreateHero = _onCreateHero;
+        callback = _callback;
         titleText.text = _heroData.name;
         infoText.text = Utility.GetHeroInfo(_heroData);
     }
@@ -32,10 +32,10 @@ public class CreateHeroInfoItemUI : MonoBehaviour
     {
         if(Utility.IsHeroPurchase(heroData))
         {
-            // select 이후 설치 가능한 곳은 녹색으로 번쩍, 불가능한곳 빨간색으로 번쩍, enemy land는 없음
-            // 설치 가능한 곳에 마우스를 인풋 업 하면 해당 heroland에 hero가 설치 빨간색이면 그냥 아무것도 없음
-            // heroland in hero set
-            onCreateHero?.Invoke(heroData.index);
+            // 임시로 설정 후에 변경 예정
+            OldPlayerController oldPlayerController = FindAnyObjectByType<OldPlayerController>();
+            oldPlayerController.EnterPlacementMode(heroData);
+            callback?.Invoke();
         }
         else
         {

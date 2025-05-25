@@ -13,9 +13,11 @@ public class HeroLand : Land, IClickable
     // head child에 붙혀서 의존성을 없앰
     [SerializeField]
     private Transform head;
-
+    public float SetHeroPosY => head.position.y + heroPosOffset.y;
+    public bool IsHeroEmpty => head.childCount == 0;
     public void SetHero(int _idx)
     {
+        MapManager.Instance.SetHeroOriginalColor();
         Hero hero = CharacterManager.Instance.CreateHero(_idx);
         hero.transform.SetParent(head);
         // head는 쫌... land보다 위에 있어야 할듯...

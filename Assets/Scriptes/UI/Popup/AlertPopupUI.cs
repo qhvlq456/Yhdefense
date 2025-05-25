@@ -9,7 +9,7 @@ public class AlertPopupUI : BaseUI
     void Start()
     {
         // юс╫ц©К
-        exitBtn.onClick.AddListener(HideUI);
+        exitBtn.onClick.AddListener(DeactivateUI);
     }
 
 

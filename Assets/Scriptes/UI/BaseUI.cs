@@ -9,6 +9,6 @@ public abstract class BaseUI : MonoBehaviour
         panelType = _panelType;
     }
 
-    public virtual void ShowUI() => gameObject.SetActive(true);
-    public virtual void HideUI() => gameObject.SetActive(false);
+    public virtual void ActivateUI() => gameObject.SetActive(true);
+    public virtual void DeactivateUI() => gameObject.SetActive(false);
 }
