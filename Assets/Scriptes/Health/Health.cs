@@ -47,8 +47,14 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         hpSlider.OnChangedValue(GetHealthRatio());
     }
+    public void Revert()
+    {
+        // 재활용이기 때문에 생성된 다른 hud가 붙을 수 있다
+        UIManager.Instance.RecycleUI(UIPanelType.HpSlider, hpSlider);
+    }
     private void Update()
     {
         hpSlider.FollowTarget();
     }
+    
 }

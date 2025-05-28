@@ -62,12 +62,13 @@ public class Enemy : Character, IHittable
     private void Die()
     {
         isDie = true;
+        Revert();
     }
 
     public override void Revert()
     {
         move.Revert();
-        health.ResetHealth(enemyData.maxHealth);
+        health.Revert();
         ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
     }
 

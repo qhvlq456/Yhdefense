@@ -6,29 +6,25 @@ public class MainCanvas : BaseCanvas
 {
     OldPlayerController oldPlayerController = null;
     [SerializeField]
-    private Button createOrCacnelBtn;
+    private Button createBtn;
+
+    [SerializeField]
+    private Button cancelHeroBtn;
     private void Awake()
     {
         oldPlayerController = FindAnyObjectByType<OldPlayerController>();
+        cancelHeroBtn.gameObject.SetActive(false);
     }
-    public void CreateHeroOrCancelBtnClick()
+    public void CreateHeroBtnClick()
     {
-        Debug.LogError($"oldPlayerController.CurrentState : {oldPlayerController.CurrentState}");
-        switch (oldPlayerController.CurrentState)
-        {
-            case OldPlayerController.InputState.none:
-                CreateHeroUI createHeroUI = UIManager.Instance.ShowUI<CreateHeroUI>(UIPanelType.CreateHero);
-                createHeroUI.Open(DataManager.Instance.HeroDataList);
-                createOrCacnelBtn.GetComponentInChildren<TextMeshProUGUI>().text = "취소";
-                break;
-            case OldPlayerController.InputState.placement:
-                oldPlayerController.ExitPlacementMode();
-                createOrCacnelBtn.GetComponentInChildren<TextMeshProUGUI>().text = "영웅 생성";
-                break;
-            default: 
-                Debug.LogError("Unknown InputState: " + oldPlayerController.CurrentState);
-                break;
-        }        
+        CreateHeroUI createHeroUI = UIManager.Instance.ShowUI<CreateHeroUI>(UIPanelType.CreateHero);
+        createHeroUI.Open(DataManager.Instance.HeroDataList);
+        cancelHeroBtn.gameObject.SetActive(true);
+    }
+    public void CancelHeroBtnClick()
+    {
+        oldPlayerController.ExitPlacementMode();
+        cancelHeroBtn.gameObject.SetActive(false);
     }
 
     public void ExitBtnClick()

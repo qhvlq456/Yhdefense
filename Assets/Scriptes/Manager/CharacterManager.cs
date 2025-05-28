@@ -5,10 +5,19 @@ using System.Linq;
 public class CharacterManager : Singleton<CharacterManager>
 {
     private List<Character> instanceCharacterList = new List<Character>();
-    public Hero CreateHero(int _idx)
+    public Hero CreateHero(int _idx, bool _isPreview = false)
     {
         var hero = ObjectPoolManager.Instance.Create(PoolingType.hero, _idx).GetComponent<Hero>();
-        hero.Set(_idx);
+
+        if(_isPreview)
+        {
+            hero.SetPreview(_idx);
+        }
+        else
+        {
+            hero.Set(_idx);
+        }
+
         instanceCharacterList.Add(hero);
         return hero;
     }

@@ -106,7 +106,7 @@ public struct WeaponData
 [Serializable]
 public struct MoveData
 {
-
+    public float moveSpeed;
 }
 [Serializable]
 public struct AttackData

@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
         while(Vector3.Distance(transform.position, _destination) > 0.2f)
         {
             transform.position = Vector3.Lerp(transform.position, _destination, weaponData.speed * Time.deltaTime);
-            Debug.LogError("213123");
             yield return null;
         }
         transform.position = _destination;

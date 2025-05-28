@@ -20,7 +20,7 @@ public class OldPlayerController : MonoBehaviour
     {
         MapManager.Instance.SetColorHeroMap();
         currentState = InputState.placement;
-        heroPreivewObj = CharacterManager.Instance.CreateHero(_heroData.index);
+        heroPreivewObj = CharacterManager.Instance.CreateHero(_heroData.index, true);
     }
     public void ExitPlacementMode()
     {
@@ -90,7 +90,6 @@ public class OldPlayerController : MonoBehaviour
 
                     if (MapManager.Instance.IsPossibleSetHero(normalizedPos))
                     {
-                        // 이때 계산 진행
                         heroLand.SetHero(heroPreivewObj.HeroData.index);
                         ExitPlacementMode();
                     }

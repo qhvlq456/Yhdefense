@@ -21,6 +21,14 @@ public class Hero : Character, IBuffable
         attack.Set(upgradeData, heroData.groundType);
     }
 
+    public void SetPreview(int _idx)
+    {
+        heroData = DataManager.Instance.GetIdxToHeroData(_idx);
+        //upgradeData 데이터가 존재하지 않음으로 공격을 할 수 없음 왜냐 IsAttack의 데이터가 없음
+        // attack.Set(upgradeData, heroData.groundType); // 공격 컴포넌트는 초기화하지 않음
+        // UpdateAttackDelay 이 함수가 else를 타서 attackDelay가 float.MaxValue로 설정됨
+        // 나중에 더 좋은 방법이 있음 탐구 할 것
+    }
     private void Update()
     {
         if (attack != null)
