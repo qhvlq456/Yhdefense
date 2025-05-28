@@ -62,7 +62,9 @@ public class HeroUpgradeEditorWindow : EditorWindow
             GUILayout.Label($"Level {i + 1}", EditorStyles.boldLabel);
 
             var data = list[i];
+            data.weaponIdx = EditorGUILayout.IntField("WeaponIdx", data.weaponIdx);
             data.cost = EditorGUILayout.IntField("Cost", data.cost);
+            data.targetCount = EditorGUILayout.IntField("TargetCount", data.targetCount);
             data.attackSpeed = EditorGUILayout.FloatField("Attack Speed", data.attackSpeed);
             data.attackDamage = EditorGUILayout.FloatField("Attack Damage", data.attackDamage);
             data.attackRadius = EditorGUILayout.FloatField("Attack Radius", data.attackRadius);

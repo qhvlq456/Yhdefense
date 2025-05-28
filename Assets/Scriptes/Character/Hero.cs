@@ -13,7 +13,7 @@ public class Hero : Character, IBuffable
     [SerializeField]
     private int lv;
 
-    public override void Create(int _idx)
+    public override void Set(int _idx)
     {
         heroData = DataManager.Instance.GetIdxToHeroData(_idx);
         upgradeData = DataManager.Instance.GetHeroUpgradeData(_idx, 1);
@@ -43,7 +43,7 @@ public class Hero : Character, IBuffable
     {
         throw new System.NotImplementedException();
     }
-    public override void Retrieve()
+    public override void Revert()
     {
         move.Revert();
         attack.Revert();

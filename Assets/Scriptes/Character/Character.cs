@@ -20,6 +20,6 @@ public abstract class Character : MonoBehaviour
     // end
 
     public abstract GroundType GetGroundType();
-    public abstract void Create(int _idx);
-    public abstract void Retrieve();
+    public abstract void Set(int _idx);
+    public abstract void Revert();
 }

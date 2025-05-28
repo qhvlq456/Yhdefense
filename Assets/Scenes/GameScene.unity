@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 942891472}
   - component: {fileID: 942891471}
   m_Layer: 5
-  m_Name: CreateHeroBtn
+  m_Name: CreateHeroOrCacnelBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1179,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1811998632}
         m_TargetAssemblyTypeName: MainCanvas, Assembly-CSharp
-        m_MethodName: CreateHeroBtnClick
+        m_MethodName: CreateHeroOrCancelBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1545,6 +1545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   root: {fileID: 1069073169}
   surfaces: {fileID: 1069073170}
+  setHeroPossibleColor: {r: 0, g: 1, b: 0, a: 1}
+  setHeroImpossibleColor: {r: 1, g: 0, b: 0, a: 1}
+  setHeroOriginColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1069073169
 Transform:
   m_ObjectHideFlags: 0
@@ -1900,6 +1903,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba2d703677c39047adb61ca821dcf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  selectObj: {fileID: 0}
+  heroPreivewObj: {fileID: 0}
 --- !u!1 &1213341941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,6 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca71e0332c020bf42aa5a600cb9ada1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createOrCacnelBtn: {fileID: 942891471}
 --- !u!1 &1873328682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,6 +2900,10 @@ PrefabInstance:
     - target: {fileID: 1416688396774008293, guid: ad91d649357f9214da381871b28cef1f, type: 3}
       propertyPath: m_Name
       value: HeroLand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416688396774008293, guid: ad91d649357f9214da381871b28cef1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

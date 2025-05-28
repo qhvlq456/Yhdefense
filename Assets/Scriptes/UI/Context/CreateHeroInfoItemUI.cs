@@ -21,6 +21,7 @@ public class CreateHeroInfoItemUI : MonoBehaviour
 
     public void Set(HeroData _heroData, System.Action _callback)
     {
+        heroData = _heroData;
         selectBtn.onClick.RemoveAllListeners();
         selectBtn.onClick.AddListener(SelectBtnClick);
         callback = _callback;
@@ -28,6 +29,7 @@ public class CreateHeroInfoItemUI : MonoBehaviour
         infoText.text = Utility.GetHeroInfo(_heroData);
     }
 
+    // 계산은 정말 hero를 필드에 설치 하였을 때 실행
     public void SelectBtnClick()
     {
         if(Utility.IsHeroPurchase(heroData))

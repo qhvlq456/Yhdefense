@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4521521444545310351}
   - component: {fileID: 131040920103233645}
   - component: {fileID: 461929933630949319}
+  - component: {fileID: 9145005260422961312}
   m_Layer: 0
   m_Name: Hero2
   m_TagString: Untagged
@@ -124,9 +125,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 0}
   move: {fileID: 0}
-  attack: {fileID: 0}
+  attack: {fileID: 9145005260422961312}
+  buff: {fileID: 0}
   heroData:
     index: 0
+    weaponIdx: 0
     name: 
     groundType: 0
     heroType: 0
@@ -134,8 +137,33 @@ MonoBehaviour:
   upgradeData:
     heroIdx: 0
     cost: 0
+    targetCount: 0
     attackSpeed: 0
     attackDamage: 0
     attackRadius: 0
     buffValue: 0
   lv: 0
+--- !u!114 &9145005260422961312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066665393386759258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74917d4c288e49545a83db71359ba5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  heroUpgradeData:
+    heroIdx: 0
+    cost: 0
+    targetCount: 0
+    attackSpeed: 0
+    attackDamage: 0
+    attackRadius: 0
+    buffValue: 0

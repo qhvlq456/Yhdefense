@@ -1,12 +1,14 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class OldPlayerController : MonoBehaviour
 {
     public enum InputState { none, placement }
     [SerializeField]
     private InputState currentState = InputState.none;
+    public InputState CurrentState => currentState;
     [SerializeField]
     private GameObject selectObj = null;
     [SerializeField]
@@ -18,12 +20,14 @@ public class OldPlayerController : MonoBehaviour
     {
         MapManager.Instance.SetColorHeroMap();
         currentState = InputState.placement;
-        heroPreivewObj = ObjectPoolManager.Instance.Create(PoolingType.hero, _heroData.index).GetComponent<Hero>();
+        heroPreivewObj = CharacterManager.Instance.CreateHero(_heroData.index);
     }
     public void ExitPlacementMode()
     {
+        MapManager.Instance.SetHeroOriginalColor();
         currentState = InputState.none;
         ObjectPoolManager.Instance.Retrieve(PoolingType.hero, heroPreivewObj.HeroData.index, heroPreivewObj.transform);
+        heroPreivewObj = null;
     }
     private void Update()
     {
@@ -62,7 +66,13 @@ public class OldPlayerController : MonoBehaviour
 
     private void ButtonUpState()
     {
-        switch(currentState)
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            // UI 위에 있을 때는 아무것도 하지 않음
+            return;
+        }
+
+        switch (currentState)
         {
             case InputState.none:
                 var clickable = GetRayToComponent<IClickable>();
@@ -80,6 +90,7 @@ public class OldPlayerController : MonoBehaviour
 
                     if (MapManager.Instance.IsPossibleSetHero(normalizedPos))
                     {
+                        // 이때 계산 진행
                         heroLand.SetHero(heroPreivewObj.HeroData.index);
                         ExitPlacementMode();
                     }
@@ -120,7 +131,7 @@ public class OldPlayerController : MonoBehaviour
                 if (heroLand != null && heroLand.IsHeroEmpty)
                 {
                     Vector2Int normalizedPos = NormalizeMousePosition(heroLand.transform.position);
-                    Debug.LogError($"normalizedPos : {normalizedPos}");
+                    // Debug.LogError($"normalizedPos : {normalizedPos}");
                     heroPreivewObj.transform.position = new Vector3(normalizedPos.x, heroLand.SetHeroPosY, normalizedPos.y);
                 }
                 break;

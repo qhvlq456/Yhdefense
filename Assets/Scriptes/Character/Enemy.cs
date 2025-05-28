@@ -9,7 +9,7 @@ public class Enemy : Character, IHittable
     private EnemyData enemyData;
 
     public bool isDie { get; private set; }
-    public override void Create(int _idx)
+    public override void Set(int _idx)
     {
         isDie = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
@@ -64,7 +64,7 @@ public class Enemy : Character, IHittable
         isDie = true;
     }
 
-    public override void Retrieve()
+    public override void Revert()
     {
         move.Revert();
         health.ResetHealth(enemyData.maxHealth);

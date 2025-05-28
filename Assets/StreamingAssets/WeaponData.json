@@ -5,4 +5,18 @@
     "name": "Bullet",
     "weaponType": 0
   }
+  ,
+  {
+    "index": 1,
+    "speed": 7.0,
+    "name": "Bullet",
+    "weaponType": 0
+  }
+  ,
+  {
+    "index": 2,
+    "speed": 7.0,
+    "name": "Bullet",
+    "weaponType": 0
+  }
 ]

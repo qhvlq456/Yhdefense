@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 public class Attack : MonoBehaviour
 {
@@ -61,6 +60,18 @@ public class Attack : MonoBehaviour
     {
         delayTimer = attackDelay;
     }
+    protected bool IsTargetInRange(IHittable _target)
+    {
+        // 타겟의 Transform이 유효한지 확인
+        if (_target.GetTransform() == null)
+        {
+            return false;
+        }
+
+        // 타겟이 범위 내에 있는지 확인
+        return Vector3.Distance(transform.position, _target.GetTransform().position) <= heroUpgradeData.attackRadius;
+    }
+
     // 공통 탐색 함수
     protected List<IHittable> FindTargetsInRange()
     {
@@ -84,7 +95,7 @@ public class Attack : MonoBehaviour
             // GroundType 필터 // buff는 같은 hero끼리 해야됌
             if (hit.TryGetComponent(out Character character))
             {
-                if (character.GetGroundType() != groundType)
+                if (character.GetGroundType() != groundType && groundType != GroundType.both)
                 {
                     continue;
                 }

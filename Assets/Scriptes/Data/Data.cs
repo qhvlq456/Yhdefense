@@ -83,7 +83,9 @@ public struct SkillData
 public struct HeroUpgradeData
 {
     public int heroIdx; // == hero idx 
+    public int weaponIdx; // == weapon idx
     public int cost;
+    public int targetCount;
     public float attackSpeed;
     public float attackDamage;
     public float attackRadius;

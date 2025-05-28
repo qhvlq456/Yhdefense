@@ -79,6 +79,7 @@ public class DataManager : Singleton<DataManager>
         enemyDataList = NewtonSoftJson.LoadJsonArray<EnemyData>(Application.streamingAssetsPath, "EnemyData");
         subStageDataList = NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
         weaponDataList = NewtonSoftJson.LoadJsonArray<WeaponData>(Application.streamingAssetsPath, "WeaponData");
+        Debug.LogError(DataLogger.LogList(heroDataList));
 
         List<HeroUpgradeData> upgradeDataList = NewtonSoftJson.LoadJsonArray<HeroUpgradeData>(Application.streamingAssetsPath, "HeroUpgradeData");
         heroUpgradeDataDic.Clear();
@@ -89,6 +90,7 @@ public class DataManager : Singleton<DataManager>
 
             heroUpgradeDataDic[data.heroIdx].Add(data);
         }
+        Debug.LogError(DataLogger.LogDictionary(heroUpgradeDataDic));
 
         mapDataList.Clear();
         List<StageData> maps = NewtonSoftJson.LoadJsonArray<StageData>(Application.streamingAssetsPath, "MapData");

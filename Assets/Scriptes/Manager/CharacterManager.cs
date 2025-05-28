@@ -8,7 +8,7 @@ public class CharacterManager : Singleton<CharacterManager>
     public Hero CreateHero(int _idx)
     {
         var hero = ObjectPoolManager.Instance.Create(PoolingType.hero, _idx).GetComponent<Hero>();
-        hero.Create(_idx);
+        hero.Set(_idx);
         instanceCharacterList.Add(hero);
         return hero;
     }
@@ -18,7 +18,7 @@ public class CharacterManager : Singleton<CharacterManager>
         var enemy = ObjectPoolManager.Instance.Create(PoolingType.enemy, _idx).GetComponent<Enemy>();
         // navmeshagent때문에 순서 중요 agent.enabled = false; → position 설정 → enabled = true; 순서 중요!
         enemy.Spawn(_spawnPos, _targetPos);
-        enemy.Create(_idx);
+        enemy.Set(_idx);
         instanceCharacterList.Add(enemy);
     }
 
@@ -26,7 +26,7 @@ public class CharacterManager : Singleton<CharacterManager>
     {
         for (int i = 0; i < instanceCharacterList.Count; i++)
         {
-            instanceCharacterList[i].Retrieve();
+            instanceCharacterList[i].Revert();
         }
     }
 
