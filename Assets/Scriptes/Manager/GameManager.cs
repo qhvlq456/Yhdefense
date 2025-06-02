@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     public int life { private set; get; }
     // ÈÄ¿¡ private set
     [SerializeField]
-    public int gold { private set; get; }
+    public int gold;
     public void UpdateGold(int _gold)
     { 
         gold = Mathf.Clamp(gold + _gold, 0, int.MaxValue);

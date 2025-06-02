@@ -88,10 +88,20 @@ public class OldPlayerController : MonoBehaviour
                 {
                     Vector2Int normalizedPos = NormalizeMousePosition(heroLand.transform.position);
 
+                    // map에 설치 가능
                     if (MapManager.Instance.IsPossibleSetHero(normalizedPos))
                     {
-                        heroLand.SetHero(heroPreivewObj.HeroData.index);
-                        ExitPlacementMode();
+                        // hero를 살 돈이 있음
+                        if (Utility.IsHeroPurchase(heroPreivewObj.HeroData))
+                        {
+                            Utility.PurchaseHero(heroPreivewObj.HeroData);
+                            heroLand.SetHero(heroPreivewObj.HeroData.index);
+                            ExitPlacementMode();
+                        }
+                        else
+                        {
+                            // 또는 gold 부족 시 알림 팝업 표시
+                        }
                     }
                     else
                     {

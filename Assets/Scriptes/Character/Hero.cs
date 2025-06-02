@@ -16,6 +16,7 @@ public class Hero : Character, IBuffable
     public int Lv => lv;
     public override void Set(int _idx)
     {
+        lv = 1; // 초기 레벨 설정
         heroData = DataManager.Instance.GetIdxToHeroData(_idx);
         upgradeData = DataManager.Instance.GetHeroUpgradeData(_idx, 1);
 

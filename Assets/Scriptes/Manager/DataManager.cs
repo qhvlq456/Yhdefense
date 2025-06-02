@@ -49,7 +49,15 @@ public class DataManager : Singleton<DataManager>
         int safeLevel = Mathf.Clamp(_level - 1, 0, list.Count - 1);
         return list[safeLevel];
     }
-
+    public int GetMaxHeroUpgradeLevel(int _heroIdx)
+    {
+        if (!heroUpgradeDataDic.ContainsKey(_heroIdx))
+        {
+            Debug.LogError($"Hero idx {_heroIdx} not found in upgrade data!");
+            return 0;
+        }
+        return heroUpgradeDataDic[_heroIdx].Count;
+    }
     #endregion End UpgradeData
 
     [Header("Start Weapon")]

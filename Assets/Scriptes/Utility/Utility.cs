@@ -27,23 +27,40 @@ public static class Utility
     public static string GetHeroInfo(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
-        return string.Format("Lv : {0} , \n 공격타입 : {1}, \n 영웅타입 : {2}, \n" +
+        string infoText = string.Empty;
+
+        if (_lv <= DataManager.Instance.GetMaxHeroUpgradeLevel(_heroData.index))
+        {
+            infoText = string.Format("Lv : {0} , \n 공격타입 : {1}, \n 영웅타입 : {2}, \n" +
             "비용 : {3}, \n 공격속도 : {4}, \n 공격력 : {5}, \n공격범위 : {6} \n 판매가격 : {7}",
             _lv,
-            _heroData.groundType, 
-            _heroData.heroType, 
-            heroUpgradeData.cost, 
-            heroUpgradeData.attackSpeed, 
-            heroUpgradeData.attackDamage, 
+            _heroData.groundType,
+            _heroData.heroType,
+            heroUpgradeData.cost,
+            heroUpgradeData.attackSpeed,
+            heroUpgradeData.attackDamage,
             heroUpgradeData.attackRadius,
             heroUpgradeData.sell
             );
+        }
+        else
+        {
+            infoText = string.Format("Max Upgrade!!");
+        }
+
+        return infoText;
     }
 
     public static bool IsHeroPurchase(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
         return GameManager.Instance.gold >= heroUpgradeData.cost;
+    }
+    public static void PurchaseHero(HeroData _heroData, int _lv = 1)
+    {
+        HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
+        GameManager.Instance.UpdateGold(-heroUpgradeData.cost);
+        // 후에 구매 로직 추가
     }
     public static void GetHeroSellPrice(HeroData _heroData, int _lv = 1)
     {

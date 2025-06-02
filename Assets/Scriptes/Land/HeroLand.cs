@@ -30,6 +30,7 @@ public class HeroLand : Land, IClickable
         if (head.childCount > 0)
         {
             Hero hero = head.GetChild(0).GetComponent<Hero>();
+            Debug.LogError($"hero lv : {hero.Lv}");
             UIManager.Instance.ShowUI<CharacterInfoUI>(UIPanelType.CharacterInfo).Open(hero);
         }
         // hero 생성창을 blink
