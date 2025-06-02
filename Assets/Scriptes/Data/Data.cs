@@ -63,7 +63,11 @@ public struct EnemyData
     public int index;
     public string name;
     public float maxHealth;
+    // Start MoveData
     public float moveSpeed;
+    public float rotationSpeed;
+    public float stoppingDistance;
+    // End MoveData
     public int dieGold;
     public GroundType groundType;
 }
@@ -107,11 +111,23 @@ public struct WeaponData
 public struct MoveData
 {
     public float moveSpeed;
+    public float rotationSpeed;
+    public float stoppingDistance; // NavMeshMove에서 사용
+
+    public MoveData(EnemyData _enemyData)
+    {
+        moveSpeed = _enemyData.moveSpeed;
+        rotationSpeed = _enemyData.rotationSpeed;
+        stoppingDistance = _enemyData.stoppingDistance;
+    }
 }
 [Serializable]
 public struct AttackData
 {
+    public AttackData(AttackData _heroData)
+    {
 
+    }
 }
 [Serializable]
 public struct BuffData

@@ -14,8 +14,7 @@ public class Enemy : Character, IHittable
         isDie = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
         
-        // 임시 수정할 것
-        move.Initialize(new MoveData());
+        move.Initialize(new MoveData(enemyData));
         health.ResetHealth(enemyData.maxHealth);
     }
     public void TakeDamage(float _float)
@@ -67,6 +66,7 @@ public class Enemy : Character, IHittable
 
     public override void Revert()
     {
+        Debug.LogError($"enemy is Die : {isDie}");
         move.Revert();
         health.Revert();
         ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);

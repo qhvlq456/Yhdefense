@@ -38,5 +38,4 @@ public static class Utility
         return GameManager.Instance.gold >= heroUpgradeData.cost;
     }
     #endregion End HeroData
-
 }

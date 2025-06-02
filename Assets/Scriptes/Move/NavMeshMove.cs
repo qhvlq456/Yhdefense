@@ -19,13 +19,14 @@ public class NavMeshMove : Move
     // enemydata가 아닌 movedata로 따로 빼놓을 것!
     private void SetupAgent(MoveData _moveData)
     {
-        agent.angularSpeed = angularSpeed;
+        agent.speed = _moveData.moveSpeed;
+        agent.angularSpeed = _moveData.rotationSpeed;
         agent.acceleration = acceleration;
         agent.autoRepath = true;
         agent.avoidancePriority = avoidancePriority;
         agent.updatePosition = true;
         agent.updateRotation = false;
-        agent.stoppingDistance = 0.1f; // 너무 멀리서 멈추는 거 방지
+        agent.stoppingDistance = _moveData.stoppingDistance;
     }
 
     public override void Initialize(MoveData _moveData)

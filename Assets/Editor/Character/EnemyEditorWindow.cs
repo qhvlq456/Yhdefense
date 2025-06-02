@@ -37,6 +37,8 @@ public class EnemyEditorWindow : EditorWindow
                 name = EditorGUILayout.TextField("name", enemyList[i].name),
                 maxHealth = EditorGUILayout.FloatField("maxHealth", enemyList[i].maxHealth),
                 moveSpeed = EditorGUILayout.FloatField("moveSpeed", enemyList[i].moveSpeed),
+                rotationSpeed = EditorGUILayout.FloatField("rotationSpeed", enemyList[i].rotationSpeed),
+                stoppingDistance = EditorGUILayout.FloatField("stoppingDistance", enemyList[i].stoppingDistance),
                 dieGold = EditorGUILayout.IntField("Die Gold", enemyList[i].dieGold),
                 groundType = (GroundType)EditorGUILayout.EnumPopup("Die Gold", enemyList[i].groundType)
             };

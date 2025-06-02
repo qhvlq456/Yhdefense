@@ -4,6 +4,8 @@
     "name": "enemy0",
     "maxHealth": 10.0,
     "moveSpeed": 2.0,
+    "rotationSpeed": 2.0,
+    "stoppingDistance" : 0.1,
     "dieGold": 10,
     "groundType": 0
   },
@@ -12,6 +14,8 @@
     "name": "enemy1",
     "maxHealth": 20.0,
     "moveSpeed": 2.5,
+    "rotationSpeed": 2.0,
+    "stoppingDistance" : 0.1,
     "dieGold": 15,
     "groundType": 0
   },
@@ -20,6 +24,8 @@
     "name": "enemy2",
     "maxHealth": 30.0,
     "moveSpeed": 3.0,
+    "rotationSpeed": 2.0,
+    "stoppingDistance" : 0.1,
     "dieGold": 20,
     "groundType": 1
   },
@@ -28,6 +34,8 @@
     "name": "enemy3",
     "maxHealth": 30.0,
     "moveSpeed": 3.5,
+    "rotationSpeed": 2.0,
+    "stoppingDistance" : 0.1,
     "dieGold": 30,
     "groundType": 2
   }

@@ -44,7 +44,6 @@ public class MultyAttack : Attack
             bullet.Set(weaponData, _targets[i],
             (_) =>
             {
-                Debug.LogError($"{i} : callback");
                 // 후에 계산식 buff 등등 통일하여 들어갈 것
                 _.TakeDamage(heroUpgradeData.attackDamage);
             });
