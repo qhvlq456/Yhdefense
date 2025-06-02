@@ -65,7 +65,7 @@ public class TestScene : MonoBehaviour
         addGoldStr = GUI.TextField(new Rect(position.x + textSize.x + 30, 420, textSize.x, textSize.y), addGoldStr, textFieldStyle);
         if (GUI.Button(new Rect(position.x, 420, btnSize.x, btnSize.y), "°ñµå Ãß°¡", btnGUIStyle))
         {
-            GameManager.Instance.gold = int.Parse(addGoldStr);
+            GameManager.Instance.UpdateGold(int.Parse(addGoldStr));
         }
         //if (isShowUI)
         //{

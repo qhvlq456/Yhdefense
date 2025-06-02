@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Hero : Character, IBuffable
 {
@@ -12,7 +13,7 @@ public class Hero : Character, IBuffable
 
     [SerializeField]
     private int lv;
-
+    public int Lv => lv;
     public override void Set(int _idx)
     {
         heroData = DataManager.Instance.GetIdxToHeroData(_idx);
@@ -53,8 +54,17 @@ public class Hero : Character, IBuffable
     }
     public override void Revert()
     {
-        move.Revert();
-        attack.Revert();
+        // 후에 null 체크들 없앨 것
+        if(move != null)
+        {
+            move.Revert();
+        }
+
+        if(attack != null)
+        {
+            attack.Revert();
+        }
+
         ObjectPoolManager.Instance.Retrieve(PoolingType.hero, heroData.index, transform);
     }
 
@@ -63,4 +73,23 @@ public class Hero : Character, IBuffable
 
     }
 
+    public void UpgradeHero()
+    {
+        if(Utility.IsHeroUpgrade(heroData, lv + 1))
+        {
+            Utility.UpgradeHero(heroData, lv + 1);
+            lv++;
+            upgradeData = DataManager.Instance.GetHeroUpgradeData(heroData.index, lv);
+            attack.Set(upgradeData, heroData.groundType);
+        }
+        else
+        {
+            Debug.Log("업그레이드 할 수 없습니다.");
+        }
+    }
+    public void SellHero()
+    {
+        Revert();
+        Utility.GetHeroSellPrice(heroData, lv);
+    }
 }

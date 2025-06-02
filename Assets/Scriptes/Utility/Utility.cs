@@ -27,9 +27,17 @@ public static class Utility
     public static string GetHeroInfo(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
-        return string.Format("Lv : 1 ,     공격타입 : {0},   영웅타입 : {1},   " +
-            "비용 : {2},    공격속도 : {3},     공격력 : {4},    공격범위 : {5}",
-            _heroData.groundType, _heroData.heroType, heroUpgradeData.cost, heroUpgradeData.attackSpeed, heroUpgradeData.attackDamage, heroUpgradeData.attackRadius);
+        return string.Format("Lv : {0} , \n 공격타입 : {1}, \n 영웅타입 : {2}, \n" +
+            "비용 : {3}, \n 공격속도 : {4}, \n 공격력 : {5}, \n공격범위 : {6} \n 판매가격 : {7}",
+            _lv,
+            _heroData.groundType, 
+            _heroData.heroType, 
+            heroUpgradeData.cost, 
+            heroUpgradeData.attackSpeed, 
+            heroUpgradeData.attackDamage, 
+            heroUpgradeData.attackRadius,
+            heroUpgradeData.sell
+            );
     }
 
     public static bool IsHeroPurchase(HeroData _heroData, int _lv = 1)
@@ -37,5 +45,22 @@ public static class Utility
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
         return GameManager.Instance.gold >= heroUpgradeData.cost;
     }
+    public static void GetHeroSellPrice(HeroData _heroData, int _lv = 1)
+    {
+        HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
+        GameManager.Instance.UpdateGold(heroUpgradeData.sell);
+    }
+    public static bool IsHeroUpgrade(HeroData _heroData, int _lv = 1)
+    {
+        HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
+        return GameManager.Instance.gold >= heroUpgradeData.cost;
+    }
+    public static void UpgradeHero(HeroData _heroData, int _lv = 1)
+    {
+        HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
+        GameManager.Instance.UpdateGold(-heroUpgradeData.cost);
+        // 후에 업그레이드 로직 추가
+    }
+
     #endregion End HeroData
 }

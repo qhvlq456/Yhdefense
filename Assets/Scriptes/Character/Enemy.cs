@@ -20,6 +20,7 @@ public class Enemy : Character, IHittable
     public void TakeDamage(float _float)
     {
         health.TakeDamage(_float);
+        UIManager.Instance.ShowMultipleUI<DmgHUD>(UIPanelType.DmgText).StartDmg((int)_float, transform);
 
         if (health.currentHealth <= 0)
         {

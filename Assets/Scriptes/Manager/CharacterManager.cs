@@ -31,14 +31,20 @@ public class CharacterManager : Singleton<CharacterManager>
         instanceCharacterList.Add(enemy);
     }
 
-    public void ClearCharacter()
+    public void AllClearCharacter()
     {
         for (int i = 0; i < instanceCharacterList.Count; i++)
         {
             instanceCharacterList[i].Revert();
         }
     }
+    
+    public bool RemoveCharacter()
+    {
 
+        return false;
+    }
+    // 후에 정말 생각해서 만들기..
     public void SampleCharacter()
     {
 

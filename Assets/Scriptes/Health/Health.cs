@@ -4,6 +4,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     private HPSlider hpSlider;
+    [SerializeField]
+    private DmgHUD dmgHUD;
     public float currentHealth { get; private set; }
     public float maxHealth { get; private set; }
     public void ResetHealth(float _max)
@@ -13,6 +15,7 @@ public class Health : MonoBehaviour
         
         // 재활용이기 때문에 생성된 다른 hud가 붙을 수 있다
         hpSlider = UIManager.Instance.ShowMultipleUI<HPSlider>(UIPanelType.HpSlider);
+        // dmgHUD = UIManager.Instance.ShowMultipleUI<DmgHUD>(UIPanelType.DmgText);
         hpSlider.SetTarget(transform);
 
         hpSlider.OnChangedValue(GetHealthRatio());

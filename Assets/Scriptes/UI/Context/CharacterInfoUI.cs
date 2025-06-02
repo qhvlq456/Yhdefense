@@ -1,16 +1,50 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterInfoUI : BaseUI
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Button upGradeBtn;
+    [SerializeField]
+    private Button sellBtn;
+    [SerializeField]
+    private Button exitBtn;
+    [SerializeField]
+    private TextMeshProUGUI nameText;
+    [SerializeField]
+    private TextMeshProUGUI currentInfoText;
+    [SerializeField]
+    private TextMeshProUGUI nextInfoText;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private Hero hero;
+    private void Awake()
     {
-        
+        upGradeBtn.onClick.AddListener(UpGradeBtnClick);
+        sellBtn.onClick.AddListener(SellBtnClick);
+        exitBtn.onClick.AddListener(ExitBtnClick);
+    }
+    public void Open(Hero _hero)
+    {
+        hero = _hero;
+        currentInfoText.text = Utility.GetHeroInfo(hero.HeroData, hero.Lv);
+        nextInfoText.text = Utility.GetHeroInfo(hero.HeroData, hero.Lv + 1);
+    }
+    private void UpGradeBtnClick()
+    {
+        hero.UpgradeHero();
+        // 후에 연출 ㄱㄱ
+        DeactivateUI();
+    }
+    private void SellBtnClick()
+    {
+        hero.SellHero();
+        // 후에 골드 올라가는 연출 ㄱㄱ
+        DeactivateUI();
+    }
+    private void ExitBtnClick()
+    {
+        DeactivateUI();
     }
 }

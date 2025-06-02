@@ -18,7 +18,12 @@ public class GameManager : Singleton<GameManager>
     public int life { private set; get; }
     // 후에 private set
     [SerializeField]
-    public int gold { set; get; }
+    public int gold { private set; get; }
+    public void UpdateGold(int _gold)
+    { 
+        gold = Mathf.Clamp(gold + _gold, 0, int.MaxValue);
+        UIManager.Instance.UpdateCanvas(UIType.main);
+    }
 
     private Camera mainCamera;
     public Camera MainCamera
@@ -39,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void StartGame(StageData _stageData)
     {
+        gold = 0;
         currentStageData = _stageData;
         // 후에 변경하기
         currentSubStageIdx = 0;
@@ -57,7 +63,7 @@ public class GameManager : Singleton<GameManager>
     public void EndGame()
     {
         MapManager.Instance.ClearMap();
-        CharacterManager.Instance.ClearCharacter();
+        CharacterManager.Instance.AllClearCharacter();
         UIManager.Instance.HideAllUI();
         UIManager.Instance.RecycleAllUI();
     }

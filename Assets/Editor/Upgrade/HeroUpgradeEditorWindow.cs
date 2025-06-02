@@ -46,6 +46,7 @@ public class HeroUpgradeEditorWindow : EditorWindow
             {
                 heroIdx = currentHeroIdx,
                 cost = 100,
+                sell = 50,
                 attackSpeed = 1f,
                 attackDamage = 10f,
                 attackRadius = 3f,
@@ -64,6 +65,7 @@ public class HeroUpgradeEditorWindow : EditorWindow
             var data = list[i];
             data.weaponIdx = EditorGUILayout.IntField("WeaponIdx", data.weaponIdx);
             data.cost = EditorGUILayout.IntField("Cost", data.cost);
+            data.sell = EditorGUILayout.IntField("Sell", data.sell);
             data.targetCount = EditorGUILayout.IntField("TargetCount", data.targetCount);
             data.attackSpeed = EditorGUILayout.FloatField("Attack Speed", data.attackSpeed);
             data.attackDamage = EditorGUILayout.FloatField("Attack Damage", data.attackDamage);
@@ -190,11 +192,11 @@ public class HeroUpgradeEditorWindow : EditorWindow
         }
     }
 
-    private void LoadHeroData(int heroIdx)
+    private void LoadHeroData(int _heroIdx)
     {
-        if (!upgradeDataDic.ContainsKey(heroIdx))
+        if (!upgradeDataDic.ContainsKey(_heroIdx))
         {
-            upgradeDataDic[heroIdx] = new List<HeroUpgradeData>();
+            upgradeDataDic[_heroIdx] = new List<HeroUpgradeData>();
         }
     }
 }

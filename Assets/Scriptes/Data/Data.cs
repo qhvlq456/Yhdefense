@@ -89,6 +89,7 @@ public struct HeroUpgradeData
     public int heroIdx; // == hero idx 
     public int weaponIdx; // == weapon idx
     public int cost;
+    public int sell;
     public int targetCount;
     public float attackSpeed;
     public float attackDamage;

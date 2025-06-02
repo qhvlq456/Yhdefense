@@ -23,19 +23,16 @@ public class HeroLand : Land, IClickable
         hero.transform.localPosition = Vector3.zero + heroPosOffset;
         hero.gameObject.layer = gameObject.layer;
     }
-    public void RemoveHero(HeroData _heroData) 
-    { 
-
-    }
 
     public void OnClick()
     {
         // hero 정보창 
         if (head.childCount > 0)
         {
-            UIManager.Instance.ShowUI<CharacterInfoUI>(UIPanelType.CharacterInfo);
+            Hero hero = head.GetChild(0).GetComponent<Hero>();
+            UIManager.Instance.ShowUI<CharacterInfoUI>(UIPanelType.CharacterInfo).Open(hero);
         }
-        // hero 생성창
+        // hero 생성창을 blink
         else
         {
             // 

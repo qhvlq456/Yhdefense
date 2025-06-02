@@ -10,7 +10,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] 
     private List<CanvasMap> canvasMaps;
 
-    private Dictionary<UIType, Canvas> canvasDic;                   // UIType 별 Canvas 참조
+    private Dictionary<UIType, BaseCanvas> canvasDic;                   // UIType 별 Canvas 참조
     private Dictionary<UIPanelType, BaseUI> uiInstances;            // 단일 UI 인스턴스
     private Dictionary<UIPanelType, Queue<BaseUI>> uiPoolDic;       // 재사용 가능한 UI 풀
 
@@ -18,9 +18,20 @@ public class UIManager : Singleton<UIManager>
     private class CanvasMap
     {
         public UIType uiType;
-        public Canvas canvas;
+        public BaseCanvas canvas;
     }
 
+    public void UpdateCanvas(UIType _uiType)
+    {
+        if(canvasDic.TryGetValue(_uiType, out var canvas))
+        {
+            canvas.UpdateCanvas();
+        }
+        else
+        {
+            Debug.LogError($"[UIManager] Canvas not found for UIType: {_uiType}");
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -29,7 +40,9 @@ public class UIManager : Singleton<UIManager>
         uiPoolDic = new();
 
         foreach (var map in canvasMaps)
+        {
             canvasDic[map.uiType] = map.canvas;
+        }
 
         uiDataDB.Initialize();
     }
@@ -37,27 +50,27 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// 단일 UI 표시 (이미 생성된 UI가 있으면 재활용)
     /// </summary>
-    public T ShowUI<T>(UIPanelType panelType) where T : BaseUI
+    public T ShowUI<T>(UIPanelType _panelType) where T : BaseUI
     {
-        if (uiInstances.TryGetValue(panelType, out var ui))
+        if (uiInstances.TryGetValue(_panelType, out var ui))
         {
             ui.ActivateUI();
             ui.transform.SetAsLastSibling(); // 최상단으로
             return ui as T;
         }
 
-        var res = uiDataDB.Get(panelType);
+        var res = uiDataDB.Get(_panelType);
         if (res == null || !canvasDic.TryGetValue(res.canvasType, out var canvas))
         {
-            Debug.LogError($"[UIManager] UIData or Canvas missing: {panelType}");
+            Debug.LogError($"[UIManager] UIData or Canvas missing: {_panelType}");
             return null;
         }
 
         var instance = Instantiate(res.prefab, canvas.transform).GetComponent<T>();
-        instance.Initialize(panelType);
+        instance.Initialize(_panelType);
         instance.ActivateUI();
         instance.transform.SetAsLastSibling();
-        uiInstances[panelType] = instance;
+        uiInstances[_panelType] = instance;
 
         return instance;
     }
@@ -65,12 +78,12 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// 동일 UI를 여러 개 생성하고 싶을 때 (ex. HPBar)
     /// </summary>
-    public T ShowMultipleUI<T>(UIPanelType panelType) where T : BaseUI
+    public T ShowMultipleUI<T>(UIPanelType _panelType) where T : BaseUI
     {
-        var res = uiDataDB.Get(panelType);
+        var res = uiDataDB.Get(_panelType);
         if (res == null || !canvasDic.TryGetValue(res.canvasType, out var canvas))
         {
-            Debug.LogError($"[UIManager] UIData or Canvas missing: {panelType}");
+            Debug.LogError($"[UIManager] UIData or Canvas missing: {_panelType}");
             return null;
         }
 
@@ -79,8 +92,8 @@ public class UIManager : Singleton<UIManager>
         // 풀링을 사용할 경우
         if (res.usePooling)
         {
-            if (!uiPoolDic.TryGetValue(panelType, out var pool))
-                uiPoolDic[panelType] = pool = new Queue<BaseUI>();
+            if (!uiPoolDic.TryGetValue(_panelType, out var pool))
+                uiPoolDic[_panelType] = pool = new Queue<BaseUI>();
 
             if (pool.Count > 0)
             {
@@ -92,7 +105,7 @@ public class UIManager : Singleton<UIManager>
         if (ret == null)
             ret = Instantiate(res.prefab, canvas.transform).GetComponent<T>();
 
-        ret.Initialize(panelType);
+        ret.Initialize(_panelType);
         ret.ActivateUI();
         ret.transform.SetAsLastSibling();
 

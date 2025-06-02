@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class BaseCanvas : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    protected Canvas canvas;
+    public Canvas Canvas
     {
-        
+        get
+        {
+            if (canvas == null)
+            {
+                canvas = GetComponent<Canvas>();
+                if (canvas == null)
+                {
+                    Debug.LogError("Canvas component not found on " + gameObject.name);
+                }
+            }
+            // 후에 켄버스 셋팅도 설정
+            return canvas;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void Initialize() { }
+    public virtual void UpdateCanvas() { }
 }
