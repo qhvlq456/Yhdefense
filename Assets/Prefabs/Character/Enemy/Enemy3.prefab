@@ -1712,8 +1712,11 @@ MonoBehaviour:
     name: 
     maxHealth: 0
     moveSpeed: 0
+    rotationSpeed: 0
+    stoppingDistance: 0
     dieGold: 0
     groundType: 0
+  animator: {fileID: 8921865573035183609}
 --- !u!114 &-8179794084703170054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,6 +1730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
+  dmgHUD: {fileID: 0}
 --- !u!114 &-5587338731669690607
 MonoBehaviour:
   m_ObjectHideFlags: 0

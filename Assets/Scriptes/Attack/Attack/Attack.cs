@@ -60,19 +60,30 @@ public class Attack : MonoBehaviour
     {
         delayTimer = attackDelay;
     }
-    protected bool IsTargetInRange(IHittable _target)
+
+    // --- 타겟 유효성 검사 ---
+    protected bool IsValidTarget(IHittable _target)
     {
-        // 타겟의 Transform이 유효한지 확인
-        if (_target.GetTransform() == null)
+        if (_target == null) return false;
+        if (_target.IsDeath) return false;
+
+        var tr = _target.GetTransform();
+        if (tr == null) return false;
+        if (Vector3.Distance(transform.position, tr.position) > heroUpgradeData.attackRadius)
         {
             return false;
         }
 
-        // 타겟이 범위 내에 있는지 확인
-        return Vector3.Distance(transform.position, _target.GetTransform().position) <= heroUpgradeData.attackRadius;
+        return true;
     }
 
-    // 공통 탐색 함수
+    // 기존 IsTargetInRange는 IsValidTarget만 호출
+    protected bool IsTargetInRange(IHittable target)
+    {
+        return IsValidTarget(target);
+    }
+
+    // FindTargetsInRange에서 중복 조건 제거, IsValidTarget 사용
     protected List<IHittable> FindTargetsInRange()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, heroUpgradeData.attackRadius);
@@ -109,6 +120,9 @@ public class Attack : MonoBehaviour
             {
                 continue;
             }
+
+            // 유효성 검사
+            if (!IsValidTarget(hittable)) continue;
 
             targets.Add(hittable);
         }

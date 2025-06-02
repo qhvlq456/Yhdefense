@@ -2,7 +2,7 @@
   {
     "index": 0,
     "name": "enemy0",
-    "maxHealth": 10.0,
+    "maxHealth": 20.0,
     "moveSpeed": 2.0,
     "rotationSpeed": 2.0,
     "stoppingDistance" : 0.1,
@@ -12,7 +12,7 @@
   {
     "index": 1,
     "name": "enemy1",
-    "maxHealth": 20.0,
+    "maxHealth": 30.0,
     "moveSpeed": 2.5,
     "rotationSpeed": 2.0,
     "stoppingDistance" : 0.1,
@@ -22,7 +22,7 @@
   {
     "index": 2,
     "name": "enemy2",
-    "maxHealth": 30.0,
+    "maxHealth": 40.0,
     "moveSpeed": 3.0,
     "rotationSpeed": 2.0,
     "stoppingDistance" : 0.1,
@@ -32,7 +32,7 @@
   {
     "index": 3,
     "name": "enemy3",
-    "maxHealth": 30.0,
+    "maxHealth": 50.0,
     "moveSpeed": 3.5,
     "rotationSpeed": 2.0,
     "stoppingDistance" : 0.1,

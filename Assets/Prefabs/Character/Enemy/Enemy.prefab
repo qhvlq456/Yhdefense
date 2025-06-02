@@ -2093,6 +2093,7 @@ GameObject:
   - component: {fileID: 9167318695925765618}
   - component: {fileID: -8796438282347391855}
   - component: {fileID: 171697873695654078}
+  - component: {fileID: 5094985482216528218}
   - component: {fileID: 9049892681200649870}
   - component: {fileID: 6532252327309245982}
   m_Layer: 0
@@ -2129,7 +2130,7 @@ Animator:
   m_GameObject: {fileID: 6668132321104247660}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2f4e6492f506bbb4a8aeba850e3bb52f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 08f6634017a8e784a8807f193b72bec9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54aa64dd20be6504b9b8527ef615db39, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2162,8 +2163,11 @@ MonoBehaviour:
     name: 
     maxHealth: 0
     moveSpeed: 0
+    rotationSpeed: 0
+    stoppingDistance: 0
     dieGold: 0
     groundType: 0
+  enemyAnimation: {fileID: 5094985482216528218}
 --- !u!114 &-8796438282347391855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
+  dmgHUD: {fileID: 0}
 --- !u!114 &171697873695654078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,6 +2198,21 @@ MonoBehaviour:
   angularSpeed: 3
   acceleration: 24
   avoidancePriority: 50
+--- !u!114 &5094985482216528218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668132321104247660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900b0bd5bc4698647a9aa0702e38155b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2257291314120604064}
+  currentState: 0
+  enemy: {fileID: 9167318695925765618}
 --- !u!195 &9049892681200649870
 NavMeshAgent:
   m_ObjectHideFlags: 0

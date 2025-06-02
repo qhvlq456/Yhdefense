@@ -14,6 +14,7 @@ public class MultyAttack : Attack
 
         if (targets.Count > 0)
         {
+            // 타겟이 존재할 때만 정렬 및 필터링 중간에 죽을 수도 있기 때문
             targetList = targets
                 .OrderBy(hittable => IsTargetInRange(hittable))
                 .Take(heroUpgradeData.targetCount)

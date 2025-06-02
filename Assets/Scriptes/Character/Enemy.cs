@@ -8,15 +8,26 @@ public class Enemy : Character, IHittable
     [SerializeField]
     private EnemyData enemyData;
 
-    public bool isDie { get; private set; }
+    [SerializeField]
+    private EnemyAnimation enemyAnimation;
+
+    private bool isDeath;
+    public bool IsDeath => isDeath;
+
+    public enum EnemyAnimState { Idle, Walk, Hit, Die }
+    private EnemyAnimState currentAnimState = EnemyAnimState.Idle;
+
     public override void Set(int _idx)
     {
-        isDie = false;
+        isDeath = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
         
         move.Initialize(new MoveData(enemyData));
         health.ResetHealth(enemyData.maxHealth);
+
+        enemyAnimation.ChangeState(CharacterAnimation.AnimationState.Walk);
     }
+
     public void TakeDamage(float _float)
     {
         health.TakeDamage(_float);
@@ -24,7 +35,12 @@ public class Enemy : Character, IHittable
 
         if (health.currentHealth <= 0)
         {
-            Die();
+            Death();
+            enemyAnimation.ChangeState(CharacterAnimation.AnimationState.Death);
+        }
+        else
+        {
+            enemyAnimation.ChangeState(CharacterAnimation.AnimationState.Hit);
         }
     }
 
@@ -59,18 +75,22 @@ public class Enemy : Character, IHittable
         Debug.Log("NavMesh 위에 올라감");
         move.Movement(_destination);
     }
-    private void Die()
+    // 먼저 death 처리함으로써 타겟으로 부터 벗어남
+    public void Death()
     {
-        isDie = true;
+        isDeath = true;
         Revert();
     }
-
+    // animation event 즉, 애니메이션 끝나는것을 대기 하여 회수함
+    public void OnDeath()
+    {
+        ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
+    }
     public override void Revert()
     {
-        Debug.LogError($"enemy is Die : {isDie}");
+        Debug.LogError($"enemy is isDeath : {isDeath}");
         move.Revert();
         health.Revert();
-        ObjectPoolManager.Instance.Retrieve(PoolingType.enemy, enemyData.index, transform);
     }
 
     public override GroundType GetGroundType() => enemyData.groundType;
