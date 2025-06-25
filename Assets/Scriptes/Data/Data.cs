@@ -2,6 +2,11 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
+public interface IIndexNameData
+{
+    int index { get; }
+    string name { get; }
+}
 public struct PlayerData
 {
     public int guid;
@@ -30,14 +35,19 @@ public struct SubStageData
     public List<int> enemyIdxList;
 }
 [Serializable]
-public struct LandData
+public struct LandData : IIndexNameData
 {
     public int index;
+    public string name;
     // col
     public int x;
     // row
     public int z;
     public LandType landType;
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }
 // dictionary 로 하면 인스펙터에 안보여서 구조체로 변환
 [Serializable]
@@ -47,7 +57,7 @@ public struct MapData
     public StageData stageData;
 }
 [Serializable]
-public struct HeroData
+public struct HeroData : IIndexNameData
 {
     public int index;
     public int weaponIdx;
@@ -56,9 +66,13 @@ public struct HeroData
     public HeroType heroType;
 
     public List<int> skillIdList; // 스킬 시스템 추가 대비
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }
 [Serializable]
-public struct EnemyData
+public struct EnemyData : IIndexNameData
 {
     public int index;
     public string name;
@@ -70,10 +84,14 @@ public struct EnemyData
     // End MoveData
     public int dieGold;
     public GroundType groundType;
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }
 
 [Serializable]
-public struct SkillData
+public struct SkillData : IIndexNameData
 {
     public int index;
     public string name;
@@ -81,6 +99,10 @@ public struct SkillData
     public float range;
     public float power;
     public SkillType skillType;
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }
 
 [Serializable]
@@ -99,13 +121,17 @@ public struct HeroUpgradeData
 }
 
 [Serializable]
-public struct WeaponData
+public struct WeaponData : IIndexNameData
 {
     // weapon idx
     public int index;
     public float speed;
     public string name;
     public WeapondType weaponType;
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }
 
 [Serializable]
@@ -139,4 +165,14 @@ public struct BuffData
 public struct DebuffData
 {
 
+}
+
+[Serializable]
+public struct AddressableData
+{
+    public PoolingType type;       // ex) Hero, Enemy, etc.
+    public int idx;                // 고유 인덱스 (데이터 테이블 기준)
+    public string key;             // Addressables 키값
+    public string groupName;       // 선택 사항: 그룹 정보
+    public string label;           // 선택 사항: 특정 label 구분
 }

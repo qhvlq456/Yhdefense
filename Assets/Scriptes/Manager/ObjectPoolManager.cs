@@ -1,24 +1,31 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+
+public interface IPrefabProvider
+{
+    public GameObject GetPrefab(string _name);
+}
 
 public class Pooling
 {
     public Transform root; // PoolingType 기준 루트
     public Dictionary<int, Transform> poolingdic; // idx 별 Transform 그룹
+    private readonly IPrefabProvider prefabProvider;
 
-    public Pooling(PoolingType _type, Transform _parent)
+    public Pooling(PoolingType _type, Transform _parent, IPrefabProvider _provider)
     {
         root = new GameObject(_type.ToString()).transform;
         root.position = Vector3.left * 1000;
         poolingdic = new Dictionary<int, Transform>();
         root.SetParent(_parent);
+        prefabProvider = _provider;
     }
 
     public Transform Create(PoolingType _type, int _idx)
     {
         Transform ret = null;
-        GameObject res = DataManager.Instance.GetResObj(_type, _idx);
         Transform parent = null;
 
         if (!poolingdic.TryGetValue(_idx, out parent))
@@ -36,7 +43,15 @@ public class Pooling
         }
         else
         {
-            ret = GameObject.Instantiate(res).transform;
+            var name = DataManager.Instance.GetIdxToObjName(_type, _idx);
+            Debug.LogError($"[Pooling] Trying to load prefab with name: {name}");
+            GameObject prefab = prefabProvider.GetPrefab(name);
+            if (prefab == null)
+            {
+                Debug.LogError($"[Pooling] Prefab not found: {_type}, {_idx}");
+                return null;
+            }
+            ret = GameObject.Instantiate(prefab).transform;
         }
 
         ret.gameObject.SetActive(true);
@@ -63,18 +78,21 @@ public class Pooling
     }
 }
 
-
-public class ObjectPoolManager : Singleton<ObjectPoolManager>
+public class ObjectPoolManager : Singleton<ObjectPoolManager>, IPrefabProvider
 {
     [SerializeField]
     private Transform root;
     private Dictionary<PoolingType, Pooling> objectPoolingDic = new Dictionary<PoolingType, Pooling>();
-
+    // IPrefabProvider 구현
+    public GameObject GetPrefab(string _name)
+    {
+        return AddressableManager.Instance.GetCachedPrefab(_name);
+    }
     public Transform Create(PoolingType _type, int _idx)
     {
         if (!objectPoolingDic.TryGetValue(_type, out var pool))
         {
-            pool = new Pooling(_type, root);
+            pool = new Pooling(_type, root, this);
             objectPoolingDic.Add(_type, pool);
         }
 

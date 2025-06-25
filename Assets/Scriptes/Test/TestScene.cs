@@ -67,6 +67,7 @@ public class TestScene : MonoBehaviour
         {
             GameManager.Instance.UpdateGold(int.Parse(addGoldStr));
         }
+
         //if (isShowUI)
         //{
         //    UIManager.Instance.ShowUI<BaseUI>(uiData);

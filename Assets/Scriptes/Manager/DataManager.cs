@@ -5,6 +5,8 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     #region Start Path
+    public const string heroLandStr = "HeroLand";
+    public const string enemyLandStr = "EnemyLand";
     #endregion End Path
 
     #region Start Map
@@ -68,18 +70,6 @@ public class DataManager : Singleton<DataManager>
 
     #endregion End Weapon
 
-    [SerializeField]
-    private ResDBRegistry resDBRegistry;
-    public GameObject GetResObj(PoolingType _type, int _idx)
-    {
-        if (resDBRegistry == null)
-        {
-            Debug.LogError("ResRegistry not assigned!");
-            return null;
-        }
-
-        return resDBRegistry.GetResObj(_type, _idx);
-    }
 
     public void LoadGameData()
     {
@@ -87,6 +77,7 @@ public class DataManager : Singleton<DataManager>
         enemyDataList = NewtonSoftJson.LoadJsonArray<EnemyData>(Application.streamingAssetsPath, "EnemyData");
         subStageDataList = NewtonSoftJson.LoadJsonArray<SubStageData>(Application.streamingAssetsPath, "SubStageData");
         weaponDataList = NewtonSoftJson.LoadJsonArray<WeaponData>(Application.streamingAssetsPath, "WeaponData");
+
         Debug.LogError(DataLogger.LogList(heroDataList));
 
         List<HeroUpgradeData> upgradeDataList = NewtonSoftJson.LoadJsonArray<HeroUpgradeData>(Application.streamingAssetsPath, "HeroUpgradeData");
@@ -109,6 +100,16 @@ public class DataManager : Singleton<DataManager>
             data.stageData = maps[i];
             mapDataList.Add(data);
         }
+    }
+    // 일단 보관 나중에 사용할 여지가 있음
+    private string GetNameByIndex<T>(List<T> _list, int _idx) where T : IIndexNameData
+    {
+        var data = _list.Find(x => x.index == _idx);
+        return data.name;
+    }
+    public string GetIdxToObjName(PoolingType _type, int _idx)
+    {
+        return AddressableManager.Instance.GetAddressableName(_type, _idx);
     }
     public void ResetAllData()
     {

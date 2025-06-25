@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections;
 using System.Reflection;
@@ -84,3 +85,4 @@ public static class DataLogger
         return log.ToString();
     }
 }
+#endif

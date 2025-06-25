@@ -1,0 +1,37 @@
+[
+  {
+    "type": 0,
+    "idx": 0,
+    "key": "Hero",
+    "groupName": "DefaultGroup",
+    "label": "DefaultLabel"
+  },
+  {
+    "type": 1,
+    "idx": 0,
+    "key": "Enemy",
+    "groupName": "DefaultGroup",
+    "label": "DefaultLabel"
+  },
+  {
+    "type": 2,
+    "idx": 0,
+    "key": "HeroLand",
+    "groupName": "DefaultGroup",
+    "label": "DefaultLabel"
+  },
+  {
+    "type": 3,
+    "idx": 0,
+    "key": "EnemyLand",
+    "groupName": "DefaultGroup",
+    "label": "DefaultLabel"
+  },
+  {
+    "type": 4,
+    "idx": 0,
+    "key": "Bullet",
+    "groupName": "DefaultGroup",
+    "label": "DefaultLabel"
+  }
+]
