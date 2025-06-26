@@ -60,7 +60,6 @@ public struct MapData
 public struct HeroData : IIndexNameData
 {
     public int index;
-    public int weaponIdx;
     public string name;
     public GroundType groundType;
     public HeroType heroType;
@@ -105,18 +104,23 @@ public struct SkillData : IIndexNameData
     string IIndexNameData.name => name;
 }
 
+// 기본 hero의 attack, buff, debuff data 정보
 [Serializable]
 public struct HeroUpgradeData
 {
     public int heroIdx; // == hero idx 
-    public int weaponIdx; // == weapon idx
+    public int weaponIdx; // == weapon idx ;;; attack : weapon index, buff : buff idx, debuff : debuffidx 
     public int cost;
     public int sell;
+    // attack data 에 필요?
     public int targetCount;
     public float attackSpeed;
     public float attackDamage;
     public float attackRadius;
+    // end
 
+    // 아마 여기까지?
+    // buffer/debuffer에 필요한 데이터
     public float buffValue; // buffer/debuffer에 유용
 }
 
@@ -159,12 +163,20 @@ public struct AttackData
 [Serializable]
 public struct BuffData
 {
-
+    public BuffType buffType;
+    public float range;
+    public float amount;
+    public float duration;
+    public float startTime; // 적용 시각
 }
 [Serializable]
 public struct DebuffData
 {
-
+    public BuffType debuffType;
+    public float range;
+    public float amount;
+    public float duration;
+    public float startTime;
 }
 
 [Serializable]

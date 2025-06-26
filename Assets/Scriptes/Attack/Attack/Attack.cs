@@ -12,6 +12,8 @@ public class Attack : MonoBehaviour
     [SerializeField]
     protected HeroUpgradeData heroUpgradeData;
     protected GroundType groundType;
+    // 후에 추가해서 넣을것임
+    protected AttackData attackData;
 
     // Time.time 대신 사용될 남은 쿨타임 변수
     protected float delayTimer; // 다음 공격까지 남은 시간
@@ -25,7 +27,10 @@ public class Attack : MonoBehaviour
         groundType = _groundType;
         UpdateAttackDelay();
     }
-    public virtual void Execute() { }
+    public virtual void Execute(float _attackDamage, float _attackSpeed) 
+    { 
+
+    }
     // 공격 딜레이 업데이트 (attackSpeed 기반)
     protected void UpdateAttackDelay()
     {

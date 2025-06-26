@@ -23,7 +23,6 @@ public class HeroEditorWindow : EditorWindow
             heroList.Add(new HeroData
             {
                 index = 0,
-                weaponIdx = 0,
                 name = "NewHero",
                 groundType = GroundType.gorund,
                 heroType = HeroType.Attack,
@@ -40,7 +39,6 @@ public class HeroEditorWindow : EditorWindow
             heroList[i] = new HeroData
             {
                 index = EditorGUILayout.IntField("Index", heroList[i].index),
-                weaponIdx = EditorGUILayout.IntField("WeaponIdx", heroList[i].weaponIdx),
                 name = EditorGUILayout.TextField("Name", heroList[i].name),
                 groundType = (GroundType)EditorGUILayout.EnumPopup("Ground Type", heroList[i].groundType),
                 heroType = (HeroType)EditorGUILayout.EnumPopup("Hero Type", heroList[i].heroType),

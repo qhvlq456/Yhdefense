@@ -5,6 +5,13 @@ using Unity.AI.Navigation;
 
 public class Enemy : Character, IHittable
 {
+    // start enemy가 필요한것들
+    [SerializeField]
+    protected Health health;
+
+    [SerializeField]
+    protected Move move;
+
     [SerializeField]
     private EnemyData enemyData;
 

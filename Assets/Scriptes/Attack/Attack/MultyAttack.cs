@@ -5,22 +5,25 @@ using UnityEngine;
 public class MultyAttack : Attack
 {
     private List<IHittable> targetList = new List<IHittable>();
-    public override void Execute()
+
+    public override void Execute(float _attackDamage, float _attackSpeed)
     {
-        base.Execute();
+        // 쿨타임 갱신
+        attackDelay = _attackSpeed > 0 ? 1.0f / _attackSpeed : float.MaxValue;
+        SetDelay();
 
         // 항상 새로 타겟을 찾음
         List<IHittable> targets = FindTargetsInRange();
 
         if (targets.Count > 0)
         {
-            // 타겟이 존재할 때만 정렬 및 필터링 중간에 죽을 수도 있기 때문
+            // 여러 타겟을 선택
             targetList = targets
                 .OrderBy(hittable => IsTargetInRange(hittable))
                 .Take(heroUpgradeData.targetCount)
                 .ToList();
 
-            Shoot(targetList);
+            Shoot(targetList, _attackDamage);
         }
         else
         {
@@ -28,32 +31,29 @@ public class MultyAttack : Attack
         }
     }
 
-    private void Shoot(List<IHittable> _targets)
+    private void Shoot(List<IHittable> _targets, float _attackDamage)
     {
-        SetDelay();
-
         WeaponData weaponData = DataManager.Instance.GetHeroIdxToWeaponData(heroUpgradeData.weaponIdx);
 
-        for(int i = 0; i < _targets.Count; i++)
+        for (int i = 0; i < _targets.Count; i++)
         {
             IHittable target = _targets[i];
 
             Bullet bullet = ObjectPoolManager.Instance.Create(PoolingType.weapon, weaponData.index).GetComponent<Bullet>();
-            // 후에 변경
             bullet.transform.position = transform.position;
 
-            bullet.Set(weaponData, _targets[i],
+            bullet.Set(weaponData, target,
             (_) =>
             {
-                // 후에 계산식 buff 등등 통일하여 들어갈 것
-                _.TakeDamage(heroUpgradeData.attackDamage);
+                // 버프 등 계산식은 Hero에서 전달된 _attackDamage 사용
+                _.TakeDamage(_attackDamage);
             });
         }
     }
 
     public override void Revert()
     {
-        base.Revert(); // 부모 Revert 호출
-        targetList = null; // 현재 타겟 초기화
+        base.Revert();
+        targetList = null;
     }
 }
