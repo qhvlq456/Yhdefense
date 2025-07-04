@@ -9,11 +9,11 @@ public class Attack : MonoBehaviour
     [SerializeField] 
     private LayerMask obstacleMask;     // 시야를 가리는 오브젝트용
 
-    [SerializeField]
-    protected HeroUpgradeData heroUpgradeData;
     protected GroundType groundType;
+    [SerializeField]
     // 후에 추가해서 넣을것임
     protected AttackData attackData;
+    public AttackData AttackData => attackData;
 
     // Time.time 대신 사용될 남은 쿨타임 변수
     protected float delayTimer; // 다음 공격까지 남은 시간
@@ -21,9 +21,9 @@ public class Attack : MonoBehaviour
     // 계산된 실제 공격 딜레이 (초). 이 값을 currentCooldownTimer에 대입
     protected float attackDelay;
     protected virtual Color GetGizmoColor() => Color.red;
-    public virtual void Set(HeroUpgradeData _heroUpgradeData, GroundType _groundType)
+    public virtual void Set(AttackData _attackData , GroundType _groundType)
     {
-        heroUpgradeData = _heroUpgradeData;
+        attackData = _attackData;
         groundType = _groundType;
         UpdateAttackDelay();
     }
@@ -34,9 +34,9 @@ public class Attack : MonoBehaviour
     // 공격 딜레이 업데이트 (attackSpeed 기반)
     protected void UpdateAttackDelay()
     {
-        if (heroUpgradeData.attackSpeed > 0)
+        if (attackData.speed > 0)
         {
-            attackDelay = 1.0f / heroUpgradeData.attackSpeed;
+            attackDelay = 1.0f / attackData.speed;
         }
         else
         {
@@ -74,7 +74,7 @@ public class Attack : MonoBehaviour
 
         var tr = _target.GetTransform();
         if (tr == null) return false;
-        if (Vector3.Distance(transform.position, tr.position) > heroUpgradeData.attackRadius)
+        if (Vector3.Distance(transform.position, tr.position) > attackData.radius)
         {
             return false;
         }
@@ -91,7 +91,7 @@ public class Attack : MonoBehaviour
     // FindTargetsInRange에서 중복 조건 제거, IsValidTarget 사용
     protected List<IHittable> FindTargetsInRange()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, heroUpgradeData.attackRadius);
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackData.radius);
         List<IHittable> targets = new List<IHittable>();
 
         foreach (Collider hit in hits)
@@ -142,7 +142,7 @@ public class Attack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = GetGizmoColor();
-        Gizmos.DrawWireSphere(transform.position, heroUpgradeData.attackRadius);
+        Gizmos.DrawWireSphere(transform.position, attackData.radius);
     }
 #endif
 }

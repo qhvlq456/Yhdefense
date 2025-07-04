@@ -1,6 +1,7 @@
 [
   {
     "index": 0,
+    "heroTypeByIdx": 0,
     "name": "Hero",
     "groundType": 0,
     "heroType": 0,
@@ -8,6 +9,7 @@
   },
   {
     "index": 1,
+    "heroTypeByIdx": 1,
     "name": "Hero1",
     "groundType": 1,
     "heroType": 0,
@@ -15,9 +17,34 @@
   },
   {
     "index": 2,
+    "heroTypeByIdx": 2,
     "name": "Hero2",
     "groundType": 2,
     "heroType": 0,
+    "skillIdList": []
+  },
+  {
+    "index": 3,
+    "heroTypeByIdx": 0,
+    "name": "BuffHero",
+    "groundType": 0,
+    "heroType": 1,
+    "skillIdList": []
+  },
+  {
+    "index": 4,
+    "heroTypeByIdx": 1,
+    "name": "BuffHero1",
+    "groundType": 1,
+    "heroType": 1,
+    "skillIdList": []
+  },
+  {
+    "index": 5,
+    "heroTypeByIdx": 2,
+    "name": "BuffHero2",
+    "groundType": 2,
+    "heroType": 1,
     "skillIdList": []
   }
 ]

@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7712996995614847785}
   - component: {fileID: 4521521444545310351}
   - component: {fileID: 131040920103233645}
-  - component: {fileID: 461929933630949319}
   - component: {fileID: 9145005260422961312}
+  - component: {fileID: 9018392755283467550}
   m_Layer: 0
   m_Name: Hero2
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,38 +111,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &461929933630949319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6066665393386759258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e9f2a2eba78cd488602d5ed11c9075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  move: {fileID: 0}
-  attack: {fileID: 9145005260422961312}
-  buff: {fileID: 0}
-  heroData:
-    index: 0
-    weaponIdx: 0
-    name: 
-    groundType: 0
-    heroType: 0
-    skillIdList: 
-  upgradeData:
-    heroIdx: 0
-    cost: 0
-    targetCount: 0
-    attackSpeed: 0
-    attackDamage: 0
-    attackRadius: 0
-    buffValue: 0
-  lv: 0
 --- !u!114 &9145005260422961312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,11 +127,29 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  heroUpgradeData:
+--- !u!114 &9018392755283467550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066665393386759258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f5a82bc6272f245ba24f5b9a699fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroData:
+    index: 0
+    heroTypeByIdx: 0
+    name: 
+    groundType: 0
+    heroType: 0
+    skillIdList: 
+  upgradeData:
     heroIdx: 0
+    lv: 0
     cost: 0
-    targetCount: 0
-    attackSpeed: 0
-    attackDamage: 0
-    attackRadius: 0
-    buffValue: 0
+    sell: 0
+  lv: 0
+  attack: {fileID: 9145005260422961312}

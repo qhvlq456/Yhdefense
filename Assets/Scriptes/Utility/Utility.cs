@@ -23,7 +23,6 @@ public static class Utility
     #endregion End Object Pool
 
     #region Start HeroData
-    // 후에 버퍼 및 디버퍼들의 인포들을 타입별로 나누어 보낼것
     public static string GetHeroInfo(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
@@ -31,21 +30,50 @@ public static class Utility
 
         if (_lv <= DataManager.Instance.GetMaxHeroUpgradeLevel(_heroData.index))
         {
-            infoText = string.Format("Lv : {0} , \n 공격타입 : {1}, \n 영웅타입 : {2}, \n" +
-            "비용 : {3}, \n 공격속도 : {4}, \n 공격력 : {5}, \n공격범위 : {6} \n 판매가격 : {7}",
-            _lv,
-            _heroData.groundType,
-            _heroData.heroType,
-            heroUpgradeData.cost,
-            heroUpgradeData.attackSpeed,
-            heroUpgradeData.attackDamage,
-            heroUpgradeData.attackRadius,
-            heroUpgradeData.sell
-            );
+            infoText = $"Lv : {_lv}\n" +
+                       $"이름 : {_heroData.name}\n" +
+                       $"공격타입 : {_heroData.groundType}\n" +
+                       $"영웅타입 : {_heroData.heroType}\n" +
+                       $"비용 : {heroUpgradeData.cost}\n";
+
+            switch (_heroData.heroType)
+            {
+                case HeroType.Attack:
+                    {
+                        // 공격형 히어로
+                        AttackData attackData = DataManager.Instance.GetAttackData(_heroData.heroTypeByIdx, _lv);
+                        infoText += $"공격속도 : {attackData.speed}\n" +
+                                    $"공격력 : {attackData.damage}\n" +
+                                    $"공격범위 : {attackData.radius}\n";
+                        break;
+                    }
+                case HeroType.Buffer:
+                    {
+                        // 버퍼형 히어로
+                        BuffData buffData = DataManager.Instance.GetBuffData(_heroData.heroTypeByIdx, _lv);
+                        infoText += $"버프타입 : {buffData.buffType}\n" +
+                                    $"버프효과 : {buffData.amount}\n" +
+                                    $"버프범위 : {buffData.range}\n" +
+                                    $"버프지속 : {buffData.duration}\n";
+                        break;
+                    }
+                case HeroType.Debuffer:
+                    {
+                        // 디버퍼형 히어로
+                        DebuffData debuffData = DataManager.Instance.GetDebuffData(_heroData.heroTypeByIdx, _lv);
+                        infoText += $"디버프타입 : {debuffData.debuffType}\n" +
+                                    $"디버프효과 : {debuffData.amount}\n" +
+                                    $"디버프범위 : {debuffData.range}\n" +
+                                    $"디버프지속 : {debuffData.duration}\n";
+                        break;
+                    }
+            }
+
+            infoText += $"판매가격 : {heroUpgradeData.sell}";
         }
         else
         {
-            infoText = string.Format("Max Upgrade!!");
+            infoText = "Max Upgrade!!";
         }
 
         return infoText;

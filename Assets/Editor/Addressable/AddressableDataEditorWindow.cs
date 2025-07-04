@@ -41,8 +41,8 @@ public class AddressableDataEditorWindow : EditorWindow
                 type = (PoolingType)EditorGUILayout.EnumPopup("Type", addressableList[i].type),
                 key = EditorGUILayout.TextField("Name", addressableList[i].key),
                 idx = EditorGUILayout.IntField("Index", addressableList[i].idx),
-                groupName = EditorGUILayout.TextField("Name", addressableList[i].groupName),
-                label = EditorGUILayout.TextField("Name", addressableList[i].label)
+                groupName = EditorGUILayout.TextField("GroupName", addressableList[i].groupName),
+                label = EditorGUILayout.TextField("LabelName", addressableList[i].label)
             };
 
             if (GUILayout.Button("Remove"))

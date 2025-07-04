@@ -22,7 +22,7 @@ public class EnemyEditorWindow : EditorWindow
         {
             enemyList.Add(new EnemyData { index = 0, name = "" ,
                 maxHealth = 10,
-                moveSpeed = 2f, dieGold = 10, groundType = GroundType.gorund });
+                dieGold = 10, groundType = GroundType.gorund });
         }
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
@@ -36,9 +36,6 @@ public class EnemyEditorWindow : EditorWindow
                 index = EditorGUILayout.IntField("Index", enemyList[i].index),
                 name = EditorGUILayout.TextField("name", enemyList[i].name),
                 maxHealth = EditorGUILayout.FloatField("maxHealth", enemyList[i].maxHealth),
-                moveSpeed = EditorGUILayout.FloatField("moveSpeed", enemyList[i].moveSpeed),
-                rotationSpeed = EditorGUILayout.FloatField("rotationSpeed", enemyList[i].rotationSpeed),
-                stoppingDistance = EditorGUILayout.FloatField("stoppingDistance", enemyList[i].stoppingDistance),
                 dieGold = EditorGUILayout.IntField("Die Gold", enemyList[i].dieGold),
                 groundType = (GroundType)EditorGUILayout.EnumPopup("Die Gold", enemyList[i].groundType)
             };

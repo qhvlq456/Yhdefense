@@ -7,12 +7,12 @@ public class EnemyAnimation : CharacterAnimation
     // Animation Event에서 호출
     public void OnHitAnimationEndEvent()
     {
-        Debug.LogError("Hit Enemy Animation Ended");
+        // Debug.LogError("Hit Enemy Animation Ended");
         ChangeState(AnimationState.Walk);
     }
     public void OnDeathAnimationEndEvent()
     {
-        Debug.LogError("Hit Enemy Animation Death Ended");
+        // Debug.LogError("Hit Enemy Animation Death Ended");
         enemy.OnDeath();
     }
 }

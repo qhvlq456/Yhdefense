@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4935512829132754000}
   - component: {fileID: 4244075422512444117}
   - component: {fileID: 7038676094796759860}
-  - component: {fileID: 753519337379923225}
   - component: {fileID: 5710436175583635906}
+  - component: {fileID: 3333938964007163024}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,38 +112,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &753519337379923225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578662214258465536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e9f2a2eba78cd488602d5ed11c9075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  move: {fileID: 0}
-  attack: {fileID: 5710436175583635906}
-  buff: {fileID: 0}
-  heroData:
-    index: 0
-    weaponIdx: 0
-    name: 
-    groundType: 0
-    heroType: 0
-    skillIdList: 
-  upgradeData:
-    heroIdx: 0
-    cost: 0
-    targetCount: 0
-    attackSpeed: 0
-    attackDamage: 0
-    attackRadius: 0
-    buffValue: 0
-  lv: 0
 --- !u!114 &5710436175583635906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,11 +128,29 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  heroUpgradeData:
+--- !u!114 &3333938964007163024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578662214258465536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f5a82bc6272f245ba24f5b9a699fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroData:
+    index: 0
+    heroTypeByIdx: 0
+    name: 
+    groundType: 0
+    heroType: 0
+    skillIdList: 
+  upgradeData:
     heroIdx: 0
+    lv: 0
     cost: 0
-    targetCount: 0
-    attackSpeed: 0
-    attackDamage: 0
-    attackRadius: 0
-    buffValue: 0
+    sell: 0
+  lv: 0
+  attack: {fileID: 5710436175583635906}

@@ -12,7 +12,7 @@ public class Buff : MonoBehaviour
     [Header("Buff Options")]
     [SerializeField]
     private BuffData buffData;
-    protected HeroUpgradeData heroUpgradeData;
+    public BuffData BuffData => buffData; // 외부에서 접근 가능하도록
     // 지상 버퍼냐 공중 버퍼냐 둘다냐
     protected GroundType groundType;
 

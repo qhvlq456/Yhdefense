@@ -60,6 +60,7 @@ public struct MapData
 public struct HeroData : IIndexNameData
 {
     public int index;
+    public int heroTypeByIdx;
     public string name;
     public GroundType groundType;
     public HeroType heroType;
@@ -76,11 +77,6 @@ public struct EnemyData : IIndexNameData
     public int index;
     public string name;
     public float maxHealth;
-    // Start MoveData
-    public float moveSpeed;
-    public float rotationSpeed;
-    public float stoppingDistance;
-    // End MoveData
     public int dieGold;
     public GroundType groundType;
 
@@ -109,69 +105,51 @@ public struct SkillData : IIndexNameData
 public struct HeroUpgradeData
 {
     public int heroIdx; // == hero idx 
-    public int weaponIdx; // == weapon idx ;;; attack : weapon index, buff : buff idx, debuff : debuffidx 
+    public int lv;
     public int cost;
     public int sell;
-    // attack data 에 필요?
-    public int targetCount;
-    public float attackSpeed;
-    public float attackDamage;
-    public float attackRadius;
-    // end
-
-    // 아마 여기까지?
-    // buffer/debuffer에 필요한 데이터
-    public float buffValue; // buffer/debuffer에 유용
 }
 
-[Serializable]
-public struct WeaponData : IIndexNameData
-{
-    // weapon idx
-    public int index;
-    public float speed;
-    public string name;
-    public WeapondType weaponType;
-
-    int IIndexNameData.index => index;
-
-    string IIndexNameData.name => name;
-}
 
 [Serializable]
 public struct MoveData
 {
+    public int idx; // enemy idx
     public float moveSpeed;
     public float rotationSpeed;
     public float stoppingDistance; // NavMeshMove에서 사용
-
-    public MoveData(EnemyData _enemyData)
-    {
-        moveSpeed = _enemyData.moveSpeed;
-        rotationSpeed = _enemyData.rotationSpeed;
-        stoppingDistance = _enemyData.stoppingDistance;
-    }
 }
 [Serializable]
 public struct AttackData
 {
-    public AttackData(AttackData _heroData)
-    {
-
-    }
+    public int idx; // heroTypebyIdx : herotype = attacker
+    public int lv; // hero upgrade level
+    public int weaponIdx; // 기본 무기 인덱스
+    public int targetCount;
+    public float speed;
+    public float damage;
+    public float radius;
 }
 [Serializable]
 public struct BuffData
 {
+    public int idx; // heroTypebyIdx  : herotype = buffer
+    public int lv; // hero upgrade level
+    public int weaponIdx; // 기본 무기 인덱스
     public BuffType buffType;
     public float range;
     public float amount;
-    public float duration;
-    public float startTime; // 적용 시각
+    public float duration;    // 버프 지속 시간 (예: 10초)
+    public float interval;    // 버프 재적용 대기 시간(쿨타임, 예: 5초)
+    public float startTime;   // 현재 버프가 적용된 시각
+    public float nextApplyTime; // 다음 버프 적용 가능 시각
 }
 [Serializable]
 public struct DebuffData
 {
+    public int idx; // hero weapon idx : herotype = deBuffer
+    public int lv; // hero upgrade level
+    public int weaponIdx; // 기본 무기 인덱스
     public BuffType debuffType;
     public float range;
     public float amount;
@@ -187,4 +165,16 @@ public struct AddressableData
     public string key;             // Addressables 키값
     public string groupName;       // 선택 사항: 그룹 정보
     public string label;           // 선택 사항: 특정 label 구분
+}
+[Serializable]
+public struct WeaponData : IIndexNameData
+{
+    public int index;
+    public float speed;
+    public string name;
+    public WeapondType weaponType;
+
+    int IIndexNameData.index => index;
+
+    string IIndexNameData.name => name;
 }

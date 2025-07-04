@@ -34,6 +34,7 @@ public class CharacterInfoUI : BaseUI
     private void UpGradeBtnClick()
     {
         hero.UpgradeHero();
+        Debug.LogError("Upgrade Clicked!");
         // 후에 연출 ㄱㄱ
         DeactivateUI();
     }

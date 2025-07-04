@@ -1,101 +1,110 @@
 [
   {
     "heroIdx": 0,
-    "weaponIdx" : 0,
+    "lv": 1,
     "cost": 100,
-    "sell" : 50,
-    "targetCount" : 1,
-    "attackSpeed": 1.0,
-    "attackDamage": 10.0,
-    "attackRadius": 3.0,
-    "buffValue": 0.0
+    "sell": 50
   },
   {
     "heroIdx": 0,
-    "weaponIdx" : 0,
-    "cost": 200,
-    "sell" : 100,
-    "targetCount" : 1,
-    "attackSpeed": 1.5,
-    "attackDamage": 15.0,
-    "attackRadius": 3.5,
-    "buffValue": 0.0
-  },
-  {
-    "heroIdx": 0,
-    "weaponIdx" : 0,
-    "cost": 300,
-    "sell" : 150,
-    "targetCount" : 1,
-    "attackSpeed": 2.0,
-    "attackDamage": 20.0,
-    "attackRadius": 4.0,
-    "buffValue": 0.0
-  },
-  {
-    "heroIdx": 1,
-    "weaponIdx" : 0,
+    "lv": 2,
     "cost": 150,
-    "sell" : 75,
-    "targetCount" : 2,
-    "attackSpeed": 2.0,
-    "attackDamage": 20.0,
-    "attackRadius": 3.5,
-    "buffValue": 0.0
+    "sell": 75
   },
   {
-    "heroIdx": 1,
-    "weaponIdx" : 0,
+    "heroIdx": 0,
+    "lv": 3,
     "cost": 200,
-    "sell" : 100,
-    "targetCount" : 2,
-    "attackSpeed": 2.5,
-    "attackDamage": 30.0,
-    "attackRadius": 4.0,
-    "buffValue": 0.0
+    "sell": 100
   },
   {
     "heroIdx": 1,
-    "weaponIdx" : 0,
+    "lv": 1,
+    "cost": 150,
+    "sell": 75
+  },
+  {
+    "heroIdx": 1,
+    "lv": 2,
+    "cost": 200,
+    "sell": 100
+  },
+  {
+    "heroIdx": 1,
+    "lv": 3,
     "cost": 300,
-    "sell" : 150,
-    "targetCount" : 2,
-    "attackSpeed": 3.0,
-    "attackDamage": 40.0,
-    "attackRadius": 5.0,
-    "buffValue": 0.0
+    "sell": 150
   },
   {
     "heroIdx": 2,
-    "weaponIdx" : 0,
+    "lv": 1,
     "cost": 300,
-    "sell" : 150,
-    "targetCount" : 3,
-    "attackSpeed": 4.0,
-    "attackDamage": 30.0,
-    "attackRadius": 4.0,
-    "buffValue": 0.0
+    "sell": 150
   },
   {
     "heroIdx": 2,
-    "weaponIdx" : 0,
+    "lv": 2,
     "cost": 400,
-    "sell" : 200,
-    "targetCount" : 3,
-    "attackSpeed": 5.0,
-    "attackDamage": 45.0,
-    "attackRadius": 5.0,
-    "buffValue": 0.0
+    "sell": 200
   },
   {
     "heroIdx": 2,
-    "weaponIdx" : 0,
+    "lv": 3,
     "cost": 500,
-    "sell" : 250,
-    "targetCount" : 3,
-    "attackSpeed": 6.0,
-    "attackDamage": 50.0,
-    "attackRadius": 6.0,
-    "buffValue": 0.0
+    "sell": 250
+  },
+  {
+    "heroIdx": 3,
+    "lv": 1,
+    "cost": 100,
+    "sell": 50
+  },
+  {
+    "heroIdx": 3,
+    "lv": 2,
+    "cost": 150,
+    "sell": 75
+  },
+  {
+    "heroIdx": 3,
+    "lv": 3,
+    "cost": 200,
+    "sell": 100
+  },
+  {
+    "heroIdx": 4,
+    "lv": 1,
+    "cost": 200,
+    "sell": 100
+  },
+  {
+    "heroIdx": 4,
+    "lv": 2,
+    "cost": 250,
+    "sell": 175
+  },
+  {
+    "heroIdx": 4,
+    "lv": 3,
+    "cost": 300,
+    "sell": 150
+  },
+  {
+    "heroIdx": 5,
+    "lv": 1,
+    "cost": 200,
+    "sell": 100
+  },
+  {
+    "heroIdx": 5,
+    "lv": 2,
+    "cost": 300,
+    "sell": 150
+  },
+  {
+    "heroIdx": 5,
+    "lv": 3,
+    "cost": 400,
+    "sell": 200
   }
 ]

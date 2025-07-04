@@ -29,7 +29,7 @@ public class Enemy : Character, IHittable
         isDeath = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
         
-        move.Initialize(new MoveData(enemyData));
+        move.Initialize(DataManager.Instance.GetMoveData(_idx));
         health.ResetHealth(enemyData.maxHealth);
 
         enemyAnimation.ChangeState(CharacterAnimation.AnimationState.Walk);

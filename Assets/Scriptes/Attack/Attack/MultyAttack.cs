@@ -20,7 +20,7 @@ public class MultyAttack : Attack
             // 여러 타겟을 선택
             targetList = targets
                 .OrderBy(hittable => IsTargetInRange(hittable))
-                .Take(heroUpgradeData.targetCount)
+                .Take(attackData.targetCount)
                 .ToList();
 
             Shoot(targetList, _attackDamage);
@@ -33,12 +33,10 @@ public class MultyAttack : Attack
 
     private void Shoot(List<IHittable> _targets, float _attackDamage)
     {
-        WeaponData weaponData = DataManager.Instance.GetHeroIdxToWeaponData(heroUpgradeData.weaponIdx);
-
         for (int i = 0; i < _targets.Count; i++)
         {
             IHittable target = _targets[i];
-
+            WeaponData weaponData = DataManager.Instance.GetWeaponData(attackData.weaponIdx);
             Bullet bullet = ObjectPoolManager.Instance.Create(PoolingType.weapon, weaponData.index).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
 

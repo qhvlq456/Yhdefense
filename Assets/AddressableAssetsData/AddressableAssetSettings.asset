@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 423597cf1c904d84b8c0084af14e80ec
   m_currentHash:
     serializedVersion: 2
-    Hash: 987460ca55f588d6779ac7d3be8d7ed9
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_CatalogRequestsTimeout: 0
@@ -59,6 +59,8 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
+  - {fileID: 11400000, guid: 11d5f59fd7f307649bf01eda3093f368, type: 2}
+  - {fileID: 11400000, guid: cd23ba67956a1394b820241a27e5f5f9, type: 2}
   - {fileID: 11400000, guid: f8cc481d8e89c1a46a5e00b426a1978c, type: 2}
   - {fileID: 11400000, guid: 9c7ba7d31ecdd2248bd102038f8a255e, type: 2}
   m_BuildSettings:
@@ -101,6 +103,9 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Material
+    - Hero
+    - Enemy
+    - Land
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 66ed574e694bf624f935aa18c2dd85c2, type: 2}

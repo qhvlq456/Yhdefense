@@ -1,0 +1,110 @@
+[
+  {
+    "idx": 0,
+    "lv": 1,
+    "weaponIdx": 0,
+    "buffType": 0,
+    "range": 1.0,
+    "amount": 1.0,
+    "duration": 4.0,
+    "interval": 2.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 0,
+    "lv": 2,
+    "weaponIdx": 0,
+    "buffType": 0,
+    "range": 2.0,
+    "amount": 2.0,
+    "duration": 6.0,
+    "interval": 3.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 0,
+    "lv": 3,
+    "weaponIdx": 0,
+    "buffType": 0,
+    "range": 3.0,
+    "amount": 3.0,
+    "duration": 8.0,
+    "interval": 4.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 1,
+    "lv": 1,
+    "weaponIdx": 0,
+    "buffType": 1,
+    "range": 1.0,
+    "amount": 1.0,
+    "duration": 2.0,
+    "interval": 4.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 1,
+    "lv": 2,
+    "weaponIdx": 0,
+    "buffType": 1,
+    "range": 2.0,
+    "amount": 2.0,
+    "duration": 4.0,
+    "interval": 8.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 1,
+    "lv": 3,
+    "weaponIdx": 0,
+    "buffType": 1,
+    "range": 3.0,
+    "amount": 3.0,
+    "duration": 6.0,
+    "interval": 12.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 2,
+    "lv": 1,
+    "weaponIdx": 0,
+    "buffType": 2,
+    "range": 3.0,
+    "amount": 1.0,
+    "duration": 2.0,
+    "interval": 4.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 2,
+    "lv": 2,
+    "weaponIdx": 0,
+    "buffType": 2,
+    "range": 4.0,
+    "amount": 2.0,
+    "duration": 4.0,
+    "interval": 8.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  },
+  {
+    "idx": 2,
+    "lv": 3,
+    "weaponIdx": 0,
+    "buffType": 2,
+    "range": 5.0,
+    "amount": 3.0,
+    "duration": 12.0,
+    "interval": 15.0,
+    "startTime": 0.0,
+    "nextApplyTime": 0.0
+  }
+]

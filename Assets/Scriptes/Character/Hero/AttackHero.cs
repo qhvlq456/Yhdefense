@@ -13,7 +13,8 @@ public class AttackHero : Hero, IBuffable
     public override void Set(int _idx)
     {
         base.Set(_idx);
-        attack.Set(upgradeData, heroData.groundType);
+        AttackData attackData = DataManager.Instance.GetAttackData(heroData.index, lv);
+        attack.Set(attackData, heroData.groundType);
         InitStats();
     }
 
@@ -25,7 +26,9 @@ public class AttackHero : Hero, IBuffable
 
     protected override void OnAfterUpgrade()
     {
-        attack.Set(upgradeData, heroData.groundType);
+        AttackData attackData = DataManager.Instance.GetAttackData(heroData.index, lv);
+        attack.Set(attackData, heroData.groundType);
+        Debug.LogError($"upgrade complite after lv : {lv}");
         RecalculateStats();
     }
 
@@ -36,6 +39,7 @@ public class AttackHero : Hero, IBuffable
         if (attack != null)
         {
             attack.OnUpdateAttack();
+            // 후에 볼 필요 있음!
             if (attack.IsAttack())
             {
                 attack.Execute(currentAttackDamage, currentAttackSpeed);
@@ -45,31 +49,47 @@ public class AttackHero : Hero, IBuffable
 
     private void InitStats()
     {
-        currentAttackDamage = upgradeData.attackDamage;
-        currentAttackSpeed = upgradeData.attackSpeed;
+        currentAttackDamage = attack.AttackData.damage;
+        currentAttackSpeed = attack.AttackData.speed;
     }
 
     private void UpdateBuffs()
     {
-        bool recalc = false;
         float now = Time.time;
         for (int i = activeBuffs.Count - 1; i >= 0; i--)
         {
             var buff = activeBuffs[i];
-            if (buff.duration > 0 && now - buff.startTime >= buff.duration)
+            // 버프가 활성 상태
+            if (buff.duration > 0 && now - buff.startTime < buff.duration)
             {
+                // 아직 지속 중
+                continue;
+            }
+            // 버프가 만료됨, interval(쿨타임) 체크
+            if (buff.interval > 0)
+            {
+                if (now >= buff.startTime + buff.duration + buff.interval)
+                {
+                    // 버프 재적용
+                    buff.startTime = now;
+                    activeBuffs[i] = buff;
+                    RecalculateStats();
+                }
+                // 아직 대기 중이면 아무것도 안 함
+            }
+            else
+            {
+                // 반복 버프가 아니면 제거
                 activeBuffs.RemoveAt(i);
-                recalc = true;
+                RecalculateStats();
             }
         }
-        if (recalc)
-            RecalculateStats();
     }
 
-    public void ApplyBuff(BuffData buff)
+    public void ApplyBuff(BuffData _buff)
     {
-        buff.startTime = Time.time;
-        activeBuffs.Add(buff);
+        _buff.startTime = Time.time;
+        activeBuffs.Add(_buff);
         RecalculateStats();
     }
 

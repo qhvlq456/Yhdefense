@@ -62,15 +62,98 @@ public class DataManager : Singleton<DataManager>
     }
     #endregion End UpgradeData
 
+    #region Start Hero Attack Data
+    [Header("Start Attack Data")]
+    // key : hero weapon idx , value : AttackData List sort by lv
+    [SerializeField]
+    private Dictionary<int, List<AttackData>> attackDataListDic = new Dictionary<int, List<AttackData>>();
+    public AttackData GetAttackData(int _weaponIdx, int _lv)
+    {
+        if (attackDataListDic.TryGetValue(_weaponIdx, out List<AttackData> attackDataList))
+        {
+            int safeLevel = Mathf.Clamp(_lv - 1, 0, attackDataList.Count - 1);
+            return attackDataList[safeLevel];
+        }
+        else
+        {
+            Debug.LogError($"Attack data with weapon index {_weaponIdx} not found!");
+            return default;
+        }
+    }
+    [Header("End Attack Data")]
+    [Space()]
+    #endregion End Hero Attack Data
+
+    #region Start Hero Buff Data
+    [Header("Start Buff Data")]
+    [SerializeField]
+    private Dictionary<int, List<BuffData>> buffDataListDic = new Dictionary<int, List<BuffData>>();
+    public BuffData GetBuffData(int _weaponIdx, int _lv)
+    {
+        if (buffDataListDic.TryGetValue(_weaponIdx, out List<BuffData> buffDataList))
+        {
+            int safeLevel = Mathf.Clamp(_lv - 1, 0, buffDataList.Count - 1);
+            return buffDataList[safeLevel];
+        }
+        else
+        {
+            Debug.LogError($"Buff data with weapon index {_weaponIdx} not found!");
+            return default;
+        }
+    }
+    [Header("End Buff Data")]
+    [Space()]
+    #endregion End Hero Buff Data
+    #region Start Hero Debuff Data
+    [Header("Start Debuff Data")]
+    [SerializeField]
+    private Dictionary<int, List<DebuffData>> debuffDataListDic = new Dictionary<int, List<DebuffData>>();
+    public DebuffData GetDebuffData(int _weaponIdx, int _lv)
+    {
+        if (debuffDataListDic.TryGetValue(_weaponIdx, out List<DebuffData> debuffDataList))
+        {
+            int safeLevel = Mathf.Clamp(_lv - 1, 0, debuffDataList.Count - 1);
+            return debuffDataList[safeLevel];
+        }
+        else
+        {
+            Debug.LogError($"Debuff data with weapon index {_weaponIdx} not found!");
+            return default;
+        }
+    }
+    [Header("End Debuff Data")]
+    [Space()]
+    #endregion End Hero Debuff Data
+
+    #region Start Move Data
+    [Header("Start Move Data")]
+    // key : enemy idx , value : MoveData
+    [SerializeField]
+    private Dictionary<int, MoveData> moveDataDic = new Dictionary<int, MoveData>();
+    public MoveData GetMoveData(int _idx)
+    {
+        if (moveDataDic.TryGetValue(_idx, out MoveData moveData))
+        {
+            return moveData;
+        }
+        else
+        {
+            Debug.LogError($"Move data with index {_idx} not found!");
+            return default;
+        }
+    }
+    [Header("End Move Data")]
+    [Space()]
+    #endregion End Move Data
+
     [Header("Start Weapon")]
     #region Start Weapon
     private List<WeaponData> weaponDataList = new List<WeaponData>();
-    public WeaponData GetHeroIdxToWeaponData(int _idx) => weaponDataList.Find(x => x.index == _idx);
+    // hero weapon idx 로 검색
+    public WeaponData GetWeaponData(int _idx) => weaponDataList.Find(x => x.index == _idx);
 
 
     #endregion End Weapon
-
-
     public void LoadGameData()
     {
         heroDataList = NewtonSoftJson.LoadJsonArray<HeroData>(Application.streamingAssetsPath, "HeroData");
@@ -85,7 +168,9 @@ public class DataManager : Singleton<DataManager>
         foreach (var data in upgradeDataList)
         {
             if (!heroUpgradeDataDic.ContainsKey(data.heroIdx))
+            {
                 heroUpgradeDataDic[data.heroIdx] = new List<HeroUpgradeData>();
+            }
 
             heroUpgradeDataDic[data.heroIdx].Add(data);
         }
@@ -100,6 +185,82 @@ public class DataManager : Singleton<DataManager>
             data.stageData = maps[i];
             mapDataList.Add(data);
         }
+
+        // MoveData
+        List<MoveData> moveDataList = NewtonSoftJson.LoadJsonArray<MoveData>(Application.streamingAssetsPath, "MoveData");
+        moveDataDic.Clear();
+        foreach (var data in moveDataList)
+        {
+            moveDataDic[data.idx] = data;
+        }
+
+        // AttackData (key: herotypebyidx, value: List<AttackData> (lv-1 = index))
+        Dictionary<int, List<AttackData>> attackDataListByIdx = new Dictionary<int, List<AttackData>>();
+        List<AttackData> attackDataList = NewtonSoftJson.LoadJsonArray<AttackData>(Application.streamingAssetsPath, "AttackData");
+
+        // herotypebyidx별로 그룹화 후, 레벨 순서대로 정렬
+        foreach (var data in attackDataList)
+        {
+            if (!attackDataListByIdx.ContainsKey(data.idx))
+            {
+                attackDataListByIdx[data.idx] = new List<AttackData>();
+            }
+
+            // 리스트의 (lv-1) 위치에 값이 들어가도록 보장
+            int insertIdx = data.lv - 1;
+            var list = attackDataListByIdx[data.idx];
+            // 리스트 크기 보장
+            while (list.Count <= insertIdx)
+            {
+                list.Add(default);
+            }
+            list[insertIdx] = data;
+        }
+        attackDataListDic = attackDataListByIdx;
+
+        Debug.LogError(DataLogger.LogDictionary(attackDataListDic));
+
+        // BuffData (idx = HeroData.heroTypebyIdx 기준)
+        Dictionary<int, List<BuffData>> buffDataListByIdx = new Dictionary<int, List<BuffData>>();
+        List<BuffData> buffDataList = NewtonSoftJson.LoadJsonArray<BuffData>(Application.streamingAssetsPath, "BuffData");
+        foreach (var data in buffDataList)
+        {
+            if (!buffDataListByIdx.ContainsKey(data.idx))
+                buffDataListByIdx[data.idx] = new List<BuffData>();
+
+            int insertIdx = data.lv - 1;
+            var list = buffDataListByIdx[data.idx];
+            // 리스트 크기 보장
+            while (list.Count <= insertIdx)
+                list.Add(default);
+
+            list[insertIdx] = data;
+        }
+        buffDataListDic = buffDataListByIdx;
+        Debug.LogError(DataLogger.LogDictionary(buffDataListDic));
+
+        // DebuffData (idx = HeroData.heroTypebyIdx 기준)
+        Dictionary<int, List<DebuffData>> debuffDataListByIdx = new Dictionary<int, List<DebuffData>>();
+        List<DebuffData> debuffDataList = NewtonSoftJson.LoadJsonArray<DebuffData>(Application.streamingAssetsPath, "DebuffData");
+        foreach (var data in debuffDataList)
+        {
+            if (!debuffDataListByIdx.ContainsKey(data.idx))
+            {
+                debuffDataListByIdx[data.idx] = new List<DebuffData>();
+            }
+
+            int insertIdx = data.lv - 1;
+            var list = debuffDataListByIdx[data.idx];
+            // 리스트 크기 보장
+            while (list.Count <= insertIdx)
+            {
+                list.Add(default);
+            }
+
+            list[insertIdx] = data;
+        }
+        // 필요하다면 멤버 변수로 debuffDataListDic 선언 후 할당
+        // debuffDataListDic = debuffDataListByIdx;
     }
     // 일단 보관 나중에 사용할 여지가 있음
     private string GetNameByIndex<T>(List<T> _list, int _idx) where T : IIndexNameData

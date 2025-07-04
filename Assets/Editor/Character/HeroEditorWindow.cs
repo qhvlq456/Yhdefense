@@ -39,6 +39,7 @@ public class HeroEditorWindow : EditorWindow
             heroList[i] = new HeroData
             {
                 index = EditorGUILayout.IntField("Index", heroList[i].index),
+                heroTypeByIdx = EditorGUILayout.IntField("heroTypebyIdx", heroList[i].heroTypeByIdx),
                 name = EditorGUILayout.TextField("Name", heroList[i].name),
                 groundType = (GroundType)EditorGUILayout.EnumPopup("Ground Type", heroList[i].groundType),
                 heroType = (HeroType)EditorGUILayout.EnumPopup("Hero Type", heroList[i].heroType),

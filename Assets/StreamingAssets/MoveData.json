@@ -1,0 +1,26 @@
+[
+  {
+    "idx": 0,
+    "moveSpeed": 2.0,
+    "rotationSpeed": 1.0,
+    "stoppingDistance": 1.0
+  },
+  {
+    "idx": 1,
+    "moveSpeed": 3.0,
+    "rotationSpeed": 2.0,
+    "stoppingDistance": 2.0
+  },
+  {
+    "idx": 2,
+    "moveSpeed": 4.0,
+    "rotationSpeed": 3.0,
+    "stoppingDistance": 3.0
+  },
+  {
+    "idx": 3,
+    "moveSpeed": 5.0,
+    "rotationSpeed": 4.0,
+    "stoppingDistance": 4.0
+  }
+]

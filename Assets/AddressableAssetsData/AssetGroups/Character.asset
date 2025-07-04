@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  m_GroupName: Character
+  m_GUID: 3afbda6e0141e744986e7d794ee6110b
+  m_SerializeEntries:
+  - m_GUID: 46e1dfb92f23abf4dbcfeaf82fa9931d
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81a90affbdcf590428a4e8ebad2939ec
+    m_Address: Hero1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fbe98986e925324fa2e4b5bedf701ca
+    m_Address: BuffHero1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 903c6a13d76e3674d949e9aac4c89d30
+    m_Address: Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9199a5a66629b9e4998fc501b96d40fc
+    m_Address: BuffHero
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a39a5057def1e304982a3121253c4428
+    m_Address: BuffHero2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc13a61870c767c479dc92b5169338a0
+    m_Address: Hero2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Hero
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9b67a890c7deed64198c824db4cf01dc, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f8e944369dd24c64d9f25c24dde7e6b3, type: 2}
+    - {fileID: 11400000, guid: c423a3c084ca3a94b8c8cccc3e56650b, type: 2}

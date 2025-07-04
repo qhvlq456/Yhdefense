@@ -47,10 +47,6 @@ public class HeroUpgradeEditorWindow : EditorWindow
                 heroIdx = currentHeroIdx,
                 cost = 100,
                 sell = 50,
-                attackSpeed = 1f,
-                attackDamage = 10f,
-                attackRadius = 3f,
-                buffValue = 0f
             });
         }
 
@@ -63,14 +59,10 @@ public class HeroUpgradeEditorWindow : EditorWindow
             GUILayout.Label($"Level {i + 1}", EditorStyles.boldLabel);
 
             var data = list[i];
-            data.weaponIdx = EditorGUILayout.IntField("WeaponIdx", data.weaponIdx);
+            data.heroIdx = EditorGUILayout.IntField("hero Index", data.heroIdx);
+            data.lv = i + 1; // 레벨은 리스트 인덱스 + 1로 설정
             data.cost = EditorGUILayout.IntField("Cost", data.cost);
             data.sell = EditorGUILayout.IntField("Sell", data.sell);
-            data.targetCount = EditorGUILayout.IntField("TargetCount", data.targetCount);
-            data.attackSpeed = EditorGUILayout.FloatField("Attack Speed", data.attackSpeed);
-            data.attackDamage = EditorGUILayout.FloatField("Attack Damage", data.attackDamage);
-            data.attackRadius = EditorGUILayout.FloatField("Attack Radius", data.attackRadius);
-            data.buffValue = EditorGUILayout.FloatField("Buff Value", data.buffValue);
 
             list[i] = data;
 

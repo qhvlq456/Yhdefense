@@ -54,6 +54,7 @@ public abstract class Hero : Character
     {
         if (Utility.IsHeroUpgrade(heroData, lv + 1))
         {
+            Debug.LogError($"upgrade complite before lv : {lv}");
             Utility.UpgradeHero(heroData, lv + 1);
             lv++;
             upgradeData = DataManager.Instance.GetHeroUpgradeData(heroData.index, lv);
