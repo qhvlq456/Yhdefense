@@ -10,8 +10,8 @@ public class Attack : MonoBehaviour
     private LayerMask obstacleMask;     // 시야를 가리는 오브젝트용
 
     protected GroundType groundType;
+
     [SerializeField]
-    // 후에 추가해서 넣을것임
     protected AttackData attackData;
     public AttackData AttackData => attackData;
 

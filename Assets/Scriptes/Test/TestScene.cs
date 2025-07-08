@@ -12,7 +12,9 @@ public class TestScene : MonoBehaviour
     private Vector2 textSize = new Vector2(200, 50);
     GUIStyle btnGUIStyle;
     GUIStyle textFieldStyle;
-    
+
+    [SerializeField]
+    private string testEnemyIdx = string.Empty;
     // stage
     private string stageIdxStr = string.Empty;
     private string subStageIdxStr = string.Empty;
@@ -36,7 +38,7 @@ public class TestScene : MonoBehaviour
         {
             Debug.LogError("멥 로드");
             currentStageData = DataManager.Instance.GetStageData(int.Parse(stageIdxStr));
-            MapManager.Instance.SetMap(currentStageData);
+            //MapManager.Instance.SetMapAsync(currentStageData);
         }
 
         if (GUI.Button(new Rect(position.x, 140, btnSize.x, btnSize.y), "멥 회수", btnGUIStyle))
@@ -56,10 +58,11 @@ public class TestScene : MonoBehaviour
         {
             GameManager.Instance.EndGame();
         }
-        
+
+        testEnemyIdx = GUI.TextField(new Rect(position.x + textSize.x + 30, 350, textSize.x, textSize.y), testEnemyIdx, textFieldStyle);
         if (GUI.Button(new Rect(position.x, 350, btnSize.x, btnSize.y), "테스트 적 소환", btnGUIStyle))
         {
-            CharacterManager.Instance.SpawnEnemy(0, currentStageData.startPoint, currentStageData.endPoint);
+            CharacterManager.Instance.SpawnEnemy(int.Parse(testEnemyIdx), currentStageData.startPoint, currentStageData.endPoint);
         }
 
         addGoldStr = GUI.TextField(new Rect(position.x + textSize.x + 30, 420, textSize.x, textSize.y), addGoldStr, textFieldStyle);

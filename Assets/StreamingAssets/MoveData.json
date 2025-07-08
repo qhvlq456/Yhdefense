@@ -1,26 +1,26 @@
 [
   {
     "idx": 0,
-    "moveSpeed": 2.0,
+    "moveSpeed": 1.25,
     "rotationSpeed": 1.0,
-    "stoppingDistance": 1.0
+    "stoppingDistance": 0.15
   },
   {
     "idx": 1,
-    "moveSpeed": 3.0,
+    "moveSpeed": 1.5,
     "rotationSpeed": 2.0,
-    "stoppingDistance": 2.0
+    "stoppingDistance": 0.15
   },
   {
     "idx": 2,
-    "moveSpeed": 4.0,
+    "moveSpeed": 2,
     "rotationSpeed": 3.0,
-    "stoppingDistance": 3.0
+    "stoppingDistance": 0.15
   },
   {
     "idx": 3,
-    "moveSpeed": 5.0,
+    "moveSpeed": 2.5,
     "rotationSpeed": 4.0,
-    "stoppingDistance": 4.0
+    "stoppingDistance": 0.15
   }
 ]

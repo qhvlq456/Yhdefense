@@ -4,12 +4,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshMove : Move
 {
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] 
+    private NavMeshAgent agent;
 
     [Header("Agent Settings")]
-    [SerializeField] private float angularSpeed = 1000;
-    [SerializeField] private float acceleration = 24f;
-    [SerializeField] private int avoidancePriority = 50;
+    [SerializeField] 
+    private float angularSpeed = 1000;
+    [SerializeField] 
+    private float acceleration = 24f;
+    [SerializeField] 
+    private int avoidancePriority = 50;
 
     private void Awake()
     {
@@ -17,20 +21,22 @@ public class NavMeshMove : Move
     }
 
     // enemydata가 아닌 movedata로 따로 빼놓을 것!
-    private void SetupAgent(MoveData _moveData)
+    private void SetupAgent()
     {
-        agent.speed = _moveData.moveSpeed;
-        agent.angularSpeed = _moveData.rotationSpeed;
+        agent.speed = moveData.moveSpeed;
+        agent.angularSpeed = moveData.rotationSpeed;
         agent.acceleration = acceleration;
         agent.autoRepath = true;
         agent.avoidancePriority = avoidancePriority;
         agent.updatePosition = true;
         agent.updateRotation = false;
-        agent.stoppingDistance = _moveData.stoppingDistance;
+        agent.stoppingDistance = moveData.stoppingDistance;
     }
 
     public override void Initialize(MoveData _moveData)
     {
+        moveData = _moveData;
+
         if (!agent.enabled)
         {
             agent.enabled = true;
@@ -44,7 +50,7 @@ public class NavMeshMove : Move
 
         agent.isStopped = false;
 
-        SetupAgent(_moveData);
+        SetupAgent();
     }
 
     private void LateUpdate()
@@ -95,7 +101,7 @@ public class NavMeshMove : Move
         }
     }
 
-    public bool IsArrived(float threshold = 0.2f)
+    public override bool IsArrived(float threshold = 0.2f)
     {
         // 목적지 도착 체크 유틸
         return !agent.pathPending &&

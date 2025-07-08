@@ -1,6 +1,7 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private StageData currentStageData;
+    public StageData CurrentStageData => currentStageData;
     [SerializeField]
     private int currentSubStageIdx;
     [SerializeField]
@@ -47,18 +49,16 @@ public class GameManager : Singleton<GameManager>
         gold = 0;
         currentStageData = _stageData;
         // 후에 변경하기
-        currentSubStageIdx = 0;
+        currentSubStageIdx = 2;
         life = currentStageData.life;
 
-        MapManager.Instance.SetMap(_stageData);
-        SubStageData subStageData = DataManager.Instance.GetIdxToSubStageData(_stageData.subStageIdxList[currentSubStageIdx]);
         string log = "";
         for(int i = 0; i < _stageData.subStageIdxList.Count; i++)
         {
             log += $"{i} : {_stageData.subStageIdxList[i]}, ";
         }
         Debug.LogError($"{log}");
-        StartEnemySpawn(subStageData);
+        StartCoroutine(CoGameFlow());
     }
     public void EndGame()
     {
@@ -73,7 +73,18 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator CoGameFlow()
     {
-        yield return null;
+        // 1. NavMesh 빌드 완료까지 기다리는 흐름
+        yield return StartCoroutine(MapManager.Instance.SetMapAsync(currentStageData));
+
+        // 2. SubStageData 가져오기
+        SubStageData subStageData = DataManager.Instance.GetIdxToSubStageData(currentStageData.subStageIdxList[currentSubStageIdx]);
+
+        // 3. 로그
+        string log = string.Join(", ", currentStageData.subStageIdxList.Select((val, idx) => $"{idx}: {val}"));
+        Debug.LogError($"[GameManager] SubStageIdxList: {log}");
+
+        // 4. 적 스폰 시작
+        StartEnemySpawn(subStageData);
     }
 
     public void StartEnemySpawn(SubStageData _subStageData)

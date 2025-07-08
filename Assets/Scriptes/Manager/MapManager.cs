@@ -6,112 +6,141 @@ using UnityEngine;
 
 public class MapManager : Singleton<MapManager>
 {
-    [SerializeField]
-    private Transform root;
+    [SerializeField] private Transform root;
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
-    [SerializeField]
-    private NavMeshSurface surfaces = null;
-
-    private List<Land> instanceMapObjectList = new List<Land>();
     [Header("Map Color")]
-    [SerializeField]
-    private Color setHeroPossibleColor = Color.green;
-    [SerializeField]
-    private Color setHeroImpossibleColor = Color.red;
-    [SerializeField]
-    private Color setHeroOriginColor = Color.white;
-    public void SetMap(StageData _stageData)
+    [SerializeField] private Color setHeroPossibleColor = Color.green;
+    [SerializeField] private Color setHeroImpossibleColor = Color.red;
+    [SerializeField] private Color setHeroOriginColor = Color.white;
+
+    [SerializeField] private Color setEnemyOriginColor = Color.black;
+    [SerializeField] private Color setEnemyStartPointColor = Color.blue;
+    [SerializeField] private Color setEnemyEndPointColor = Color.yellow;
+
+    private List<Land> mapTiles = new();
+
+    private enum EnemyLandType { Normal, Start, End }
+
+    public IEnumerator SetMapAsync(StageData _stageData)
     {
-        StageData stageData = DataManager.Instance.GetStageData(_stageData.index);
+        ClearMap();
 
-        string log = "";
+        float maxX = 0f, maxZ = 0f;
+        string debugLog = string.Empty;
 
-        List<LandData> list = stageData.landDataList;
-        float maxX = 0, maxZ = 0;
-        for (int i = 0; i < list.Count; i++)
+        foreach (var landData in _stageData.landDataList)
         {
-            // 생성하는 부분이 사라졌네??
-            Land land = null;
-            LandData landData = list[i];
-            switch(landData.landType)
-            {
-                case LandType.hero:
-                    land =  ObjectPoolManager.Instance.Create(PoolingType.heroLand, landData.index).GetComponent<HeroLand>();
-                    break;
-                case LandType.enemy:
-                    land = ObjectPoolManager.Instance.Create(PoolingType.enemyLand, landData.index).GetComponent<EnemyLand>();
-                    break;
-            }
+            Land land = CreateLand(landData);
 
-            land.Create(landData);
+            // Set parent and position
             land.transform.SetParent(root);
             land.transform.localPosition = new Vector3(landData.x, 0, landData.z);
-            instanceMapObjectList.Add(land);
+
+            // Track max bounds
             maxX = Mathf.Max(maxX, landData.x);
             maxZ = Mathf.Max(maxZ, landData.z);
-            log += $"landType = {landData.landType}, x = {landData.x} , z = {landData.z}, \n";
+
+            mapTiles.Add(land);
+
+            debugLog += $"landType = {landData.landType}, x = {landData.x}, z = {landData.z}\n";
         }
 
-        surfaces.BuildNavMesh();
-        Vector3 cameraPos = GameManager.Instance.MainCamera.transform.position;
-        cameraPos.x = maxX / 2;
-        cameraPos.z = maxZ / 2 * -1;
-        GameManager.Instance.MainCamera.transform.position = cameraPos;
-        // 후에 navmesh굽는 작업 필요
-        Debug.LogError(log);
+        // 모든 오브젝트가 자신의 위치를 완전히 잡을 수 있도록 한 프레임 대기
+        yield return new WaitForSeconds(0.3f);
+        navMeshSurface.BuildNavMesh();
+
+        yield return new WaitForSeconds(0.2f);
+        CenterCamera(maxX, maxZ);
+
+        Debug.LogError(debugLog);
     }
+    
+    private Land CreateLand(LandData landData)
+    {
+        Land land = null;
+        Vector3 pos = new Vector3(landData.x, 0, landData.z);
+
+        switch (landData.landType)
+        {
+            case LandType.hero:
+                land = ObjectPoolManager.Instance.Create(PoolingType.heroLand, landData.index).GetComponent<HeroLand>();
+                break;
+
+            case LandType.enemy:
+                land = ObjectPoolManager.Instance.Create(PoolingType.enemyLand, landData.index).GetComponent<EnemyLand>();
+                SetColorEnemyMap(land, GetEnemyLandType(pos));
+                break;
+        }
+
+        land.Create(landData);
+        return land;
+    }
+
+    private EnemyLandType GetEnemyLandType(Vector3 _pos)
+    {
+        var stageData = GameManager.Instance.CurrentStageData;
+
+        if (Vector3.Equals(stageData.startPoint, _pos)) return EnemyLandType.Start;
+        if (Vector3.Equals(stageData.endPoint, _pos)) return EnemyLandType.End;
+
+        return EnemyLandType.Normal;
+    }
+
+    private void CenterCamera(float maxX, float maxZ)
+    {
+        Vector3 camPos = GameManager.Instance.MainCamera.transform.position;
+        camPos.x = maxX / 2;
+        camPos.z = -maxZ / 2;
+        GameManager.Instance.MainCamera.transform.position = camPos;
+    }
+
     public void ClearMap()
     {
-        foreach(var landData in instanceMapObjectList)
+        foreach (var land in mapTiles)
         {
-            landData.GetComponent<Land>().Retrieve();
+            land.Retrieve();
         }
 
-        surfaces.RemoveData();
+        mapTiles.Clear();
+        navMeshSurface.RemoveData();
     }
+
+    private void SetColorEnemyMap(Land land, EnemyLandType type)
+    {
+        Color color = type switch
+        {
+            EnemyLandType.Start => setEnemyStartPointColor,
+            EnemyLandType.End => setEnemyEndPointColor,
+            _ => setEnemyOriginColor
+        };
+
+        land.SetColor(color);
+    }
+
     public void SetColorHeroMap()
     {
-        var list = GetLandList<HeroLand>();
-
-        for(int i = 0; i < list.Count; i++)
+        foreach (var land in GetLandList<HeroLand>())
         {
-            if(list[i].IsHeroEmpty)
-            {
-                list[i].SetColor(setHeroPossibleColor);
-            }
-            else
-            {
-                list[i].SetColor(setHeroImpossibleColor);
-            }
+            land.SetColor(land.IsHeroEmpty ? setHeroPossibleColor : setHeroImpossibleColor);
         }
     }
+
     public void SetHeroOriginalColor()
     {
-        var list = GetLandList<HeroLand>();
-        for (int i = 0; i < list.Count; i++)
+        foreach (var land in GetLandList<HeroLand>())
         {
-            list[i].SetColor(setHeroOriginColor);
+            land.SetColor(setHeroOriginColor);
         }
     }
-    public bool IsPossibleSetHero(Vector2Int _pos)
+
+    public bool IsPossibleSetHero(Vector2Int pos)
     {
-        var list = GetLandList<HeroLand>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].LandData.x == _pos.x && list[i].LandData.z == _pos.y)
-            {
-                return true;
-            }
-        }
-        return false;
+        return GetLandList<HeroLand>().Any(land => land.LandData.x == pos.x && land.LandData.z == pos.y);
     }
 
     private List<T> GetLandList<T>() where T : Land
     {
-        List<T> retList = new List<T>();
-        retList = instanceMapObjectList.Where(x => x is T).Select(x => x as T).ToList();
-        return retList;
+        return mapTiles.OfType<T>().ToList();
     }
-
-
 }

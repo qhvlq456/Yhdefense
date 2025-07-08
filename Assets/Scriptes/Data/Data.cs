@@ -117,7 +117,7 @@ public struct MoveData
     public int idx; // enemy idx
     public float moveSpeed;
     public float rotationSpeed;
-    public float stoppingDistance; // NavMeshMove에서 사용
+    public float stoppingDistance; // NavMeshMove에서 사용 ,,, fly에서는 사용하지 않음
 }
 [Serializable]
 public struct AttackData

@@ -31,13 +31,13 @@ public class AddressableManager : Singleton<AddressableManager>
         yield return Addressables.InitializeAsync();
 
         // group/label별로 AddressableData를 분류하여 캐싱
+        // Debug.LogError($"[AddressableManager] Initializing Addressables... addressableDataList count : {addressableDataList.Count}");
         foreach (var data in addressableDataList)
         {
             string key = data.key;
             // 기본적으로 key로 프리팹 로드
             var handle = Addressables.LoadAssetAsync<GameObject>(key);
             yield return handle;
-
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 prefabCache[key] = handle.Result;

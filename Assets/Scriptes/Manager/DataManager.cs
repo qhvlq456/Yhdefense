@@ -64,19 +64,19 @@ public class DataManager : Singleton<DataManager>
 
     #region Start Hero Attack Data
     [Header("Start Attack Data")]
-    // key : hero weapon idx , value : AttackData List sort by lv
+    // key : hero heroTypeByIdx , value : AttackData List sort by lv
     [SerializeField]
     private Dictionary<int, List<AttackData>> attackDataListDic = new Dictionary<int, List<AttackData>>();
-    public AttackData GetAttackData(int _weaponIdx, int _lv)
+    public AttackData GetAttackData(int _heroTypeByIdx, int _lv)
     {
-        if (attackDataListDic.TryGetValue(_weaponIdx, out List<AttackData> attackDataList))
+        if (attackDataListDic.TryGetValue(_heroTypeByIdx, out List<AttackData> attackDataList))
         {
             int safeLevel = Mathf.Clamp(_lv - 1, 0, attackDataList.Count - 1);
             return attackDataList[safeLevel];
         }
         else
         {
-            Debug.LogError($"Attack data with weapon index {_weaponIdx} not found!");
+            Debug.LogError($"Attack data with heroTypeByIdx {_heroTypeByIdx} not found!");
             return default;
         }
     }
@@ -88,16 +88,16 @@ public class DataManager : Singleton<DataManager>
     [Header("Start Buff Data")]
     [SerializeField]
     private Dictionary<int, List<BuffData>> buffDataListDic = new Dictionary<int, List<BuffData>>();
-    public BuffData GetBuffData(int _weaponIdx, int _lv)
+    public BuffData GetBuffData(int _heroTypeByIdx, int _lv)
     {
-        if (buffDataListDic.TryGetValue(_weaponIdx, out List<BuffData> buffDataList))
+        if (buffDataListDic.TryGetValue(_heroTypeByIdx, out List<BuffData> buffDataList))
         {
             int safeLevel = Mathf.Clamp(_lv - 1, 0, buffDataList.Count - 1);
             return buffDataList[safeLevel];
         }
         else
         {
-            Debug.LogError($"Buff data with weapon index {_weaponIdx} not found!");
+            Debug.LogError($"Buff data with heroTypeByIdx index {_heroTypeByIdx} not found!");
             return default;
         }
     }
@@ -108,16 +108,16 @@ public class DataManager : Singleton<DataManager>
     [Header("Start Debuff Data")]
     [SerializeField]
     private Dictionary<int, List<DebuffData>> debuffDataListDic = new Dictionary<int, List<DebuffData>>();
-    public DebuffData GetDebuffData(int _weaponIdx, int _lv)
+    public DebuffData GetDebuffData(int _heroTypeByIdx, int _lv)
     {
-        if (debuffDataListDic.TryGetValue(_weaponIdx, out List<DebuffData> debuffDataList))
+        if (debuffDataListDic.TryGetValue(_heroTypeByIdx, out List<DebuffData> debuffDataList))
         {
             int safeLevel = Mathf.Clamp(_lv - 1, 0, debuffDataList.Count - 1);
             return debuffDataList[safeLevel];
         }
         else
         {
-            Debug.LogError($"Debuff data with weapon index {_weaponIdx} not found!");
+            Debug.LogError($"Debuff data with heroTypeByIdx {_heroTypeByIdx} not found!");
             return default;
         }
     }

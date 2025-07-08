@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5824446664236267944
+--- !u!1 &2728485754267907850
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5184711380964126447}
-  - component: {fileID: 707418878724683411}
-  - component: {fileID: 305243524044524256}
-  - component: {fileID: 3456180988500252559}
-  - component: {fileID: 4959910353804417216}
-  - component: {fileID: 4410865404689079025}
+  - component: {fileID: 859027611931897346}
+  - component: {fileID: 350480107564118587}
+  - component: {fileID: 6630505552572428247}
+  - component: {fileID: 7195365305691424309}
+  - component: {fileID: 891449748313554329}
+  - component: {fileID: 1451158564617496665}
   m_Layer: 0
   m_Name: BuffHero1
   m_TagString: Hero
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5184711380964126447
+--- !u!4 &859027611931897346
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
+  m_GameObject: {fileID: 2728485754267907850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.373461, y: 4.8382616, z: 38.682255}
@@ -36,21 +36,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &707418878724683411
+--- !u!33 &350480107564118587
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &305243524044524256
+  m_GameObject: {fileID: 2728485754267907850}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6630505552572428247
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
+  m_GameObject: {fileID: 2728485754267907850}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,13 +89,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3456180988500252559
+--- !u!136 &7195365305691424309
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
+  m_GameObject: {fileID: 2728485754267907850}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -108,17 +108,17 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4959910353804417216
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &891449748313554329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
+  m_GameObject: {fileID: 2728485754267907850}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfac5d9df9568464e92c899caea6e929, type: 3}
@@ -137,14 +137,14 @@ MonoBehaviour:
     cost: 0
     sell: 0
   lv: 0
-  buff: {fileID: 4410865404689079025}
---- !u!114 &4410865404689079025
+  buff: {fileID: 1451158564617496665}
+--- !u!114 &1451158564617496665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824446664236267944}
+  m_GameObject: {fileID: 2728485754267907850}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9fc3234f8afa54f93279d8cec8cd39, type: 3}

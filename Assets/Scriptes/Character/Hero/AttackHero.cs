@@ -7,14 +7,17 @@ public class AttackHero : Hero, IBuffable
     protected Attack attack;
 
     private List<BuffData> activeBuffs = new();
+    [SerializeField]
     private float currentAttackDamage;
+    [SerializeField]
     private float currentAttackSpeed;
 
     public override void Set(int _idx)
     {
         base.Set(_idx);
-        AttackData attackData = DataManager.Instance.GetAttackData(heroData.index, lv);
+        AttackData attackData = DataManager.Instance.GetAttackData(heroData.heroTypeByIdx, lv);
         attack.Set(attackData, heroData.groundType);
+        Debug.LogError($"[Attack Hero][Set] , upgrade complite after lv : {lv}");
         InitStats();
     }
 
@@ -26,9 +29,9 @@ public class AttackHero : Hero, IBuffable
 
     protected override void OnAfterUpgrade()
     {
-        AttackData attackData = DataManager.Instance.GetAttackData(heroData.index, lv);
+        AttackData attackData = DataManager.Instance.GetAttackData(heroData.heroTypeByIdx, lv);
         attack.Set(attackData, heroData.groundType);
-        Debug.LogError($"upgrade complite after lv : {lv}");
+        Debug.LogError($"[Attack Hero][OnAfterUpgrade] , upgrade complite after lv : {lv}");
         RecalculateStats();
     }
 
@@ -93,9 +96,9 @@ public class AttackHero : Hero, IBuffable
         RecalculateStats();
     }
 
-    public void RemoveBuff(BuffType buffType)
+    public void RemoveBuff(BuffType _buffType)
     {
-        activeBuffs.RemoveAll(b => b.buffType == buffType);
+        activeBuffs.RemoveAll(b => b.buffType == _buffType);
         RecalculateStats();
     }
 
@@ -117,8 +120,8 @@ public class AttackHero : Hero, IBuffable
         }
     }
 
-    public bool HasBuff(BuffType buffType)
+    public bool HasBuff(BuffType _buffType)
     {
-        return activeBuffs.Exists(b => b.buffType == buffType);
+        return activeBuffs.Exists(b => b.buffType == _buffType);
     }
 }

@@ -28,8 +28,18 @@ public class CharacterInfoUI : BaseUI
     public void Open(Hero _hero)
     {
         hero = _hero;
+        nameText.text = hero.HeroData.name;
         currentInfoText.text = Utility.GetHeroInfo(hero.HeroData, hero.Lv);
         nextInfoText.text = Utility.GetHeroInfo(hero.HeroData, hero.Lv + 1);
+
+        if(hero.Lv + 1 > Utility.HERO_MAX_LV)
+        {
+            upGradeBtn.interactable = false;
+        }
+        else
+        {
+            upGradeBtn.interactable = true;
+        }
     }
     private void UpGradeBtnClick()
     {

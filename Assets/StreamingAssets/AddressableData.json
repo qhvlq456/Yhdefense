@@ -2,16 +2,9 @@
   {
     "type": 0,
     "idx": 0,
-    "key": "Hero",
+    "key": "Hero1",
     "groupName": "Character",
     "label": "Hero"
-  },
-  {
-    "type": 1,
-    "idx": 0,
-    "key": "Enemy",
-    "groupName": "Character",
-    "label": "Enemy"
   },
   {
     "type": 2,
@@ -37,36 +30,64 @@
   {
     "type": 0,
     "idx": 1,
-    "key": "Hero1",
-    "groupName": "Character",
-    "label": "Hero"
-  },
-  {
-    "type": 0,
-    "idx": 2,
     "key": "Hero2",
     "groupName": "Character",
     "label": "Hero"
   },
   {
     "type": 0,
-    "idx": 3,
-    "key": "BuffHero",
+    "idx": 2,
+    "key": "Hero3",
     "groupName": "Character",
     "label": "Hero"
   },
   {
     "type": 0,
-    "idx": 4,
+    "idx": 3,
     "key": "BuffHero1",
     "groupName": "Character",
     "label": "Hero"
   },
   {
     "type": 0,
-    "idx": 5,
+    "idx": 4,
     "key": "BuffHero2",
     "groupName": "Character",
     "label": "Hero"
+  },
+  {
+    "type": 0,
+    "idx": 5,
+    "key": "BuffHero3",
+    "groupName": "Character",
+    "label": "Hero"
+  },
+  {
+    "type": 1,
+    "idx": 0,
+    "key": "Enemy1",
+    "groupName": "Character",
+    "label": "Enemy"
+  },
+  {
+    "type": 1,
+    "idx": 1,
+    "key": "Enemy2",
+    "groupName": "Character",
+    "label": "Enemy"
+  },
+  {
+    "type": 1,
+    "idx": 2,
+    "key": "Enemy3",
+    "groupName": "Character",
+    "label": "Enemy"
+  },
+  {
+    "type": 1,
+    "idx": 3,
+    "key": "Enemy4",
+    "groupName": "Character",
+    "label": "Enemy"
   }
 ]

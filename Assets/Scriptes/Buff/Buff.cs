@@ -16,9 +16,6 @@ public class Buff : MonoBehaviour
     // 지상 버퍼냐 공중 버퍼냐 둘다냐
     protected GroundType groundType;
 
-    [SerializeField]
-    private float buffInterval = 1f; // 버프 적용 주기(초)
-
     private float timer;
 
     // BuffData의 range를 항상 반영
@@ -26,16 +23,17 @@ public class Buff : MonoBehaviour
     protected virtual Color GetGizmoColor() => Color.cyan;
     // set에 추가할 것
     // HeroUpgradeData _heroUpgradeData, GroundType _groundType
-    public virtual void Set(BuffData _buffData)
+    public virtual void Set(BuffData _buffData, GroundType _groundType)
     {
         buffData = _buffData;
+        groundType = _groundType;
     }
 
     // 주기적으로 버프 적용
     public void OnUpdateBuff()
     {
         timer += Time.deltaTime;
-        if (timer >= buffInterval)
+        if (timer >= buffData.interval)
         {
             timer = 0f;
             ApplyBuffToTargets();

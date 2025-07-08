@@ -25,6 +25,6 @@
     "name": "enemy3",
     "maxHealth": 50.0,
     "dieGold": 30,
-    "groundType": 2
+    "groundType": 1
   }
 ]

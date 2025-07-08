@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
         Walk,
         Run,
         Jump,
+        Fly,
         Fall,
         Attack,
         Hit,
@@ -32,18 +33,30 @@ public class CharacterAnimation : MonoBehaviour
         switch (currentState)
         {
             case AnimationState.Idle:
+                animator.SetBool("IsIdle", true);
                 animator.SetBool("IsWalk", false);
                 break;
             case AnimationState.Walk:
+                animator.SetBool("IsIdle", false);
                 animator.SetBool("IsWalk", true);
+                break;
+            case AnimationState.Fly:
+                animator.SetBool("IsWalk", false);
+                animator.SetBool("IsFly", true);
+                break;
+            case AnimationState.Fall:
+                animator.SetBool("IsFly", false);
+                animator.SetBool("IsFall", true);
                 break;
             case AnimationState.Hit:
                 animator.SetTrigger("Hit");
-                animator.SetBool("IsWalk", false);
+                //animator.SetBool("IsIdle", false);
+                //animator.SetBool("IsWalk", false);
                 break;
             case AnimationState.Death:
                 animator.SetTrigger("Death");
-                animator.SetBool("IsWalk", false);
+                //animator.SetBool("IsIdle", false);
+                //animator.SetBool("IsWalk", false);
                 break;
         }
     }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public static class Utility
 {
+    #region Static Variables
+    public readonly static int HERO_MAX_LV = 3;
+    #endregion
     #region Start Object Pool
 
     public static PoolingType LandTypeToPoolingType(LandType _type)
@@ -98,7 +101,7 @@ public static class Utility
     public static bool IsHeroUpgrade(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);
-        return GameManager.Instance.gold >= heroUpgradeData.cost;
+        return GameManager.Instance.gold >= heroUpgradeData.cost && _lv > HERO_MAX_LV;
     }
     public static void UpgradeHero(HeroData _heroData, int _lv = 1)
     {

@@ -1444,14 +1444,14 @@ GameObject:
   m_Component:
   - component: {fileID: 677238797789291501}
   - component: {fileID: 6406677678070193959}
-  - component: {fileID: 5646315491952583851}
   - component: {fileID: 6006695316508400059}
   - component: {fileID: 6180175623861828051}
   - component: {fileID: 6209536359816334996}
+  - component: {fileID: -7861869621183875434}
   - component: {fileID: 336898865153677212}
   - component: {fileID: 3245942824431522262}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1496,32 +1496,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5646315491952583851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262139174267582852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a632bf7bef9af146a4eec4f2731224c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 6006695316508400059}
-  move: {fileID: 6180175623861828051}
-  attack: {fileID: 0}
-  buff: {fileID: 0}
-  enemyData:
-    index: 0
-    name: 
-    maxHealth: 0
-    moveSpeed: 0
-    rotationSpeed: 0
-    stoppingDistance: 0
-    dieGold: 0
-    groundType: 0
-  enemyAnimation: {fileID: 6209536359816334996}
 --- !u!114 &6006695316508400059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1566,7 +1540,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6406677678070193959}
   currentState: 0
-  enemy: {fileID: 5646315491952583851}
+  enemy: {fileID: 0}
+--- !u!114 &-7861869621183875434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262139174267582852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba982c857c2bbbe4e9fd19a1f16bb9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 6006695316508400059}
+  move: {fileID: 6180175623861828051}
+  enemyData:
+    index: 0
+    name: 
+    maxHealth: 0
+    dieGold: 0
+    groundType: 0
+  enemyAnimation: {fileID: 6209536359816334996}
 --- !u!195 &336898865153677212
 NavMeshAgent:
   m_ObjectHideFlags: 0

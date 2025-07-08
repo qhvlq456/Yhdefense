@@ -2090,7 +2090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4738630002632914224}
   - component: {fileID: 2257291314120604064}
-  - component: {fileID: 9167318695925765618}
+  - component: {fileID: 8638391349375821814}
   - component: {fileID: -8796438282347391855}
   - component: {fileID: 171697873695654078}
   - component: {fileID: 5094985482216528218}
@@ -2142,7 +2142,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9167318695925765618
+--- !u!114 &8638391349375821814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2151,20 +2151,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6668132321104247660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a632bf7bef9af146a4eec4f2731224c, type: 3}
+  m_Script: {fileID: 11500000, guid: ba982c857c2bbbe4e9fd19a1f16bb9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: -8796438282347391855}
   move: {fileID: 171697873695654078}
-  attack: {fileID: 0}
-  buff: {fileID: 0}
   enemyData:
     index: 0
     name: 
     maxHealth: 0
-    moveSpeed: 0
-    rotationSpeed: 0
-    stoppingDistance: 0
     dieGold: 0
     groundType: 0
   enemyAnimation: {fileID: 5094985482216528218}
@@ -2212,7 +2207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2257291314120604064}
   currentState: 0
-  enemy: {fileID: 9167318695925765618}
+  enemy: {fileID: 0}
 --- !u!195 &9049892681200649870
 NavMeshAgent:
   m_ObjectHideFlags: 0

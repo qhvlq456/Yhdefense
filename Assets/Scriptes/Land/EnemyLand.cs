@@ -6,6 +6,8 @@ public class EnemyLand : Land
     [SerializeField]
     private NavMeshSurface surface;
     public NavMeshSurface GetNavMeshSurface => surface;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

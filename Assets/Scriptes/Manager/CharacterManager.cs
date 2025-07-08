@@ -25,8 +25,9 @@ public class CharacterManager : Singleton<CharacterManager>
     // spawn 및 건설 현장 
     public void SpawnEnemy(int _idx, Vector3 _spawnPos, Vector3 _targetPos)
     {
+        Debug.LogError($"[CharacterManager] [SpawnEnemy] idx : {_idx}, _spawnPos : {_spawnPos} _targetPos : {_targetPos} ");
         var enemy = ObjectPoolManager.Instance.Create(PoolingType.enemy, _idx).GetComponent<Enemy>();
-        // navmeshagent때문에 순서 중요 agent.enabled = false; → position 설정 → enabled = true; 순서 중요!
+        // navmeshagent때문에 순서 중요 agent.enabled = false; -> position 설정 -> enabled = true; 순서 중요!
         enemy.Spawn(_spawnPos, _targetPos);
         enemy.Set(_idx);
         instanceCharacterList.Add(enemy);

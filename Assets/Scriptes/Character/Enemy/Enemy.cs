@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI;
 using System.Collections;
-using Unity.AI.Navigation;
 
 public class Enemy : Character, IHittable
 {
@@ -16,19 +14,16 @@ public class Enemy : Character, IHittable
     private EnemyData enemyData;
 
     [SerializeField]
-    private EnemyAnimation enemyAnimation;
+    protected EnemyAnimation enemyAnimation;
 
     private bool isDeath;
     public bool IsDeath => isDeath;
-
-    public enum EnemyAnimState { Idle, Walk, Hit, Die }
-    private EnemyAnimState currentAnimState = EnemyAnimState.Idle;
 
     public override void Set(int _idx)
     {
         isDeath = false;
         enemyData = DataManager.Instance.GetIdxToEnemyData(_idx);
-        
+        Debug.LogError($"[Enemy] Set enemyData : {enemyData.name}, groundtype : {enemyData.groundType}");
         move.Initialize(DataManager.Instance.GetMoveData(_idx));
         health.ResetHealth(enemyData.maxHealth);
 
@@ -51,36 +46,9 @@ public class Enemy : Character, IHittable
         }
     }
 
-    public void Spawn(Vector3 _spawnPos, Vector3 _destination)
+    public virtual void Spawn(Vector3 _spawnPos, Vector3 _destination)
     {
         Debug.LogError($"_spawnPos : {_spawnPos}, _destination : {_destination}");
-        NavMeshHit hit;
-        // _spawnPos위치가 NavMesh 위에 있는지 확인
-        if (NavMesh.SamplePosition(_spawnPos, out hit, 1f, NavMesh.AllAreas))
-        {
-            transform.position = hit.position;
-            StartCoroutine(CoMoveToAfterNavReady(_destination));
-        }
-        else
-        {
-            Debug.LogWarning($"NavMesh 위에 위치하지 않음 transform position : {transform.position}");
-            return;
-        }
-    }
-    private IEnumerator CoMoveToAfterNavReady(Vector3 _destination)
-    {
-        yield return null;
-
-        var agent = GetComponent<NavMeshAgent>();
-
-        while (!agent.isOnNavMesh)
-        {
-            Debug.Log("아직 NavMesh 위에 없음");
-            yield return null;
-        }
-
-        Debug.Log("NavMesh 위에 올라감");
-        move.Movement(_destination);
     }
     // 먼저 death 처리함으로써 타겟으로 부터 벗어남
     public void Death()
@@ -98,6 +66,7 @@ public class Enemy : Character, IHittable
         Debug.LogError($"enemy is isDeath : {isDeath}");
         move.Revert();
         health.Revert();
+        OnDeath();
     }
 
     public override GroundType GetGroundType() => enemyData.groundType;
