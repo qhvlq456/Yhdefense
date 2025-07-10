@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapManager : Singleton<MapManager>
 {
@@ -45,12 +46,11 @@ public class MapManager : Singleton<MapManager>
 
             debugLog += $"landType = {landData.landType}, x = {landData.x}, z = {landData.z}\n";
         }
-
+        yield return null;
+        Debug.LogError($"Start MapManager.SetMapAsync()");
         // 모든 오브젝트가 자신의 위치를 완전히 잡을 수 있도록 한 프레임 대기
-        yield return new WaitForSeconds(0.3f);
         navMeshSurface.BuildNavMesh();
-
-        yield return new WaitForSeconds(0.2f);
+        Debug.LogError($"Finish MapManager.SetMapAsync()");
         CenterCamera(maxX, maxZ);
 
         Debug.LogError(debugLog);

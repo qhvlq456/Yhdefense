@@ -15,6 +15,7 @@ public class HeroLand : Land, IClickable
     private Transform head;
     public float SetHeroPosY => head.position.y + heroPosOffset.y;
     public bool IsHeroEmpty => head.childCount == 0;
+
     public void SetHero(int _idx)
     {
         Hero hero = CharacterManager.Instance.CreateHero(_idx);

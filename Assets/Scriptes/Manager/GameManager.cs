@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
         gold = 0;
         currentStageData = _stageData;
         // 후에 변경하기
-        currentSubStageIdx = 2;
+        currentSubStageIdx = 0;
         life = currentStageData.life;
 
         string log = "";
@@ -82,7 +82,6 @@ public class GameManager : Singleton<GameManager>
         // 3. 로그
         string log = string.Join(", ", currentStageData.subStageIdxList.Select((val, idx) => $"{idx}: {val}"));
         Debug.LogError($"[GameManager] SubStageIdxList: {log}");
-
         // 4. 적 스폰 시작
         StartEnemySpawn(subStageData);
     }
