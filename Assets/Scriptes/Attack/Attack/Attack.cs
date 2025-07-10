@@ -15,6 +15,8 @@ public class Attack : MonoBehaviour
     protected AttackData attackData;
     public AttackData AttackData => attackData;
 
+    [SerializeField]
+    protected CircleDrawer circleDrawer;
     // Time.time 대신 사용될 남은 쿨타임 변수
     protected float delayTimer; // 다음 공격까지 남은 시간
 
@@ -26,6 +28,11 @@ public class Attack : MonoBehaviour
         attackData = _attackData;
         groundType = _groundType;
         UpdateAttackDelay();
+
+        if (circleDrawer != null)
+        {
+            circleDrawer.DrawCircle(attackData.radius);
+        }
     }
     public virtual void Execute(float _attackDamage, float _attackSpeed) 
     { 
@@ -133,6 +140,13 @@ public class Attack : MonoBehaviour
         }
 
         return targets;
+    }
+    public void ShowRange(bool _show)
+    {
+        if (circleDrawer != null)
+        {
+            circleDrawer.gameObject.SetActive(_show);
+        }
     }
     public virtual void Revert()
     {

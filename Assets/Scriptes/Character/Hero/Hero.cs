@@ -79,4 +79,8 @@ public abstract class Hero : Character
         Revert();
         Utility.GetHeroSellPrice(heroData, lv);
     }
+    public virtual string GetHeroInfo()
+    {
+        return string.Empty; // 파생에서 구현 필요
+    }
 }

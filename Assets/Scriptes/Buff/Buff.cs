@@ -16,6 +16,9 @@ public class Buff : MonoBehaviour
     // 지상 버퍼냐 공중 버퍼냐 둘다냐
     protected GroundType groundType;
 
+    [SerializeField]
+    protected CircleDrawer circleDrawer;
+
     private float timer;
 
     // BuffData의 range를 항상 반영
@@ -27,8 +30,19 @@ public class Buff : MonoBehaviour
     {
         buffData = _buffData;
         groundType = _groundType;
-    }
 
+        if (circleDrawer != null)
+        {
+            circleDrawer.DrawCircle(buffData.range);
+        }
+    }
+    public void ShowRange(bool _show)
+    {
+        if (circleDrawer != null)
+        {
+            circleDrawer.gameObject.SetActive(_show);
+        }
+    }
     // 주기적으로 버프 적용
     public void OnUpdateBuff()
     {

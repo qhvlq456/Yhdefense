@@ -16,13 +16,13 @@ MonoBehaviour:
   m_GUID: 3afbda6e0141e744986e7d794ee6110b
   m_SerializeEntries:
   - m_GUID: 46e1dfb92f23abf4dbcfeaf82fa9931d
-    m_Address: Hero3
+    m_Address: Hero1
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5930f9c4c14ac1f468c62c726123fc12
-    m_Address: Enemy4
+    m_Address: Enemy3
     m_ReadOnly: 0
     m_SerializedLabels:
     - Enemy
@@ -34,13 +34,13 @@ MonoBehaviour:
     - Enemy
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 81a90affbdcf590428a4e8ebad2939ec
-    m_Address: Hero1
+    m_Address: Hero2
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fbe98986e925324fa2e4b5bedf701ca
-    m_Address: BuffHero3
+    m_Address: BuffHero2
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero
@@ -58,19 +58,19 @@ MonoBehaviour:
     - Hero
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a39a5057def1e304982a3121253c4428
-    m_Address: BuffHero2
+    m_Address: BuffHero3
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9a8bca211f705a4c9485f29ee1f1db9
-    m_Address: Enemy3
+    m_Address: Enemy4
     m_ReadOnly: 0
     m_SerializedLabels:
     - Enemy
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc13a61870c767c479dc92b5169338a0
-    m_Address: Hero2
+    m_Address: Hero3
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero

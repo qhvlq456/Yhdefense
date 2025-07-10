@@ -2,7 +2,7 @@
 public enum HeroType { Attack, Buffer, Debuffer}
 public enum GroundType {none = -1, gorund, fly, both }
 public enum SkillType { Active, Passive }
-public enum BuffType { none = -1, attackUp, attackSpeed, addRange }
+public enum BuffType { none = -1, attackUp, attackSpeed, addRange, count }
 public enum LandType { hero, enemy, deco }
 public enum PoolingType { hero, enemy, heroLand, enemyLand, weapon}
 public enum WeapondType { bullet }

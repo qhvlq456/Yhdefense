@@ -31,6 +31,7 @@ public class NavMeshMove : Move
         agent.updatePosition = true;
         agent.updateRotation = false;
         agent.stoppingDistance = moveData.stoppingDistance;
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
     }
 
     public override void Initialize(MoveData _moveData)

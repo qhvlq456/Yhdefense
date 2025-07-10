@@ -31,7 +31,6 @@ public class BufferHero : Hero
         Debug.LogError($"[Buffer Hero][OnAfterUpgrade] , upgrade complite after lv : {lv}");
         // 업그레이드 후 buff 관련 추가 처리 필요시 구현
     }
-
     private void Update()
     {
         // 버프 범위 내 아군에게 버프 적용

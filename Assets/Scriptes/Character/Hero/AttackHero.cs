@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class AttackHero : Hero, IBuffable
 {
@@ -11,20 +12,17 @@ public class AttackHero : Hero, IBuffable
     private float currentAttackDamage;
     [SerializeField]
     private float currentAttackSpeed;
+    [SerializeField]
+    private float currentAttackRange;
 
     public override void Set(int _idx)
     {
         base.Set(_idx);
         AttackData attackData = DataManager.Instance.GetAttackData(heroData.heroTypeByIdx, lv);
         attack.Set(attackData, heroData.groundType);
+        attack.ShowRange(true);
         Debug.LogError($"[Attack Hero][Set] , upgrade complite after lv : {lv}");
         InitStats();
-    }
-
-    public override void SetPreview(int _idx)
-    {
-        base.SetPreview(_idx);
-        // 미리보기용 추가 세팅 필요시 구현
     }
 
     protected override void OnAfterUpgrade()
@@ -53,6 +51,7 @@ public class AttackHero : Hero, IBuffable
     private void InitStats()
     {
         currentAttackDamage = attack.AttackData.damage;
+        currentAttackRange = attack.AttackData.radius; // 공격 범위 초기화 (필요시 추가)
         currentAttackSpeed = attack.AttackData.speed;
     }
 
@@ -88,7 +87,41 @@ public class AttackHero : Hero, IBuffable
             }
         }
     }
+    public override string GetHeroInfo()
+    {
+        System.Text.StringBuilder sb = new();
+        sb.AppendLine("캐릭터:");
 
+        float baseDamage = attack.AttackData.damage;
+        float baseSpeed = attack.AttackData.speed;
+        float baseRange = attack.AttackData.radius;
+
+        float bonusDamage = 0f;
+        float bonusSpeed = 0f;
+        float bonusRange = 0f;
+
+        foreach (var buff in activeBuffs)
+        {
+            switch (buff.buffType)
+            {
+                case BuffType.attackUp:
+                    bonusDamage += buff.amount;
+                    break;
+                case BuffType.attackSpeed:
+                    bonusSpeed += buff.amount;
+                    break;
+                case BuffType.addRange:
+                    bonusRange += buff.amount;
+                    break;
+            }
+        }
+
+        sb.AppendLine($"- 공격력: {baseDamage} (+{bonusDamage}) 총 공격력 : {currentAttackDamage}");
+        sb.AppendLine($"- 공격속도: {baseSpeed} (+{bonusSpeed}) 총 공격속도 : {currentAttackSpeed}");
+        sb.AppendLine($"- 공격범위: {baseRange} (+{bonusRange}) 총 공격범위 : {currentAttackRange}");
+
+        return sb.ToString();
+    }
     public void ApplyBuff(BuffData _buff)
     {
         _buff.startTime = Time.time;
@@ -115,7 +148,11 @@ public class AttackHero : Hero, IBuffable
                 case BuffType.attackSpeed:
                     currentAttackSpeed += buff.amount;
                     break;
-                // 필요시 추가
+                case BuffType.addRange:
+                    // 공격 범위 증가 로직 필요
+                    currentAttackRange += buff.amount;
+                    // 예: attack.IncreaseRange(buff.amount);
+                    break;
             }
         }
     }
@@ -123,5 +160,10 @@ public class AttackHero : Hero, IBuffable
     public bool HasBuff(BuffType _buffType)
     {
         return activeBuffs.Exists(b => b.buffType == _buffType);
+    }
+
+    public override void Revert()
+    {
+        attack.ShowRange(false);
     }
 }

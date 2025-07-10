@@ -81,7 +81,6 @@ public static class Utility
 
         return infoText;
     }
-
     public static bool IsHeroPurchase(HeroData _heroData, int _lv = 1)
     {
         HeroUpgradeData heroUpgradeData = DataManager.Instance.GetHeroUpgradeData(_heroData.index, _lv);

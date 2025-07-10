@@ -16,6 +16,8 @@ public class CharacterInfoUI : BaseUI
     private TextMeshProUGUI currentInfoText;
     [SerializeField]
     private TextMeshProUGUI nextInfoText;
+    [SerializeField]
+    private TextMeshProUGUI totalInfoText;
 
     [SerializeField]
     private Hero hero;
@@ -40,6 +42,8 @@ public class CharacterInfoUI : BaseUI
         {
             upGradeBtn.interactable = true;
         }
+
+         totalInfoText.text = hero.GetHeroInfo();
     }
     private void UpGradeBtnClick()
     {
