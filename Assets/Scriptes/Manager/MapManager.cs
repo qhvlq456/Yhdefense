@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MapManager : Singleton<MapManager>
 {
@@ -36,7 +35,7 @@ public class MapManager : Singleton<MapManager>
 
             // Set parent and position
             land.transform.SetParent(root);
-            land.transform.localPosition = new Vector3(landData.x, 0, landData.z);
+            land.transform.localPosition = new Vector3(landData.x * DataManager.Instance.X_OFFSET, 0, landData.z * DataManager.Instance.Z_OFFSET);
 
             // Track max bounds
             maxX = Mathf.Max(maxX, landData.x);
@@ -56,24 +55,24 @@ public class MapManager : Singleton<MapManager>
         Debug.LogError(debugLog);
     }
     
-    private Land CreateLand(LandData landData)
+    private Land CreateLand(LandData _landData)
     {
         Land land = null;
-        Vector3 pos = new Vector3(landData.x, 0, landData.z);
+        Vector3 pos = new Vector3(_landData.x, 0, _landData.z);
 
-        switch (landData.landType)
+        switch (_landData.landType)
         {
             case LandType.hero:
-                land = ObjectPoolManager.Instance.Create(PoolingType.heroLand, landData.index).GetComponent<HeroLand>();
+                land = ObjectPoolManager.Instance.Create(PoolingType.heroLand, _landData.index).GetComponent<HeroLand>();
                 break;
 
             case LandType.enemy:
-                land = ObjectPoolManager.Instance.Create(PoolingType.enemyLand, landData.index).GetComponent<EnemyLand>();
+                land = ObjectPoolManager.Instance.Create(PoolingType.enemyLand, _landData.index).GetComponent<EnemyLand>();
                 SetColorEnemyMap(land, GetEnemyLandType(pos));
                 break;
         }
 
-        land.Create(landData);
+        land.Create(_landData);
         return land;
     }
 
@@ -87,11 +86,12 @@ public class MapManager : Singleton<MapManager>
         return EnemyLandType.Normal;
     }
 
-    private void CenterCamera(float maxX, float maxZ)
+    private void CenterCamera(float _maxX, float _maxZ)
     {
         Vector3 camPos = GameManager.Instance.MainCamera.transform.position;
-        camPos.x = maxX / 2;
-        camPos.z = -maxZ / 2;
+        camPos.x = _maxX / 2 * DataManager.Instance.X_OFFSET;
+        camPos.z = -_maxZ / 2 * DataManager.Instance.Z_OFFSET;
+
         GameManager.Instance.MainCamera.transform.position = camPos;
     }
 
@@ -106,16 +106,16 @@ public class MapManager : Singleton<MapManager>
         navMeshSurface.RemoveData();
     }
 
-    private void SetColorEnemyMap(Land land, EnemyLandType type)
+    private void SetColorEnemyMap(Land _land, EnemyLandType _type)
     {
-        Color color = type switch
+        Color color = _type switch
         {
             EnemyLandType.Start => setEnemyStartPointColor,
             EnemyLandType.End => setEnemyEndPointColor,
             _ => setEnemyOriginColor
         };
 
-        land.SetColor(color);
+        _land.SetColor(color);
     }
 
     public void SetColorHeroMap()
@@ -134,9 +134,9 @@ public class MapManager : Singleton<MapManager>
         }
     }
 
-    public bool IsPossibleSetHero(Vector2Int pos)
+    public bool IsPossibleSetHero(Vector2Int _pos)
     {
-        return GetLandList<HeroLand>().Any(land => land.LandData.x == pos.x && land.LandData.z == pos.y);
+        return GetLandList<HeroLand>().Any(land => land.LandData.x * DataManager.Instance.X_OFFSET == _pos.x && land.LandData.z * DataManager.Instance.Z_OFFSET == _pos.y);
     }
 
     private List<T> GetLandList<T>() where T : Land

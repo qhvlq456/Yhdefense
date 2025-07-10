@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,6 +128,14 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  attackData:
+    idx: 0
+    lv: 0
+    weaponIdx: 0
+    targetCount: 0
+    speed: 0
+    damage: 0
+    radius: 0
 --- !u!114 &8553830459646670790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +162,5 @@ MonoBehaviour:
     sell: 0
   lv: 0
   attack: {fileID: 6563123517250497611}
+  currentAttackDamage: 0
+  currentAttackSpeed: 0

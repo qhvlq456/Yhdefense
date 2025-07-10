@@ -13,7 +13,7 @@ public class NavMeshMove : Move
     [SerializeField] 
     private float acceleration = 24f;
     [SerializeField] 
-    private int avoidancePriority = 50;
+    private int avoidancePriority = 75;
 
     private void Awake()
     {

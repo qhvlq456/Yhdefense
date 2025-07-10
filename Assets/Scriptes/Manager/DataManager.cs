@@ -15,8 +15,8 @@ public class DataManager : Singleton<DataManager>
     public const int MAX_Z = 10;
     public int TotalLandNum => MAX_X * MAX_Z;
 
-    private int xOffset = 1;
-    private int zOffset = 1;
+    public int X_OFFSET = 10;
+    public int Z_OFFSET = 10;
     [SerializeField]
     private List<SubStageData> subStageDataList = new List<SubStageData>();
     public SubStageData GetIdxToSubStageData(int _idx) => subStageDataList.Find(x => x.index == _idx);

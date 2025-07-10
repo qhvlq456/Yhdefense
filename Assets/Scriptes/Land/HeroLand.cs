@@ -18,10 +18,12 @@ public class HeroLand : Land, IClickable
 
     public void SetHero(int _idx)
     {
+        // hero 는 scale = 5이기 때문에 
         Hero hero = CharacterManager.Instance.CreateHero(_idx);
         hero.transform.SetParent(head);
         // head는 쫌... land보다 위에 있어야 할듯...
-        hero.transform.localPosition = Vector3.zero + heroPosOffset;
+        Vector3 heroPos = head.localPosition;
+        hero.transform.localPosition = heroPos;
         hero.gameObject.layer = gameObject.layer;
     }
 

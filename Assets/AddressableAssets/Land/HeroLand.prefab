@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376018607775926977}
@@ -154,7 +154,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.375, y: 0.5, z: 0.375}
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 4929749530075263133}
   navObstacle: {fileID: 7979741871616885358}
-  heroPosOffset: {x: 0, y: 0.5, z: 0}
+  heroPosOffset: {x: 0, y: 5, z: 0}
   head: {fileID: 1376018607775926977}
 --- !u!114 &158898887484922815
 MonoBehaviour:
@@ -193,10 +193,10 @@ MonoBehaviour:
   backRenderer: {fileID: 0}
   topRenderer: {fileID: 0}
   bottomRenderer: {fileID: 0}
-  sizeX: 1
-  sizeY: 1
-  sizeZ: 1
-  lineWidth: 0.05
+  sizeX: 10
+  sizeY: 10
+  sizeZ: 10
+  lineWidth: 1
   lineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &7651270169476081230
 GameObject:

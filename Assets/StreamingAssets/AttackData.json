@@ -6,7 +6,7 @@
     "targetCount": 1,
     "speed": 1.0,
     "damage": 1.0,
-    "radius": 2.0
+    "radius": 20.0
   },
   {
     "idx": 0,
@@ -15,7 +15,7 @@
     "targetCount": 2,
     "speed": 2.0,
     "damage": 2.0,
-    "radius": 3.0
+    "radius": 30.0
   },
   {
     "idx": 0,
@@ -24,7 +24,7 @@
     "targetCount": 3,
     "speed": 3.0,
     "damage": 3.0,
-    "radius": 3.5
+    "radius": 35.0
   },
   {
     "idx": 1,
@@ -33,7 +33,7 @@
     "targetCount": 2,
     "speed": 2.0,
     "damage": 2.0,
-    "radius": 2.0
+    "radius": 20.0
   },
   {
     "idx": 1,
@@ -42,7 +42,7 @@
     "targetCount": 3,
     "speed": 3.0,
     "damage": 3.0,
-    "radius": 3.0
+    "radius": 30.0
   },
   {
     "idx": 1,
@@ -51,7 +51,7 @@
     "targetCount": 4,
     "speed": 4.0,
     "damage": 4.0,
-    "radius": 4.0
+    "radius": 40.0
   },
   {
     "idx": 2,
@@ -60,7 +60,7 @@
     "targetCount": 3,
     "speed": 3.0,
     "damage": 3.0,
-    "radius": 3.0
+    "radius": 30.0
   },
   {
     "idx": 2,
@@ -69,7 +69,7 @@
     "targetCount": 4,
     "speed": 4.0,
     "damage": 4.0,
-    "radius": 4.0
+    "radius": 40.0
   },
   {
     "idx": 2,
@@ -78,6 +78,6 @@
     "targetCount": 5,
     "speed": 5.0,
     "damage": 5.0,
-    "radius": 5.0
+    "radius": 50.0
   }
 ]

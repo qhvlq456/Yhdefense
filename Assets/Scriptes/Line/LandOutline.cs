@@ -12,12 +12,12 @@ public class LandOutline : MonoBehaviour
     // Note: Left/Right Face는 Front/Back/Top/Bottom으로 커버됨 (모서리 중복)
 
     [Header("큐브 설정")]
-    public float sizeX = 1f;              // 큐브의 X축 길이
-    public float sizeY = 1f;              // 큐브의 Y축 길이
-    public float sizeZ = 1f;              // 큐브의 Z축 길이
+    public float sizeX = 10f;              // 큐브의 X축 길이
+    public float sizeY = 10f;              // 큐브의 Y축 길이
+    public float sizeZ = 10f;              // 큐브의 Z축 길이
 
     [Header("Line Renderer 공통 설정")]
-    public float lineWidth = 0.05f;      // 선의 두께
+    public float lineWidth = 1;      // 선의 두께
     public Color lineColor = Color.blue; // 선의 색상
 
     void Start()

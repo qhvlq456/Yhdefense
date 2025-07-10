@@ -99,7 +99,12 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator CoEnemySpawnFlow(SubStageData _subStageData)
     {
         Vector3 startPoint = currentStageData.startPoint;
+        startPoint.x = startPoint.x * DataManager.Instance.X_OFFSET;
+        startPoint.z = startPoint.z * DataManager.Instance.Z_OFFSET;
+
         Vector3 endPoint = currentStageData.endPoint;
+        endPoint.x = endPoint.x * DataManager.Instance.X_OFFSET;
+        endPoint.z = endPoint.z * DataManager.Instance.Z_OFFSET;
 
         List<int> enemyList = _subStageData.enemyIdxList;
 
