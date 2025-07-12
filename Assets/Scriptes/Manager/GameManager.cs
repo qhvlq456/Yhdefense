@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
         gold = Mathf.Clamp(gold + _gold, 0, int.MaxValue);
         UIManager.Instance.UpdateCanvas(UIType.main);
     }
-
+    [SerializeField]
     private Camera mainCamera;
     public Camera MainCamera
     {
@@ -38,6 +38,19 @@ public class GameManager : Singleton<GameManager>
             }
 
             return mainCamera;
+        }
+    }
+    [SerializeField]
+    private Camera uiCamera;
+    public Camera UICamera
+    {
+        get
+        {
+            if (uiCamera == null)
+            {
+                uiCamera = GameObject.Find("UICamera").GetComponent<Camera>();
+            }
+            return uiCamera;
         }
     }
     protected override void Awake()

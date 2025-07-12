@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class DmgHUD : BaseUI
 {
@@ -31,8 +32,7 @@ public class DmgHUD : BaseUI
             StopCoroutine(CoStartDmgCoroutine);
         }
 
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_target.position);
-        screenPosition += offset;
+        Vector3 screenPosition = Utility.WorldToScreenPoint(_target.position, offset);
         CoStartDmgCoroutine = CoStartDmg(_dmg, screenPosition);
         StartCoroutine(CoStartDmgCoroutine);
     }

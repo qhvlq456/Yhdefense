@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public static class Utility
 {
@@ -110,4 +111,61 @@ public static class Utility
     }
 
     #endregion End HeroData
+
+    #region UI
+    /// <summary>
+    /// UICamera 사용으로 RectTransform을 사용하여 월드 좌표를 스크린 좌표로 변환합니다.
+    /// </summary>
+    /// <param name="_position">목표물</param>
+    /// <param name="_canvas">표시하고 싶은 UI canvas</param>
+    /// <param name="_offset">오프셋</param>
+    /// <returns></returns>
+    public static Vector3 WorldToScreenPoint(Vector3 _position, RectTransform _canvas, Vector3 _offset)
+    {
+        // main camera를 사용하여 월드 좌표를 스크린 좌표로 변환합니다.
+        Vector3 screenPosition = GameManager.Instance.MainCamera.WorldToScreenPoint(_position);
+        screenPosition += _offset;
+
+        Vector3 screenPos = Vector3.zero;
+
+        // screenPosition을 RectTransform의 월드 좌표로 변환합니다.
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(_canvas, screenPosition, GameManager.Instance.UICamera, out screenPos))
+        {
+            return screenPos;
+        }
+        else
+        {
+            Debug.Log($"[Utily] Error RectTransformUtility.ScreenPointToWorldPointInRectangle : false, " +
+                $"_position : {_position}, _canvas : {_canvas.position}, screenPosition : {screenPosition}");
+
+            return Vector3.zero;
+        }
+    }
+    public static Vector3 WorldToScreenPoint(Vector3 _position, Vector3 _offset)
+    {
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_position);
+        screenPosition = screenPosition + _offset;
+        Ray ray = RectTransformUtility.ScreenPointToRay(GameManager.Instance.UICamera, screenPosition);
+        return ray.origin;
+    }
+    /// <summary>
+    /// UICamera의 스크린 좌표를 MainCamera 기준의 월드 좌표로 변환합니다.
+    /// UICamera와 MainCamera가 서로 다른 위치/방향일 때, UICamera로 만든 Ray가 MainCamera 기준 월드 좌표를 제대로 표현할 수 있느냐?
+    /// 상관없다 왜냐 ScreenPointToRay는 단지 UICamera가 보는 시점에서 화면 픽셀(Screen Point)이 월드 공간상 어디를 향하는지에 대한 Ray를 생성해주는 함수이기 때문
+    /// 즉, 스크린 좌표로부터 현재 이 화면상 점에서 바라보는 방향은 어디인가를 알려주는거고 그 이후 월드 좌표를 계산할 땐 UICamera의 위치화 방향 기준으로 ray를 뻗어나가는 것 일 뿐
+    /// </summary>
+    /// <param name="_screenPosition">터치 등으로부터 얻은 스크린 좌표</param>
+    /// <param name="_distance">원하는 깊이 (MainCamera로부터 얼마나 떨어진 위치)</param>
+    /// <returns>MainCamera 기준의 월드 좌표</returns>
+    public static Vector3 ScreenPointToWorldPoint(Vector3 _screenPosition, float _distance)
+    {
+        // UICamera 기준으로 Ray 생성
+        // Step 1. UICamera 스크린 좌표 -> 동일한 픽셀 좌표를 유지 = _screenPosition
+
+        Ray ray = GameManager.Instance.UICamera.ScreenPointToRay(_screenPosition);
+        // Step 2. MainCamera로 ray 생성
+        // 그 ray를 MainCamera 공간의 특정 거리 위치까지 쏴서 계산
+        return ray.origin + ray.direction * _distance;
+    }
+    #endregion
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Hero
+  - UICamera
   layers:
   - Default
   - TransparentFX

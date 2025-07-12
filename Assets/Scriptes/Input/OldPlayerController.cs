@@ -87,7 +87,6 @@ public class OldPlayerController : MonoBehaviour
                 if (heroLand != null && heroLand.IsHeroEmpty)
                 {
                     Vector2Int normalizedPos = NormalizeMousePosition(heroLand.transform.position);
-
                     // map에 설치 가능
                     if (MapManager.Instance.IsPossibleSetHero(normalizedPos))
                     {

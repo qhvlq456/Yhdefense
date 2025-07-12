@@ -18,10 +18,7 @@ public class HPSlider : BaseUI
     }
     public void FollowTarget()
     {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(target.position);
-        screenPosition = screenPosition + offset;
-
-        mRect.position = screenPosition;
+        mRect.position = Utility.WorldToScreenPoint(target.position, offset);
     }
 
     public void OnChangedValue(float _value)
